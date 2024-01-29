@@ -19,9 +19,9 @@
 
   Finally, you should see result as below  
   ![Agent running result.png](images%2FAgent%20running%20result.png)  
-  <br>  
+      
   ![Local Agent Log.png](images%2FLocal%20Agent%20Log.png)
-  <span style="color:red; font-weight:bold;">**Note:**</span>  
+  **Note:**  
     If you are using VPN locally please remove/set git proxy correctly.
   ```
   git config --global --unset http.proxy
@@ -104,7 +104,7 @@ ADF master framework is the main portal to control the workflow and dependencies
 6. After the changes have been verified in the test factory, deploy to the production factory by using the next task of the pipelines release.  
   ![CI CD lifecycle.png](images%2FCI%20CD%20lifecycle.png)  
 
-<span style="color:red; font-weight:bold;">**Note:**</span>  
+**Note:** 
   Only the development factory is associated with a git repository.  
   The test and production factories shouldn't have a git repository associated with them and should only be updated via an Azure DevOps pipeline or via a Resource Management template.
 ### CI/CD flow [Please check url 6 for detail reference](#2) 
