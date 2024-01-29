@@ -34,7 +34,7 @@
   git config --get https.proxy
   ```
 
-## ## High Level Architecture  
+## High Level Architecture  
 
 
 
