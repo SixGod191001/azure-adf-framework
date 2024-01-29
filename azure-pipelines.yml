@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  name: default
+  name: YANGYANG
 
 steps:
 - script: echo Hello, world!
