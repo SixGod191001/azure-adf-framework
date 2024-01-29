@@ -19,6 +19,8 @@
 
   Finally, you should see result as below  
   ![Agent running result.png](images%2FAgent%20running%20result.png)  
+  <br>  
+  ![Local Agent Log.png](images%2FLocal%20Agent%20Log.png)
   <span style="color:red; font-weight:bold;">**Note:**</span>  
     If you are using VPN locally please remove/set git proxy correctly.
   ```
