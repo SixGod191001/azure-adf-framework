@@ -32,6 +32,11 @@
   git config --get https.proxy
   ```
 
+## ## High Level Architecture  
+
+
+
+
 ## ADF Master Framework
 ADF master framework is the main portal to control the workflow and dependencies for all task pipeline  
   ![ADF master framework.png](images%2FADF%20master%20framework.png)  
@@ -61,8 +66,6 @@ ADF master framework is the main portal to control the workflow and dependencies
      - Support version control for managing and tracking changes in data workflows.
      - Provide collaboration and team development features to facilitate collaborative work among multiple team members.
   9. xxxx
-  
-## High Level Architecture
 
 
 
