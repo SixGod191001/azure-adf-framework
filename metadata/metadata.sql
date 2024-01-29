@@ -26,7 +26,7 @@ CREATE TABLE frameworkmetadata.metadata.BatchEmailMapping (
 CREATE TABLE frameworkmetadata.metadata.BatchExecution (
 	BatchId uniqueidentifier NOT NULL,
 	ExecutionId uniqueidentifier NOT NULL,
-	BatchName varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	BatchName nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 	BatchStatus nvarchar(200) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 	StartDateTime datetime NOT NULL,
 	EndDateTime datetime NULL,
@@ -42,8 +42,8 @@ CREATE TABLE frameworkmetadata.metadata.BatchExecution (
 
 CREATE TABLE frameworkmetadata.metadata.Batches (
 	BatchId uniqueidentifier DEFAULT newid() NOT NULL,
-	BatchName varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
-	BatchDescription varchar(4000) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	BatchName nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	BatchDescription nvarchar(4000) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	Enabled bit DEFAULT 0 NOT NULL,
 	CONSTRAINT PK_Batches PRIMARY KEY (BatchId)
 );
@@ -108,10 +108,10 @@ CREATE TABLE frameworkmetadata.metadata.ErrorLog (
 	LocalExecutionId uniqueidentifier NOT NULL,
 	PipelineRunId uniqueidentifier NOT NULL,
 	ActivityRunId uniqueidentifier NOT NULL,
-	ActivityName varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
-	ActivityType varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
-	ErrorCode varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
-	ErrorType varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	ActivityName nvarchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	ActivityType nvarchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	ErrorCode nvarchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	ErrorType nvarchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 	ErrorMessage nvarchar(MAX) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	CONSTRAINT PK_ErrorLog PRIMARY KEY (LogId)
 );
@@ -167,7 +167,7 @@ CREATE TABLE frameworkmetadata.metadata.PipelineEmailMapping (
 
 CREATE TABLE frameworkmetadata.metadata.Properties (
 	PropertyId int IDENTITY(1,1) NOT NULL,
-	PropertyName varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	PropertyName nvarchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 	PropertyValue nvarchar(MAX) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 	Description nvarchar(MAX) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	ValidFrom datetime DEFAULT getdate() NOT NULL,
@@ -184,8 +184,8 @@ CREATE TABLE frameworkmetadata.metadata.Properties (
 
 CREATE TABLE frameworkmetadata.metadata.Stages (
 	StageId int IDENTITY(1,1) NOT NULL,
-	StageName varchar(225) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
-	StageDescription varchar(4000) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	StageName nvarchar(225) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	StageDescription nvarchar(4000) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	Enabled bit DEFAULT 1 NOT NULL,
 	CONSTRAINT PK_Stages PRIMARY KEY (StageId)
 );
@@ -286,7 +286,7 @@ ALTER TABLE frameworkmetadata.metadata.PipelineDependencies WITH NOCHECK ADD CON
 CREATE TABLE frameworkmetadata.metadata.PipelineParameters (
 	ParameterId int IDENTITY(1,1) NOT NULL,
 	PipelineId int NOT NULL,
-	ParameterName varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	ParameterName nvarchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 	ParameterValue nvarchar(MAX) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	ParameterValueLastUsed nvarchar(MAX) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	CONSTRAINT PK_PipelineParameters PRIMARY KEY (ParameterId),
