@@ -1,0 +1,36 @@
+{
+	"name": "DataHubFrameworkTrigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "00-Batch",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"BatchName": "1"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2023-11-04T15:57:00",
+				"endTime": "2023-11-08T15:57:00",
+				"timeZone": "China Standard Time",
+				"schedule": {
+					"minutes": [
+						0
+					],
+					"hours": [
+						1
+					]
+				}
+			}
+		}
+	}
+}

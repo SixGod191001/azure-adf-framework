@@ -1,0 +1,52 @@
+{
+	"name": "Wait 12",
+	"properties": {
+		"description": "Used just so the procfwk has something to call during development.",
+		"activities": [
+			{
+				"name": "Wait10",
+				"description": "Framework development worker simulator.",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": {
+						"value": "@pipeline().parameters.WaitTime",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Fail1",
+				"type": "Fail",
+				"dependsOn": [
+					{
+						"activity": "Wait10",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"message": "test failed",
+					"errorCode": "500"
+				}
+			}
+		],
+		"parameters": {
+			"WaitTime": {
+				"type": "int",
+				"defaultValue": 5
+			}
+		},
+		"folder": {
+			"name": "DataHubFramework/99_Workers"
+		},
+		"annotations": [
+			"_ProcFwkWorker"
+		],
+		"lastPublishTime": "2023-11-24T10:14:39Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
