@@ -1,5 +1,5 @@
 # azure-adf-framework
-azure adf common framework which will be orchestrator to organize different job, such as adf pipeline, databricks
+  Azure ADF common framework which will be orchestrator to organize different job, such as adf pipeline, databricks
 
 ## Prerequisites:
 - Azure Account
@@ -7,12 +7,13 @@ azure adf common framework which will be orchestrator to organize different job,
 - GitHub Account (Config handshake between GitHub and Azure DevOps when create a new pipline in Azure DevOps )
 - Install and config Self Hosted Agent - Azure DevOps (For cost saving purpose)  
   [Please check url 1-5 for detail reference](#1)  
-  ![How to setup Self-hosted Windows agents](images/How to setup Self-hosted Windows agents.png)  
+  ![How to setup Self-hosted Windows agents.png](images%2FHow%20to%20setup%20Self-hosted%20Windows%20agents.png)  
   Once config ready you should see the result as below:  
-  ![Agent running status in local PC](images/Agent running status in local PC.png)
-  ![Agent running status in Azure DevOps account](images/Agent running status in Azure DevOps account.png)
+  ![Agent running status in local PC.png](images%2FAgent%20running%20status%20in%20local%20PC.png)  
+  ![Agent running status in Azure DevOps account.png](images%2FAgent%20running%20status%20in%20Azure%20DevOps%20account.png)  
+
   Finally, you should see result as below  
-  ![Agent running result](images/Agent running result.png)  
+  ![Agent running result.png](images%2FAgent%20running%20result.png)  
   <span style="color:red; font-weight:bold;">**Note:**</span>  
     If you are using VPN locally please remove/set git proxy correctly.
   ```
@@ -27,8 +28,8 @@ azure adf common framework which will be orchestrator to organize different job,
   ```
 
 ## ADF Master Framework
-ADF master framework is the main portal to control the workflow and dependencies for all task pipeline
-  ![ADF master framework](images/ADF master framework.png)
+ADF master framework is the main portal to control the workflow and dependencies for all task pipeline  
+  ![ADF master framework.png](images%2FADF%20master%20framework.png)  
 ### Master Framework Capabilities
   1. Metadata Management:  
      - Offer metadata storage and management to trace the sources, processing, and destinations of data.
@@ -56,11 +57,14 @@ ADF master framework is the main portal to control the workflow and dependencies
      - Provide collaboration and team development features to facilitate collaborative work among multiple team members.
   9. xxxx
   
-  
+## High Level Architecture
+
+
+
 ## ADF Task Framework
-ADF task framework is aiming to build common pipeline which makes developer can use it easily by config metadata.  
-This pipeline should different kind of ingestion and data processing
-![ADF Task Framework](images/ADF Task Framework.png)
+  ADF task framework is aiming to build common pipeline which makes developer can use it easily by config metadata.  
+  This pipeline should different kind of ingestion and data processing  
+  ![ADF Task Framework.png](images%2FADF%20Task%20Framework.png)  
 
 ### Task Framework Capabilities
   1. Data Connection and Source/Destination Adapters:  
@@ -98,7 +102,10 @@ This pipeline should different kind of ingestion and data processing
   2. Push to master isn't allowed. Users must create a pull request to make changes.
   3. The Azure DevOps pipeline build is triggered every time a new commit is made to master. It validates the resources and generates an ARM template as an artifact if validation succeeds.
   4. The DevOps Release pipeline is configured to create a new release and deploy the ARM template each time a new build is available.
-  ![CI/CD Flow](images/CI CD Flow.png)
+  ![CI CD Flow.png](images%2FCI%20CD%20Flow.png)  
+#### Walkthrough of CICD in Azure Data Factory
+  ![Walkthrough of CICD in Azure Data Factory.png](images%2FWalkthrough%20of%20CICD%20in%20Azure%20Data%20Factory.png)
+
 
 
 
