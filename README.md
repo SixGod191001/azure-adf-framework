@@ -1,5 +1,10 @@
-# azure-adf-framework
-  Azure ADF common framework which will be orchestrator to organize different job, such as adf pipeline, databricks
+# ADF Universal Framework
+
+## Overview 
+  The ADF Universal Framework is an open-source project designed to provide a comprehensive and flexible solution for building scalable and efficient data integration workflows using Azure Data Factory (ADF).  Whether you are dealing with data ingestion, transformation, or loading, this framework aims to streamline your ETL processes and empower data engineers and developers with a set of powerful capabilities.
+
+## Getting Started  
+  To get started with the ADF Universal Framework, please refer to the [documentation](docs%2FGetting%20Started.md) for detailed instructions, examples, and best practices.
 
 ## Prerequisites:
 - Azure Account
@@ -108,6 +113,21 @@ ADF master framework is the main portal to control the workflow and dependencies
 
 
 
+
+## Contribution
+  Contributions to the project are welcome! If you have ideas for improvements, feature requests, or bug reports, feel free to open an issue or submit a pull request.  
+  Let's collaborate to make data integration with Azure Data Factory more efficient and scalable!
+
+## Version Life Cycle
+ADF Universal Framework version life cycle:
+
+| Version | Current Patch/Minor | State     | First Release | Limited Support   | EOL/Terminated |
+|---------|---------------------|-----------|---------------|-------------------|----------------|
+| 2       | 2.1.0               | Supported | Jun 30, 2024  | TBD               | TBD            |
+| 1.4     | 1.4.3               | EOL       | May 31, 2024  | Dec 17, 2020      | Dec 31, 2024   |
+| 1.3     | 1.3.0               | EOL       | Apr 30, 2024  | Aug 27, 2018      | Dec 31, 2024   |
+| 1.2     | 1.2.5               | EOL       | Mar 31, 2024  | Jan 03, 2018      | Dec 31, 2024   |
+| 1.1     | 1.1.1               | EOL       | Feb 28, 2024  | Mar 19, 2017      | Dec 31, 2024   |
 
 
 
