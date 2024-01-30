@@ -31,7 +31,7 @@
 			}
 		},
 		"folder": {
-			"name": "DataHubFramework"
+			"name": "ADFUniversalOrchestratorFramework"
 		},
 		"annotations": [
 			"Batch"

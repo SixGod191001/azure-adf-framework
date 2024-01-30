@@ -24,7 +24,7 @@
 			}
 		},
 		"folder": {
-			"name": "DataHubFramework/99_Workers"
+			"name": "ADFUniversalOrchestratorFramework/99_Workers"
 		},
 		"annotations": [
 			"_ProcFwkWorker"

@@ -1241,7 +1241,7 @@
 			}
 		},
 		"folder": {
-			"name": "DataHubFramework"
+			"name": "ADFUniversalOrchestratorFramework"
 		},
 		"annotations": [
 			"03-Execute"

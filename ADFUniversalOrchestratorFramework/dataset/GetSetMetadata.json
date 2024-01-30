@@ -7,10 +7,10 @@
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
-			"name": "DataHubFramework"
+			"name": "ADFUniversalOrchestratorFramework"
 		},
 		"annotations": [
-			"DataHubFramework"
+			"ADFUniversalOrchestratorFramework"
 		],
 		"type": "AzureSqlTable",
 		"schema": []

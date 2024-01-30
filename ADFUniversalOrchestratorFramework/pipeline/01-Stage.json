@@ -1018,7 +1018,7 @@
 			}
 		},
 		"folder": {
-			"name": "DataHubFramework"
+			"name": "ADFUniversalOrchestratorFramework"
 		},
 		"annotations": [
 			"Stage"

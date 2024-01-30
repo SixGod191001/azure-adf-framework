@@ -40,7 +40,7 @@
 			}
 		},
 		"folder": {
-			"name": "DataHubFramework/Utils"
+			"name": "ADFUniversalOrchestratorFramework/Utils"
 		},
 		"annotations": [
 			"procfwk",

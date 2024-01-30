@@ -112,7 +112,7 @@
 			}
 		},
 		"folder": {
-			"name": "DataHubFramework"
+			"name": "ADFUniversalOrchestratorFramework"
 		},
 		"annotations": [
 			"02-Pipelines"
