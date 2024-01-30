@@ -12,16 +12,20 @@
 
 The solution uses these components:
 
-| Component                    | Link                                                                                  |
-|------------------------------|---------------------------------------------------------------------------------------|
-| Azure Data Factory (ADF)      | [Azure Data Factory](https://azure.microsoft.com/services/data-factory)              |
-| Azure Databricks              | [Azure Databricks](https://azure.microsoft.com/services/databricks)                  |
-| Azure Data Lake Storage (ADLS)| [Azure Data Lake Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) |
-| Azure Synapse Analytics       | [Azure Synapse Analytics](https://azure.microsoft.com/services/synapse-analytics)    |
-| Azure Key Vault               | [Azure Key Vault](https://azure.microsoft.com/services/key-vault)                      |
-| Azure DevOps                  | [Azure DevOps](https://azure.microsoft.com/services/devops)                            |
-| Power BI                      | [Power BI](https://powerbi.microsoft.com/)                                           |
-
+| Component                      | Link                                                                                                                 |
+|--------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| Azure Data Factory (ADF)       | [Azure Data Factory](https://azure.microsoft.com/services/data-factory)                                              |
+| Azure Databricks               | [Azure Databricks](https://azure.microsoft.com/services/databricks)                                                  |
+| Azure Data Lake Storage (ADLS) | [Azure Data Lake Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction)      |
+| Azure Synapse Analytics        | [Azure Synapse Analytics](https://azure.microsoft.com/services/synapse-analytics)                                    |
+| Azure Key Vault                | [Azure Key Vault](https://azure.microsoft.com/services/key-vault)                                                    |
+| Azure DevOps                   | [Azure DevOps](https://azure.microsoft.com/services/devops)                                                          |
+| Power BI                       | [Power BI](https://powerbi.microsoft.com/)                                                                           |
+| Azure SQL Database             | [Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/database)                                  |
+| Microsoft Purview              | [Microsoft Purview](https://azure.microsoft.com/en-us/products/purview)                                              |
+| Azure Key Vault                | [Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault)                                              |
+| Self-Hosted IR                 | [Self-Hosted IR](https://learn.microsoft.com/en-us/azure/data-factory/create-self-hosted-integration-runtime)        |
+| Self-Hosted Agent              | [Self-Hosted Agent](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/windows-agent?view=azure-devops) |
 
 ## Getting Started  
   To get started with the ADF Universal Framework, please refer to the [documentation](docs%2FGetting%20Started.md) for detailed instructions, examples, and best practices.
