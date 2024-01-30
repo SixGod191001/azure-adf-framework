@@ -1,0 +1,9 @@
+{
+	"name": "ADFUniversalOrchestratorFramework",
+	"location": "japaneast",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "c04880c6-becb-4fd7-8864-58b0feb86ff3",
+		"tenantId": "57b4e176-eb21-4c5c-be50-56baf5076018"
+	}
+}
