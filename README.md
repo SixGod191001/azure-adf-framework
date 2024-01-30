@@ -146,9 +146,9 @@ ADF master framework is the main portal to control the workflow and dependencies
   4. The DevOps Release pipeline is configured to create a new release and deploy the ARM template each time a new build is available.
   ![CI CD Flow.png](images%2FCI%20CD%20Flow.png)  
 #### Walkthrough of CICD in Azure Data Factory
+[Reference 9](#9)
   ![Walkthrough of CICD in Azure Data Factory.png](images%2FWalkthrough%20of%20CICD%20in%20Azure%20Data%20Factory.png)
 
-**Reference:** [Reference 9](#9)
 
 <a id="8"></a> 
 ## DataOps For The Modern Data Warehouse  
