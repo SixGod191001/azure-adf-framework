@@ -35,7 +35,7 @@ The solution uses these components:
 - Azure DevOps Account (Repos in Azure DevOps is not used in this case)
 - GitHub Account (Config handshake between GitHub and Azure DevOps when create a new pipline in Azure DevOps )
 - Install and config Self Hosted Agent - Azure DevOps (For cost saving purpose)  
-  [Please check url 1-5 for detail reference](#1)  
+  [Reference 1-5](#1)  
   ![How to setup Self-hosted Windows agents.png](images%2FHow%20to%20setup%20Self-hosted%20Windows%20agents.png)  
   Once config ready you should see the result as below:  
   ![Agent running status in local PC.png](images%2FAgent%20running%20status%20in%20local%20PC.png)  
@@ -124,7 +124,8 @@ ADF master framework is the main portal to control the workflow and dependencies
 
 <a id="7"></a>  
 ## CI/CD For ADF Universal Framework Solution
-### CI/CD lifecycle [Please check url 7 for detail reference](#3) 
+### CI/CD lifecycle 
+[Reference 7](#3) 
 1. A development data factory is created and configured with Azure Repos Git. All developers should have permission to author Data Factory resources like pipelines and datasets.
 2. A developer creates a feature branch to make a change. They debug their pipeline runs with their most recent changes.
 3. After a developer is satisfied with their changes, they create a pull request from their feature branch to the main or collaboration branch to get their changes reviewed by peers.
@@ -137,7 +138,8 @@ ADF master framework is the main portal to control the workflow and dependencies
 **Note:** 
   Only the development factory is associated with a git repository.  
   The test and production factories shouldn't have a git repository associated with them and should only be updated via an Azure DevOps pipeline or via a Resource Management template.
-### CI/CD flow [Please check url 6 for detail reference](#2) 
+### CI/CD flow 
+[Reference 6](#2) 
   1. Each user makes changes in their private branches.
   2. Push to master isn't allowed. Users must create a pull request to make changes.
   3. The Azure DevOps pipeline build is triggered every time a new commit is made to master. It validates the resources and generates an ARM template as an artifact if validation succeeds.
@@ -146,7 +148,7 @@ ADF master framework is the main portal to control the workflow and dependencies
 #### Walkthrough of CICD in Azure Data Factory
   ![Walkthrough of CICD in Azure Data Factory.png](images%2FWalkthrough%20of%20CICD%20in%20Azure%20Data%20Factory.png)
 
-**Reference:** [See the reference 9](#9)
+**Reference:** [Reference 9](#9)
 
 <a id="8"></a> 
 ## DataOps For The Modern Data Warehouse  
