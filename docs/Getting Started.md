@@ -36,6 +36,13 @@ This project is a universal Azure Data Factory framework designed to simplify an
      git config --get http.proxy
      git config --get https.proxy
      ```
+   - Install and config ADF Self-Hosted IR locally for cost saving purpose
+     1. Go to Integration Runtime
+     2. Create New Self-Hosted IR
+     3. config by express or manually
+        - Download agent installation file or using [IR_ADF_ams.exe](..%2Fagent%2FIR_ams_930d2a20-dc22-431d-bdde-4a2916d0096b_e4b13772-1125-46cd-9501-83fe2c90380a_gX%2Bjgv0K09301%2B2VR1yYXVNNbpEy2OIzdhOixxkgFDo%3D_anBlLmZyb250ZW5kLmNsb3VkZGF0YWh1Yi5uZXQ%3D.exe)
+        - Express installation as below
+          ![config ADF IR.png](..%2Fimages%2Fconfig%20ADF%20IR.png)
 2. Why use ADF Universal Framework
      1. xxx
      2. xxx
