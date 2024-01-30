@@ -1,0 +1,6 @@
+{
+	"name": "SelfHostedIR-Windows",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
