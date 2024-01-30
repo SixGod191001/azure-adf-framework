@@ -168,10 +168,10 @@ ADF Universal Framework version life cycle:
 | Version | Current Patch/Minor | State     | First Release | Limited Support   | EOL/Terminated |
 |---------|---------------------|-----------|---------------|-------------------|----------------|
 | 2       | 2.1.0               | Supported | Jun 30, 2024  | TBD               | TBD            |
-| 1.4     | 1.4.3               | EOL       | May 31, 2024  | Dec 17, 2020      | Dec 31, 2024   |
-| 1.3     | 1.3.0               | EOL       | Apr 30, 2024  | Aug 27, 2018      | Dec 31, 2024   |
-| 1.2     | 1.2.5               | EOL       | Mar 31, 2024  | Jan 03, 2018      | Dec 31, 2024   |
-| 1.1     | 1.1.1               | EOL       | Feb 28, 2024  | Mar 19, 2017      | Dec 31, 2024   |
+| 1.4     | 1.4.3               | EOL       | May 31, 2024  | Dec 31, 2024      | Dec 31, 2024   |
+| 1.3     | 1.3.0               | EOL       | Apr 30, 2024  | Dec 31, 2024      | Dec 31, 2024   |
+| 1.2     | 1.2.5               | EOL       | Mar 31, 2024  | Dec 31, 2024      | Dec 31, 2024   |
+| 1.1     | 1.1.1               | EOL       | Feb 28, 2024  | Dec 31, 2024      | Dec 31, 2024   |
 
 
 
