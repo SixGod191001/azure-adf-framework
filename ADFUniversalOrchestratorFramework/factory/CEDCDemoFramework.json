@@ -1,9 +1,27 @@
 {
-	"name": "CEDCDemoFramework",
-	"location": "japaneast",
-	"identity": {
-		"type": "SystemAssigned",
-		"principalId": "e2d0e6f1-d20c-4cf1-881f-b6598c003508",
-		"tenantId": "57b4e176-eb21-4c5c-be50-56baf5076018"
-	}
+    "name": "ADFUniversalOrchestratorFramework",
+    "id": "/subscriptions/930d2a20-dc22-431d-bdde-4a2916d0096b/resourceGroups/adf.framework/providers/Microsoft.DataFactory/factories/adfuniversalorchestratorframework",
+    "type": "Microsoft.DataFactory/factories",
+    "properties": {
+        "provisioningState": "Succeeded",
+        "createTime": "2024-01-30T03:19:59.7159369Z",
+        "version": "2018-06-01",
+        "factoryStatistics": {
+            "totalResourceCount": 0,
+            "maxAllowedResourceCount": 0,
+            "factorySizeInGbUnits": 0,
+            "maxAllowedFactorySizeInGbUnits": 0
+        },
+        "publicNetworkAccess": "Enabled"
+    },
+    "eTag": "\"2400e278-0000-2300-0000-65b86adf0000\"",
+    "location": "japaneast",
+    "identity": {
+        "type": "SystemAssigned",
+        "principalId": "c04880c6-becb-4fd7-8864-58b0feb86ff3",
+        "tenantId": "57b4e176-eb21-4c5c-be50-56baf5076018"
+    },
+    "tags": {
+        "project": "CEDC"
+    }
 }
