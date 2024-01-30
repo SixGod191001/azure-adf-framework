@@ -1,7 +1,10 @@
 # ADF Universal Framework
 
 ## Overview 
-  The ADF Universal Framework is an open-source project designed to provide a comprehensive and flexible solution for building scalable and efficient data integration workflows using Azure Data Factory (ADF).  Whether you are dealing with data ingestion, transformation, or loading, this framework aims to streamline your ETL processes and empower data engineers and developers with a set of powerful capabilities.  
+  The ADF Universal Framework is an open-source project designed to provide a comprehensive and flexible solution for building scalable and efficient data integration workflows using Azure Data Factory (ADF).  
+  Whether you are dealing with data ingestion, transformation, or loading, this framework aims to streamline your ETL processes and empower data engineers and developers with a set of powerful capabilities.  
+  And integrated various solutions, optimized and adjusted for the best outcome. Appreciate the contributions from open-source contributors.  
+
   This project primarily encompasses the following aspects:  
   1. ADF Universal Orchestrator Framework [Details](#5) 
   2. ADF Universal Task Framework [Details](#6) 
