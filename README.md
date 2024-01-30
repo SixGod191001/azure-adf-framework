@@ -8,6 +8,22 @@
   3. CI/CD Solution For ADF Universal Framework [Details](#7) 
   4. DataOps For The Modern Data Warehouse [Details](#8) 
 
+## Components:  
+## Components:
+
+The solution uses these components:
+
+| Component                    | Link                                                                                  |
+|------------------------------|---------------------------------------------------------------------------------------|
+| Azure Data Factory (ADF)      | [Azure Data Factory](https://azure.microsoft.com/services/data-factory)              |
+| Azure Databricks              | [Azure Databricks](https://azure.microsoft.com/services/databricks)                  |
+| Azure Data Lake Storage (ADLS)| [Azure Data Lake Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) |
+| Azure Synapse Analytics       | [Azure Synapse Analytics](https://azure.microsoft.com/services/synapse-analytics)    |
+| Azure Key Vault               | [Azure Key Vault](https://azure.microsoft.com/services/key-vault)                      |
+| Azure DevOps                  | [Azure DevOps](https://azure.microsoft.com/services/devops)                            |
+| Power BI                      | [Power BI](https://powerbi.microsoft.com/)                                           |
+
+
 ## Getting Started  
   To get started with the ADF Universal Framework, please refer to the [documentation](docs%2FGetting%20Started.md) for detailed instructions, examples, and best practices.
 
