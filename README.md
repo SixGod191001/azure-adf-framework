@@ -1,7 +1,12 @@
 # ADF Universal Framework
 
 ## Overview 
-  The ADF Universal Framework is an open-source project designed to provide a comprehensive and flexible solution for building scalable and efficient data integration workflows using Azure Data Factory (ADF).  Whether you are dealing with data ingestion, transformation, or loading, this framework aims to streamline your ETL processes and empower data engineers and developers with a set of powerful capabilities.
+  The ADF Universal Framework is an open-source project designed to provide a comprehensive and flexible solution for building scalable and efficient data integration workflows using Azure Data Factory (ADF).  Whether you are dealing with data ingestion, transformation, or loading, this framework aims to streamline your ETL processes and empower data engineers and developers with a set of powerful capabilities.  
+  This project primarily encompasses the following aspects:  
+  1. ADF Universal Orchestrator Framework [Details](#5) 
+  2. ADF Universal Task Framework [Details](#6) 
+  3. CI/CD Solution For ADF Universal Framework [Details](#7) 
+  4. DataOps For The Modern Data Warehouse [Details](#8) 
 
 ## Getting Started  
   To get started with the ADF Universal Framework, please refer to the [documentation](docs%2FGetting%20Started.md) for detailed instructions, examples, and best practices.
@@ -34,15 +39,17 @@
   git config --get https.proxy
   ```
 
+
+<a id="4"></a>  
 ## High Level Architecture  
 
 
 
-
-## ADF Master Framework
+<a id="5"></a>  
+## ADF Universal Orchestrator Framework
 ADF master framework is the main portal to control the workflow and dependencies for all task pipeline  
   ![ADF master framework.png](images%2FADF%20master%20framework.png)  
-### Master Framework Capabilities
+### Orchestrator Framework Capabilities
   1. Metadata Management:  
      - Offer metadata storage and management to trace the sources, processing, and destinations of data.
      - Support data lineage and impact analysis to help understand and manage data workflows.
@@ -70,8 +77,8 @@ ADF master framework is the main portal to control the workflow and dependencies
   9. xxxx
 
 
-
-## ADF Task Framework
+<a id="6"></a>  
+## ADF Universal Task Framework
   ADF task framework is aiming to build common pipeline which makes developer can use it easily by config metadata.  
   This pipeline should different kind of ingestion and data processing  
   ![ADF Task Framework.png](images%2FADF%20Task%20Framework.png)  
@@ -83,6 +90,7 @@ ADF master framework is the main portal to control the workflow and dependencies
   2. Data Flow Processing:  
      - Support data transformation, cleansing, and processing to meet business requirements.
      - Offer a rich set of data processing activities such as data splitting, merging, aggregation, filtering, and more.
+     - Support multiple interfaces, such as Azure Synapse and Azure Databricks
   3. Parameterization and Configuration:  
      - Allow parameterization of tasks and data flows to enhance reusability and flexibility.
      - Provide configuration options for dynamic adjustments based on environment and requirements.
@@ -92,8 +100,11 @@ ADF master framework is the main portal to control the workflow and dependencies
   5. Version Control and Collaboration:  
      - Support version control for managing and tracking changes in data workflows.
      - Provide collaboration and team development features to facilitate collaborative work among multiple team members.
-  
-## CI/CD
+  6. 
+
+
+<a id="7"></a>  
+## CI/CD For ADF Universal Framework Solution
 ### CI/CD lifecycle [Please check url 7 for detail reference](#3) 
 1. A development data factory is created and configured with Azure Repos Git. All developers should have permission to author Data Factory resources like pipelines and datasets.
 2. A developer creates a feature branch to make a change. They debug their pipeline runs with their most recent changes.
@@ -116,7 +127,16 @@ ADF master framework is the main portal to control the workflow and dependencies
 #### Walkthrough of CICD in Azure Data Factory
   ![Walkthrough of CICD in Azure Data Factory.png](images%2FWalkthrough%20of%20CICD%20in%20Azure%20Data%20Factory.png)
 
+**Reference:** [See the reference 9](#9)
 
+<a id="8"></a> 
+## DataOps For The Modern Data Warehouse  
+### Architecture
+![dataops overall architecture.png](images%2Fdataops%20overall%20architecture.png)  
+
+
+### CI/CD for DataOps
+![CICD for data ops solution.png](images%2FCICD%20for%20data%20ops%20solution.png)  
 
 
 ## Contribution
@@ -148,3 +168,5 @@ ADF Universal Framework version life cycle:
 <a id="3"></a>
 7. [Continuous integration and delivery in Azure Data Factory](https://learn.microsoft.com/en-us/azure/data-factory/continuous-integration-delivery)
 8. [Walkthrough of CICD in Azure Data Factory (ADF)](https://medium.com/microsoftazure/walkthrough-of-cicd-in-azure-data-factory-adf-54a07ef90d1b)
+<a id="9"></a>
+9. [DataOps for the modern data warehouse](https://learn.microsoft.com/en-us/azure/architecture/databases/architecture/dataops-mdw)
