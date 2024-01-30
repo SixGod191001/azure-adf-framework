@@ -9,7 +9,6 @@
   4. DataOps For The Modern Data Warehouse [Details](#8) 
 
 ## Components:  
-## Components:
 
 The solution uses these components:
 
