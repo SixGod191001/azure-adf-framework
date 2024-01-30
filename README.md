@@ -191,3 +191,4 @@ ADF Universal Framework version life cycle:
 8. [Walkthrough of CICD in Azure Data Factory (ADF)](https://medium.com/microsoftazure/walkthrough-of-cicd-in-azure-data-factory-adf-54a07ef90d1b)
 <a id="9"></a>
 9. [DataOps for the modern data warehouse](https://learn.microsoft.com/en-us/azure/architecture/databases/architecture/dataops-mdw)
+10. [procfwk](https://github.com/mrpaulandrew/procfwk)
