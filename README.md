@@ -7,10 +7,10 @@
   And integrated various solutions, optimized and adjusted for the best outcome. Appreciate the contributions from open-source contributors.  
 
   This project primarily encompasses the following aspects:  
-  1. ADF Universal Orchestrator Framework [Details](#5) 
-  2. ADF Universal Task Framework [Details](#6) 
-  3. CI/CD Solution For ADF Universal Framework [Details](#7) 
-  4. DataOps For The Modern Data Warehouse [Details](#8) 
+  - [ADF Universal Orchestrator Framework](#5) 
+  - [ADF Universal Task Framework](#6) 
+  - [CI/CD Solution For ADF Universal Framework](#7) 
+  - [DataOps For The Modern Data Warehouse](#8) 
 
 ## Components:  
 
