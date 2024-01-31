@@ -42,7 +42,9 @@ The solution uses these components:
 
 <a id="ADFUniversalOrchestratorFramework"></a>  
 ## ADF Universal Orchestrator Framework
-[Back to Top](#TableofContents)
+<div style="text-align: right;">
+  [Back to Top](#TableofContents)
+</div>
 
 ADF master framework is the main portal to control the workflow and dependencies for all task pipeline  
   ![ADF master framework.png](images%2FADF%20master%20framework.png)  
