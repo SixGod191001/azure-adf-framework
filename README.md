@@ -127,7 +127,7 @@ ADF master framework is the main portal to control the workflow and dependencies
 
 
 <a id="DataOpsForTheModernDataWarehouse"></a> 
-## DataOps For The Modern Data Warehouse  
+## [DataOps For The Modern Data Warehouse](https://learn.microsoft.com/en-us/azure/architecture/databases/architecture/dataops-mdw)  
 [**Back to Top &#x2B06;**](#TableofContents)  
 ### Architecture
 ![dataops overall architecture.png](images%2Fdataops%20overall%20architecture.png)  
