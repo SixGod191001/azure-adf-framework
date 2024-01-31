@@ -70,7 +70,7 @@ ADF master framework is the main portal to control the workflow and dependencies
   8. Version Control and Collaboration:  
      - Support version control for managing and tracking changes in data workflows.
      - Provide collaboration and team development features to facilitate collaborative work among multiple team members.
-  9. xxxx
+
 
 
 <a id="ADFUniversalTaskSolution"></a>  
