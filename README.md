@@ -37,8 +37,7 @@ The solution uses these components:
 
 
 ## High Level Architecture  
-
-
+![High Level Architecture.png](images%2FHigh%20Level%20Architecture.png)  
 
 <a id="ADFUniversalOrchestratorFramework"></a>  
 ## ADF Universal Orchestrator Framework
