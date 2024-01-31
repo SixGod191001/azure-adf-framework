@@ -100,8 +100,7 @@ ADF master framework is the main portal to control the workflow and dependencies
 
 <a id="7"></a>  
 ## CI/CD For ADF Universal Framework Solution
-### CI/CD lifecycle 
-[Reference 7](#3) 
+### [CI/CD lifecycle](#3)
 1. A development data factory is created and configured with Azure Repos Git. All developers should have permission to author Data Factory resources like pipelines and datasets.
 2. A developer creates a feature branch to make a change. They debug their pipeline runs with their most recent changes.
 3. After a developer is satisfied with their changes, they create a pull request from their feature branch to the main or collaboration branch to get their changes reviewed by peers.
@@ -114,15 +113,13 @@ ADF master framework is the main portal to control the workflow and dependencies
 **Note:** 
   Only the development factory is associated with a git repository.  
   The test and production factories shouldn't have a git repository associated with them and should only be updated via an Azure DevOps pipeline or via a Resource Management template.
-### CI/CD flow 
-[Reference 6](#2) 
+### [CI/CD flow](#2) 
   1. Each user makes changes in their private branches.
   2. Push to master isn't allowed. Users must create a pull request to make changes.
   3. The Azure DevOps pipeline build is triggered every time a new commit is made to master. It validates the resources and generates an ARM template as an artifact if validation succeeds.
   4. The DevOps Release pipeline is configured to create a new release and deploy the ARM template each time a new build is available.
   ![CI CD Flow.png](images%2FCI%20CD%20Flow.png)  
-#### Walkthrough of CICD in Azure Data Factory
-[Reference 9](#9)
+#### [Walkthrough of CICD in Azure Data Factory](#9)
   ![Walkthrough of CICD in Azure Data Factory.png](images%2FWalkthrough%20of%20CICD%20in%20Azure%20Data%20Factory.png)
 
 
@@ -161,10 +158,10 @@ ADF Universal Framework version life cycle:
 4. [Run the agent - interactively](https://learn.microsoft.com/zh-cn/azure/devops/pipelines/agents/windows-agent?view=azure-devops#run-interactively)
 5. [Run the agent - service](https://learn.microsoft.com/zh-cn/azure/devops/pipelines/agents/windows-agent?view=azure-devops#run-as-a-service)
 <a id="2"></a>
-6. [Continuous deployment improvements](https://learn.microsoft.com/en-us/azure/data-factory/continuous-integration-delivery-improvements)
+6. [CI/CD flow - Continuous deployment improvements](https://learn.microsoft.com/en-us/azure/data-factory/continuous-integration-delivery-improvements)
 <a id="3"></a>
-7. [Continuous integration and delivery in Azure Data Factory](https://learn.microsoft.com/en-us/azure/data-factory/continuous-integration-delivery)
-8. [Walkthrough of CICD in Azure Data Factory (ADF)](https://medium.com/microsoftazure/walkthrough-of-cicd-in-azure-data-factory-adf-54a07ef90d1b)
+7. [CI/CD lifecycle - Continuous integration and delivery in Azure Data Factory](https://learn.microsoft.com/en-us/azure/data-factory/continuous-integration-delivery)
 <a id="9"></a>
+8. [Walkthrough of CICD in Azure Data Factory (ADF)](https://medium.com/microsoftazure/walkthrough-of-cicd-in-azure-data-factory-adf-54a07ef90d1b)
 9. [DataOps for the modern data warehouse](https://learn.microsoft.com/en-us/azure/architecture/databases/architecture/dataops-mdw)
 10. [procfwk](https://github.com/mrpaulandrew/procfwk)
