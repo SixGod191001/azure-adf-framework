@@ -6,11 +6,12 @@
   Whether you are dealing with data ingestion, transformation, or loading, this framework aims to streamline your ETL processes and empower data engineers and developers with a set of powerful capabilities.  
   And integrated various solutions, optimized and adjusted for the best outcome. Appreciate the contributions from open-source contributors.  
 
+<a id="TableofContents"></a> 
   This project primarily encompasses the following aspects:  
-  - [ADF Universal Orchestrator Framework](#ADF Universal Orchestrator Framework) 
-  - [ADF Universal Task Framework](#ADF Universal Task Framework) 
-  - [CI/CD Solution For ADF Universal Framework](#CI/CD For ADF Universal Framework Solution) 
-  - [DataOps For The Modern Data Warehouse](#DataOps For The Modern Data Warehouse) 
+  - [ADF Universal Orchestrator Framework](#ADFUniversalOrchestratorFramework) 
+  - [ADF Universal Task Framework](#ADFUniversalTaskFramework) 
+  - [CI/CD Solution For ADF Universal Framework](#CICDForADFUniversalFrameworkSolution) 
+  - [DataOps For The Modern Data Warehouse](#DataOpsForTheModernDataWarehouse) 
 
 ## Components:  
 
@@ -35,13 +36,14 @@ The solution uses these components:
   To get started with the ADF Universal Framework, please refer to the [documentation](docs%2FGetting%20Started.md) for detailed instructions, examples, and best practices.
 
 
-<a id="High Level Architecture"></a>  
 ## High Level Architecture  
 
 
 
-<a id="ADF Universal Orchestrator Framework"></a>  
+<a id="ADFUniversalOrchestratorFramework"></a>  
 ## ADF Universal Orchestrator Framework
+[Back to Top](#TableofContents)
+
 ADF master framework is the main portal to control the workflow and dependencies for all task pipeline  
   ![ADF master framework.png](images%2FADF%20master%20framework.png)  
 ### Orchestrator Framework Capabilities
@@ -72,8 +74,9 @@ ADF master framework is the main portal to control the workflow and dependencies
   9. xxxx
 
 
-<a id="ADF Universal Task Framework"></a>  
+<a id="ADFUniversalTaskFramework"></a>  
 ## ADF Universal Task Framework
+[Back to Top](#TableofContents)
   ADF task framework is aiming to build common pipeline which makes developer can use it easily by config metadata.  
   This pipeline should different kind of ingestion and data processing  
   ![ADF Task Framework.png](images%2FADF%20Task%20Framework.png)  
@@ -98,8 +101,9 @@ ADF master framework is the main portal to control the workflow and dependencies
   6. 
 
 
-<a id="CI/CD For ADF Universal Framework Solution"></a>  
+<a id="CICDForADFUniversalFrameworkSolution"></a>  
 ## CI/CD For ADF Universal Framework Solution
+[Back to Top](#TableofContents)
 ### [CI/CD lifecycle](https://learn.microsoft.com/en-us/azure/data-factory/continuous-integration-delivery)
 1. A development data factory is created and configured with Azure Repos Git. All developers should have permission to author Data Factory resources like pipelines and datasets.
 2. A developer creates a feature branch to make a change. They debug their pipeline runs with their most recent changes.
@@ -123,8 +127,9 @@ ADF master framework is the main portal to control the workflow and dependencies
   ![Walkthrough of CICD in Azure Data Factory.png](images%2FWalkthrough%20of%20CICD%20in%20Azure%20Data%20Factory.png)
 
 
-<a id="DataOps For The Modern Data Warehouse"></a> 
+<a id="DataOpsForTheModernDataWarehouse"></a> 
 ## DataOps For The Modern Data Warehouse  
+[Back to Top](#TableofContents)
 ### Architecture
 ![dataops overall architecture.png](images%2Fdataops%20overall%20architecture.png)  
 
@@ -134,10 +139,12 @@ ADF master framework is the main portal to control the workflow and dependencies
 
 
 ## Contribution
+[Back to Top](#TableofContents)
   Contributions to the project are welcome! If you have ideas for improvements, feature requests, or bug reports, feel free to open an issue or submit a pull request.  
   Let's collaborate to make data integration with Azure Data Factory more efficient and scalable!
 
 ## Version Life Cycle
+[Back to Top](#TableofContents)
 ADF Universal Framework version life cycle:
 
 | Version | Current Patch/Minor | State     | First Release | Limited Support   | EOL/Terminated |
@@ -151,6 +158,7 @@ ADF Universal Framework version life cycle:
 
 
 ## Reference Link:
+[Back to Top](#TableofContents)
 1. [CI/CD lifecycle - Continuous integration and delivery in Azure Data Factory](https://learn.microsoft.com/en-us/azure/data-factory/continuous-integration-delivery)
 2. [How to setup Self-hosted Windows agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/windows-agent?view=azure-devops)
 3. [Register an agent using a personal access token (PAT)](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/personal-access-token-agent-registration?view=azure-devops)
