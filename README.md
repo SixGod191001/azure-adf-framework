@@ -181,6 +181,7 @@ Actual difficulties encountered：
 4. Configuration and usage of key vault
 5. Use the Get metadata component to determine the existence and date time of the file
 6. Parameterized universal pipeline
+   
 Expected functional points：
 1. The pipeline is more universal, and all configured items are configured in the control table
 2. Customize the content of sending emails
