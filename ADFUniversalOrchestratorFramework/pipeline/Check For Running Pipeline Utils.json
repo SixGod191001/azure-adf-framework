@@ -43,7 +43,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderStoredProcedureName": "[procfwk].[GetFrameworkOrchestratorDetails]",
+						"sqlReaderStoredProcedureName": "[metadata].[GetFrameworkOrchestratorDetails]",
 						"storedProcedureParameters": {
 							"CallingOrchestratorName": {
 								"type": "String",
@@ -78,7 +78,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderStoredProcedureName": "[procfwk].[GetPropertyValue]",
+						"sqlReaderStoredProcedureName": "[metadata].[GetPropertyValue]",
 						"storedProcedureParameters": {
 							"PropertyName": {
 								"type": "String",
@@ -152,7 +152,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderStoredProcedureName": "[procfwk].[GetPropertyValue]",
+						"sqlReaderStoredProcedureName": "[metadata].[GetPropertyValue]",
 						"storedProcedureParameters": {
 							"PropertyName": {
 								"type": "String",
@@ -545,7 +545,7 @@
 			"name": "ADFUniversalOrchestratorFramework/Utils"
 		},
 		"annotations": [
-			"procfwk",
+			"metadata",
 			"Utils"
 		],
 		"lastPublishTime": "2023-11-24T15:55:59Z"

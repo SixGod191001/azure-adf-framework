@@ -26,7 +26,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderStoredProcedureName": "[procfwk].[GetStages]",
+						"sqlReaderStoredProcedureName": "[metadata].[GetStages]",
 						"storedProcedureParameters": {
 							"ExecutionId": {
 								"type": "Guid",
@@ -118,7 +118,7 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"storedProcedureName": "[procfwk].[SetLogStagePreparing]",
+								"storedProcedureName": "[metadata].[SetLogStagePreparing]",
 								"storedProcedureParameters": {
 									"ExecutionId": {
 										"value": {
@@ -155,7 +155,7 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"storedProcedureName": "[procfwk].[CheckForBlockedPipelines]",
+								"storedProcedureName": "[metadata].[CheckForBlockedPipelines]",
 								"storedProcedureParameters": {
 									"ExecutionId": {
 										"value": {
@@ -204,7 +204,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderStoredProcedureName": "[procfwk].[ExecutionWrapper]",
+						"sqlReaderStoredProcedureName": "[metadata].[ExecutionWrapper]",
 						"storedProcedureParameters": {
 							"CallingOrchestratorName": {
 								"type": "String",
@@ -251,7 +251,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[procfwk].[UpdateExecutionLog]",
+					"storedProcedureName": "[metadata].[UpdateExecutionLog]",
 					"storedProcedureParameters": {
 						"PerformErrorCheck": {
 							"value": {
@@ -297,7 +297,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderStoredProcedureName": "[procfwk].[CheckPreviousExeuction]",
+						"sqlReaderStoredProcedureName": "[metadata].[CheckPreviousExeuction]",
 						"storedProcedureParameters": {
 							"BatchName": {
 								"type": "String",
@@ -357,7 +357,7 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"storedProcedureName": "[procfwk].[SetLogPipelineChecking]",
+								"storedProcedureName": "[metadata].[SetLogPipelineChecking]",
 								"storedProcedureParameters": {
 									"ExecutionId": {
 										"value": {
@@ -423,7 +423,7 @@
 												},
 												"userProperties": [],
 												"typeProperties": {
-													"storedProcedureName": "[procfwk].[SetLogPipelineFailed]",
+													"storedProcedureName": "[metadata].[SetLogPipelineFailed]",
 													"storedProcedureParameters": {
 														"ExecutionId": {
 															"value": {
@@ -476,7 +476,7 @@
 												},
 												"userProperties": [],
 												"typeProperties": {
-													"storedProcedureName": "[procfwk].[SetLogPipelineSuccess]",
+													"storedProcedureName": "[metadata].[SetLogPipelineSuccess]",
 													"storedProcedureParameters": {
 														"ExecutionId": {
 															"value": {
@@ -525,7 +525,7 @@
 												},
 												"userProperties": [],
 												"typeProperties": {
-													"storedProcedureName": "[procfwk].[SetLogPipelineRunning]",
+													"storedProcedureName": "[metadata].[SetLogPipelineRunning]",
 													"storedProcedureParameters": {
 														"ExecutionId": {
 															"value": {
@@ -574,7 +574,7 @@
 												},
 												"userProperties": [],
 												"typeProperties": {
-													"storedProcedureName": "[procfwk].[SetLogPipelineRunning]",
+													"storedProcedureName": "[metadata].[SetLogPipelineRunning]",
 													"storedProcedureParameters": {
 														"ExecutionId": {
 															"value": {
@@ -623,7 +623,7 @@
 												},
 												"userProperties": [],
 												"typeProperties": {
-													"storedProcedureName": "[procfwk].[SetLogPipelineCancelled]",
+													"storedProcedureName": "[metadata].[SetLogPipelineCancelled]",
 													"storedProcedureParameters": {
 														"ExecutionId": {
 															"value": {
@@ -678,7 +678,7 @@
 										},
 										"userProperties": [],
 										"typeProperties": {
-											"storedProcedureName": "[procfwk].[SetLogPipelineUnknown]",
+											"storedProcedureName": "[metadata].[SetLogPipelineUnknown]",
 											"storedProcedureParameters": {
 												"ExecutionId": {
 													"value": {
@@ -739,7 +739,7 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"storedProcedureName": "[procfwk].[SetLogPipelineLastStatusCheck]",
+								"storedProcedureName": "[metadata].[SetLogPipelineLastStatusCheck]",
 								"storedProcedureParameters": {
 									"ExecutionId": {
 										"value": {
@@ -830,7 +830,7 @@
 							"typeProperties": {
 								"source": {
 									"type": "AzureSqlSource",
-									"sqlReaderStoredProcedureName": "[procfwk].[GetFrameworkOrchestratorDetails]",
+									"sqlReaderStoredProcedureName": "[metadata].[GetFrameworkOrchestratorDetails]",
 									"storedProcedureParameters": {
 										"CallingOrchestratorName": {
 											"type": "String",
@@ -976,7 +976,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[procfwk].[CheckMetadataIntegrity]",
+					"storedProcedureName": "[metadata].[CheckMetadataIntegrity]",
 					"storedProcedureParameters": {
 						"BatchName": {
 							"value": {
