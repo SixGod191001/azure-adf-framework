@@ -125,6 +125,10 @@ ADF master framework is the main portal to control the workflow and dependencies
 #### [Walkthrough of CICD in Azure Data Factory](https://medium.com/microsoftazure/walkthrough-of-cicd-in-azure-data-factory-adf-54a07ef90d1b)
   ![Walkthrough of CICD in Azure Data Factory.png](images%2FWalkthrough%20of%20CICD%20in%20Azure%20Data%20Factory.png)
 
+#### Git Release Workflow  
+We follow below release workflow  
+![git release workflow.svg](images%2Fgit%20release%20workflow.svg)  
+
 
 <a id="DataOpsForTheModernDataWarehouse"></a> 
 ## [DataOps For The Modern Data Warehouse](https://learn.microsoft.com/en-us/azure/architecture/databases/architecture/dataops-mdw)  
