@@ -1,5 +1,5 @@
-# Project Name
-ADF Universal Framework
+# ADF Universal Framework
+Welcome to ADF Universal Framework on GitHub! Whether you're a seasoned developer or just getting started, this guide will help you quickly get up and running with our project.
 
 ## Project Description
 This project is a universal Azure Data Factory framework designed to simplify and standardize the development and maintenance of ETL tasks. It provides a set of common data processing pipelines and templates that can be applied to various data integration and transformation scenarios.
@@ -43,42 +43,14 @@ This project is a universal Azure Data Factory framework designed to simplify an
         - Download agent installation file or using [IR_ADF_ams.exe](..%2Fagent%2FIR_ams_930d2a20-dc22-431d-bdde-4a2916d0096b_e4b13772-1125-46cd-9501-83fe2c90380a_gX%2Bjgv0K09301%2B2VR1yYXVNNbpEy2OIzdhOixxkgFDo%3D_anBlLmZyb250ZW5kLmNsb3VkZGF0YWh1Yi5uZXQ%3D.exe)
         - Express installation as below
           ![config ADF IR.png](..%2Fimages%2Fconfig%20ADF%20IR.png)
-2. Why use ADF Universal Framework
+2. Get Started with ADF Universal Framework
      1. xxx
      2. xxx
      3. xxx
      4. xxx
      5. xxx
      6. xxx
-3. What are features of ADF Universal Framework
-     1. xxx
-     2. xxx
-     3. xxx
-     4. xxx
-     5. xxx
-     6. xxx
-4. How to use ADF Universal Framework
-   - How to Use ADF Universal Orchestrator Framework
-     1. xxx
-     2. xxx
-     3. xxx
-     4. xxx
-     5. xxx
-     6. xxx
-   - How to Use ADF Universal Task Solution
-     1. xxx
-     2. xxx
-     3. xxx
-     4. xxx
-     5. xxx
-     6. xxx
-5. How to use DataOps For The Modern Data Warehouse in ADF Universal Framework
-     1. xxx
-     2. xxx
-     3. xxx
-     4. xxx
-     5. xxx
-     6. xxx
+
 
 
 
