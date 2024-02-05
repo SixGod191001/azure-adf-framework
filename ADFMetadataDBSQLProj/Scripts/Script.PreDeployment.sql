@@ -19,4 +19,6 @@
 :r .\Metadata\DropLegacyTables.sql
 :r .\Metadata\DropLegacyObjects.sql
 :r .\Metadata\DeleteAll.sql
-:r .\Metadata\DropAll.sql
+
+--drop all if previous script not update to date, use below script to drop all without backup, take care
+--:r .\Metadata\DropAll.sql
