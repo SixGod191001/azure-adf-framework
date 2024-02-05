@@ -86,8 +86,8 @@ END;
 
 
 -- 调用存储过程
-EXEC ##DropSchemaAndObjects @SchemaName = 'procfwkTesting';
-EXEC ##DropSchemaAndObjects @SchemaName = 'procfwkReporting';
-EXEC ##DropSchemaAndObjects @SchemaName = 'procfwkHelpers';
-EXEC ##DropSchemaAndObjects @SchemaName = 'procfwk';
+EXEC ##DropSchemaAndObjects @SchemaName = 'metadataTesting';
+EXEC ##DropSchemaAndObjects @SchemaName = 'metadataReporting';
+EXEC ##DropSchemaAndObjects @SchemaName = 'metadataHelpers';
+EXEC ##DropSchemaAndObjects @SchemaName = 'metadata';
 EXEC ##DropSchemaAndObjects @SchemaName = 'dbo';
