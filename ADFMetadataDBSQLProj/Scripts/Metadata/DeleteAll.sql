@@ -69,7 +69,7 @@
 		END;
 
 	--ServicePrincipals
-	IF OBJECT_ID(N'[dbo].[ServicePrincipals]') IS NOT NULL 
+	IF OBJECT_ID(N'[dbo].[ServicePrincipals]') IS NOT NULL
 		BEGIN
 			DELETE FROM [dbo].[ServicePrincipals];
 			DBCC CHECKIDENT ('[dbo].[ServicePrincipals]', RESEED, 0);
@@ -97,10 +97,10 @@
 		END;
 
 	--Orchestrators
-	IF EXISTS 
+	IF EXISTS
 		(
 		SELECT
-			* 
+			*
 		FROM
 			sys.objects o
 			INNER JOIN sys.schemas s
@@ -132,9 +132,21 @@
 		BEGIN
 			DELETE FROM [metadata].[Subscriptions];
 		END;
-	
+
 	--Tenants
 	IF OBJECT_ID(N'[metadata].[Tenants]') IS NOT NULL
 		BEGIN
 			DELETE FROM [metadata].[Tenants];
+		END;
+
+    --BatchEmailMapping
+	IF OBJECT_ID(N'[metadata].[BatchEmailMapping]') IS NOT NULL
+		BEGIN
+			TRUNCATE TABLE [metadata].[BatchEmailMapping];
+		END;
+
+    --PipelineEmailMapping
+	IF OBJECT_ID(N'[metadata].[PipelineEmailMapping]') IS NOT NULL
+		BEGIN
+			TRUNCATE TABLE [metadata].[PipelineEmailMapping];
 		END;
