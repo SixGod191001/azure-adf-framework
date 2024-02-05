@@ -1,4 +1,8 @@
 # SQL Project Quick Start
+![Labels.png](..%2Fimages%2FLabels.png)
+![Logo.png](..%2Fimages%2FLogo.png)
+
+
 ## Check List
    - git installed
    - A GitHub account
