@@ -10,7 +10,7 @@
   This project primarily encompasses the following aspects:  
   - [ADF Universal Orchestrator Framework](#ADFUniversalOrchestratorFramework) 
   - [ADF Universal Task Solution](#ADFUniversalTaskSolution) 
-  - [CI/CD Solution For ADF Universal Framework](#CICDForADFUniversalFrameworkSolution) 
+  - [CI/CD Solution For ADF Universal Solution](#CICDForADFUniversalFrameworkSolution) 
   - [DataOps For The Modern Data Warehouse](#DataOpsForTheModernDataWarehouse) 
 
 ## Components:  
