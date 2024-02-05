@@ -58,12 +58,12 @@ BEGIN
 
 	EXEC [metadataHelpers].[AddProperty]
 		@PropertyName = N'UseExecutionBatches',
-		@PropertyValue = N'0',
+		@PropertyValue = N'1',
 		@Description = N'Establishes if execution batches are used as a level above execution stages within the framework. 1 = True, 0 = False.';
 
 	EXEC [metadataHelpers].[AddProperty]
 		@PropertyName = N'FrameworkFactoryResourceGroup',
-		@PropertyValue = N'ADF.metadata',
+		@PropertyValue = N'adf.framework',
 		@Description = N'Supports various queries where the framework factory is inspecting itself and the resource group cant be inferred.';
 
 	EXEC [metadataHelpers].[AddProperty]

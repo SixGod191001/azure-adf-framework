@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\project\\azure-adf-framework\\ADFMetadataDBSQLProj\\ADFMetadataDBSQLProj.sqlproj": {}
+    "d:\\project\\azure-adf-framework\\adf_metadata_db_sql_proj\\ADFMetadataDBSQLProj.sqlproj": {}
   },
   "projects": {
-    "d:\\project\\azure-adf-framework\\ADFMetadataDBSQLProj\\ADFMetadataDBSQLProj.sqlproj": {
+    "d:\\project\\azure-adf-framework\\adf_metadata_db_sql_proj\\ADFMetadataDBSQLProj.sqlproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\project\\azure-adf-framework\\ADFMetadataDBSQLProj\\ADFMetadataDBSQLProj.sqlproj",
+        "projectUniqueName": "d:\\project\\azure-adf-framework\\adf_metadata_db_sql_proj\\ADFMetadataDBSQLProj.sqlproj",
         "projectName": "ADFMetadataDBSQLProj",
-        "projectPath": "d:\\project\\azure-adf-framework\\ADFMetadataDBSQLProj\\ADFMetadataDBSQLProj.sqlproj",
+        "projectPath": "d:\\project\\azure-adf-framework\\adf_metadata_db_sql_proj\\ADFMetadataDBSQLProj.sqlproj",
         "packagesPath": "C:\\Users\\SixGo\\.nuget\\packages\\",
-        "outputPath": "d:\\project\\azure-adf-framework\\ADFMetadataDBSQLProj\\obj\\",
+        "outputPath": "d:\\project\\azure-adf-framework\\adf_metadata_db_sql_proj\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "configFilePaths": [

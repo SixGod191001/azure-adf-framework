@@ -10,7 +10,7 @@
 -- --------------------------------------------------------------------------------------
 -- */
 -- --load default metadata
--- :r .\Metadata\Properties.sql
+EXEC [metadataHelpers].[SetDefaultProperties];
 -- :r .\Metadata\Orchestrators.sql
 -- :r .\Metadata\Stages.sql
 -- :r .\Metadata\Pipelines.sql
