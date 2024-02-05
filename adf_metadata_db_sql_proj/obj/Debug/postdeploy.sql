@@ -11,7 +11,9 @@
 -- */
 -- --load default metadata
 EXEC [metadataHelpers].[SetDefaultProperties];
--- :r .\Metadata\Orchestrators.sql
+EXEC [metadataHelpers].[SetDefaultTenant];
+EXEC [metadataHelpers].[SetDefaultSubscription];
+EXEC [metadataHelpers].[SetDefaultOrchestrators];
 -- :r .\Metadata\Stages.sql
 -- :r .\Metadata\Pipelines.sql
 -- :r .\Metadata\PipelineParams.sql

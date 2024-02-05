@@ -17,7 +17,7 @@ BEGIN
 		[TenantId]
 		)
 	VALUES
-		('12345678-1234-1234-1234-012345678910', 'Default', 'Example value for development environment.', '12345678-1234-1234-1234-012345678910');
+		('930d2a20-dc22-431d-bdde-4a2916d0096b', 'platform', 'Example value for development environment.', '57b4e176-eb21-4c5c-be50-56baf5076018');
 
 	MERGE INTO [metadata].[Subscriptions] AS tgt
 	USING 

@@ -15798,11 +15798,12 @@ BEGIN
 		[SubscriptionId]
 		)
 	VALUES
-		('FrameworkFactory','ADF',1,'Example Data Factory used for development.','ADF.metadata','12345678-1234-1234-1234-012345678910'),
-		('FrameworkFactoryDev','ADF',0,'Example Data Factory used for development deployments.','ADF.metadata','12345678-1234-1234-1234-012345678910'),
-		('FrameworkFactoryTest','ADF',0,'Example Data Factory used for testing.','ADF.metadata','12345678-1234-1234-1234-012345678910'),
-		('WorkersFactory','ADF',0,'Example Data Factory used to house worker pipelines.','ADF.metadata','12345678-1234-1234-1234-012345678910'),
-		('metadataforsynapse','SYN',0,'Example Synapse instance used to house all pipelines.','ADF.metadata','12345678-1234-1234-1234-012345678910');
+		('ADFUniversalOrchestratorFramework','ADF',1,'Example Data Factory used for development.','adf.framework','930d2a20-dc22-431d-bdde-4a2916d0096b')--,
+		--('FrameworkFactoryDev','ADF',0,'Example Data Factory used for development deployments.','ADF.metadata','12345678-1234-1234-1234-012345678910'),
+		--('FrameworkFactoryTest','ADF',0,'Example Data Factory used for testing.','ADF.metadata','12345678-1234-1234-1234-012345678910'),
+		--('WorkersFactory','ADF',0,'Example Data Factory used to house worker pipelines.','ADF.metadata','12345678-1234-1234-1234-012345678910'),
+		--('metadataforsynapse','SYN',0,'Example Synapse instance used to house all pipelines.','ADF.metadata','12345678-1234-1234-1234-012345678910')
+		;
 
 	MERGE INTO [metadata].[Orchestrators] AS tgt
 	USING 
@@ -16048,7 +16049,7 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="2143" />
+				<Property Name="Length" Value="2175" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultOrchestrators]&#xD;&#xA;AS" />
@@ -17075,7 +17076,7 @@ BEGIN
 		[TenantId]
 		)
 	VALUES
-		('12345678-1234-1234-1234-012345678910', 'Default', 'Example value for development environment.', '12345678-1234-1234-1234-012345678910');
+		('930d2a20-dc22-431d-bdde-4a2916d0096b', 'platform', 'Example value for development environment.', '57b4e176-eb21-4c5c-be50-56baf5076018');
 
 	MERGE INTO [metadata].[Subscriptions] AS tgt
 	USING 
@@ -17251,7 +17252,7 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="1085" />
+				<Property Name="Length" Value="1086" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultSubscription]&#xD;&#xA;AS" />
@@ -17275,7 +17276,7 @@ BEGIN
 		[Description]
 		)
 	VALUES
-		('12345678-1234-1234-1234-012345678910', 'Default', 'Example value for development environment.');
+		('57b4e176-eb21-4c5c-be50-56baf5076018', 'Default', 'Example value for development environment.');
 
 	MERGE INTO [metadata].[Tenants] AS tgt
 	USING 

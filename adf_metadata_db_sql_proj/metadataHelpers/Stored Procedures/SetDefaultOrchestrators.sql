@@ -21,11 +21,12 @@ BEGIN
 		[SubscriptionId]
 		)
 	VALUES
-		('FrameworkFactory','ADF',1,'Example Data Factory used for development.','ADF.metadata','12345678-1234-1234-1234-012345678910'),
-		('FrameworkFactoryDev','ADF',0,'Example Data Factory used for development deployments.','ADF.metadata','12345678-1234-1234-1234-012345678910'),
-		('FrameworkFactoryTest','ADF',0,'Example Data Factory used for testing.','ADF.metadata','12345678-1234-1234-1234-012345678910'),
-		('WorkersFactory','ADF',0,'Example Data Factory used to house worker pipelines.','ADF.metadata','12345678-1234-1234-1234-012345678910'),
-		('metadataforsynapse','SYN',0,'Example Synapse instance used to house all pipelines.','ADF.metadata','12345678-1234-1234-1234-012345678910');
+		('ADFUniversalOrchestratorFramework','ADF',1,'Example Data Factory used for development.','adf.framework','930d2a20-dc22-431d-bdde-4a2916d0096b')--,
+		--('FrameworkFactoryDev','ADF',0,'Example Data Factory used for development deployments.','ADF.metadata','12345678-1234-1234-1234-012345678910'),
+		--('FrameworkFactoryTest','ADF',0,'Example Data Factory used for testing.','ADF.metadata','12345678-1234-1234-1234-012345678910'),
+		--('WorkersFactory','ADF',0,'Example Data Factory used to house worker pipelines.','ADF.metadata','12345678-1234-1234-1234-012345678910'),
+		--('metadataforsynapse','SYN',0,'Example Synapse instance used to house all pipelines.','ADF.metadata','12345678-1234-1234-1234-012345678910')
+		;
 
 	MERGE INTO [metadata].[Orchestrators] AS tgt
 	USING 

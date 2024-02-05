@@ -15,7 +15,7 @@ BEGIN
 		[Description]
 		)
 	VALUES
-		('12345678-1234-1234-1234-012345678910', 'Default', 'Example value for development environment.');
+		('57b4e176-eb21-4c5c-be50-56baf5076018', 'Default', 'Example value for development environment.');
 
 	MERGE INTO [metadata].[Tenants] AS tgt
 	USING 
