@@ -36,7 +36,7 @@ BEGIN
 	    -- Truncate the table before dropping
         IF @ObjectType = 'U'  -- Check if the object is a table
         BEGIN
-            SET @SQLStatement = 'TRUNCATE TABLE [' + @SchemaName + '].[' + @ObjectName + ']';
+            SET @SQLStatement = 'DELETE FROM [' + @SchemaName + '].[' + @ObjectName + ']';
             EXEC sp_executesql @SQLStatement;
         END
 

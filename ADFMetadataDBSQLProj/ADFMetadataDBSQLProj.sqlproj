@@ -99,6 +99,7 @@
     <Build Include="metadata\Stored Procedures\SetLogPipelineSuccess.sql" />
     <Build Include="metadata\Stored Procedures\SetLogPipelineFailed.sql" />
     <Build Include="metadata\Stored Procedures\UpdateExecutionLog.sql" />
+    <None Include="Scripts\Metadata\DropAll.sql" />
     <Build Include="Security\metadata.sql" />
     <Build Include="metadata\Views\CurrentProperties.sql" />
     <Build Include="metadata\Tables\Properties.sql" />
@@ -124,6 +125,7 @@
     <Build Include="metadata\Stored Procedures\GetEmailAlertParts.sql" />
     <Build Include="metadata\Tables\Recipients.sql" />
     <Build Include="metadata\Tables\PipelineAlertLink.sql" />
+    <None Include="ADFMetadataDBSQLProj.publish.xml" />
     <None Include="Scripts\Metadata\Recipients.sql" />
     <Build Include="metadata\Tables\AlertOutcomes.sql" />
     <Build Include="metadata\Views\PipelineParameterDataSizes.sql" />
@@ -216,6 +218,7 @@
     <None Include="metadata\Views\DataFactorys.sql" />
     <Build Include="metadata\Stored Procedures\GetWorkerDetailsWrapper.sql" />
     <Build Include="metadata\Stored Procedures\GetFrameworkOrchestratorDetails.sql" />
+    <None Include="Scripts\Script.PreDeployment.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
@@ -224,7 +227,6 @@
     <None Include="Scripts\Metadata\Stages.sql" />
     <None Include="Scripts\Metadata\Pipelines.sql" />
     <None Include="Scripts\Metadata\PipelineParams.sql" />
-    <None Include="ADFMetadataDBSQLProj.publish.xml" />
     <None Include="Scripts\Metadata\Orchestrators.sql" />
     <None Include="Scripts\Metadata\Properties.sql" />
     <None Include="Scripts\Metadata\DeleteAll.sql" />
@@ -240,9 +242,6 @@
     <None Include="Scripts\Alter Database Scale.sql" />
     <None Include="Scripts\Handy Selects.sql" />
     <None Include="Scripts\Metadata\ReplaceDataFactorys.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <PreDeploy Include="Scripts\Script.PreDeployment.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ADFMetadataDBSQLProj.refactorlog" />

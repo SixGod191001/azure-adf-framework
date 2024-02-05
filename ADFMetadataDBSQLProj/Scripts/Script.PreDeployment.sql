@@ -1,4 +1,5 @@
-﻿/*
+-- This file contains SQL statements that will be executed before the build script.
+/*
  Pre-Deployment Script Template							
 --------------------------------------------------------------------------------------
  This file contains SQL statements that will be executed before the build script.	
@@ -18,3 +19,4 @@
 :r .\Metadata\DropLegacyTables.sql
 :r .\Metadata\DropLegacyObjects.sql
 :r .\Metadata\DeleteAll.sql
+:r .\Metadata\DropAll.sql
