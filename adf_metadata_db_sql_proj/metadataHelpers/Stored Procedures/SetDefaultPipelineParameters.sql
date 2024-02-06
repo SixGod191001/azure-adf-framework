@@ -17,15 +17,10 @@ BEGIN
 	VALUES 
 		(1, 'WaitTime', '3'),
 		(2, 'WaitTime', '6'),
-		(6, 'WaitTime', '9'),
+		(3, 'WaitTime', '9'),
 		(4, 'WaitTime', '5'),
 		(5, 'WaitTime', '2'),
-		(3, 'RaiseErrors', 'false'),
-		(3, 'WaitTime', '10'),
-		(7, 'WaitTime', '3'),
-		(8, 'WaitTime', '5'),
-		(9, 'WaitTime', '7'),
-		(11, 'WaitTime', '10');
+		(6, 'WaitTime', '2');
 
 	MERGE INTO [metadata].[PipelineParameters]  AS tgt
 	USING 

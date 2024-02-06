@@ -14,10 +14,12 @@ EXEC [metadataHelpers].[SetDefaultProperties];
 EXEC [metadataHelpers].[SetDefaultTenant];
 EXEC [metadataHelpers].[SetDefaultSubscription];
 EXEC [metadataHelpers].[SetDefaultOrchestrators];
--- :r .\Metadata\Stages.sql
--- :r .\Metadata\Pipelines.sql
--- :r .\Metadata\PipelineParams.sql
--- :r .\Metadata\PipelineDependencies.sql
+EXEC [metadataHelpers].[SetDefaultBatches];
+EXEC [metadataHelpers].[SetDefaultStages];
+EXEC [metadataHelpers].[SetDefaultBatchStageLink];
+EXEC [metadataHelpers].[SetDefaultPipelines];
+EXEC [metadataHelpers].[SetDefaultPipelineParameters];
+EXEC [metadataHelpers].[SetDefaultPipelineDependants];
 -- :r .\Metadata\Recipients.sql
 -- :r .\Metadata\AlertOutcomes.sql
 -- :r .\Metadata\RecipientAlertsLink.sql

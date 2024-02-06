@@ -963,100 +963,6 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 		</Element>
-		<Element Type="SqlTable" Name="[metadata].[BatchEmailMapping]">
-			<Property Name="IsAnsiNullsOn" Value="True" />
-			<Relationship Name="Columns">
-				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[metadata].[BatchEmailMapping].[id]">
-						<Property Name="IsNullable" Value="False" />
-						<Property Name="IsIdentity" Value="True" />
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[int]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[metadata].[BatchEmailMapping].[batchid]">
-						<Property Name="Collation" Value="SQL_Latin1_General_CP1_CI_AS" />
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Property Name="Length" Value="500" />
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[metadata].[BatchEmailMapping].[batchname]">
-						<Property Name="Collation" Value="SQL_Latin1_General_CP1_CI_AS" />
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Property Name="Length" Value="500" />
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[metadata].[BatchEmailMapping].[recipient]">
-						<Property Name="Collation" Value="SQL_Latin1_General_CP1_CI_AS" />
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Property Name="Length" Value="500" />
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[metadata].[BatchEmailMapping].[enabled]">
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[bit]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="Schema">
-				<Entry>
-					<References Name="[metadata]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="19" />
-		</Element>
 		<Element Type="SqlTable" Name="[metadata].[Batches]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="Columns">
@@ -1133,7 +1039,7 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="20" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="19" />
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[BatchExecution]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -1241,7 +1147,7 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="21" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="20" />
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[BatchStageLink]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -1284,9 +1190,9 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="21" />
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="22" />
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="23" />
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="24" />
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[BatchWrapper]">
 			<Property Name="BodyScript">
@@ -3726,7 +3632,7 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="25" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="24" />
 		</Element>
 		<Element Type="SqlIndex" Name="[metadata].[CurrentExecution].[IDX_GetPipelinesInStage]">
 			<Relationship Name="ColumnSpecifications">
@@ -3935,7 +3841,7 @@ WHERE
 					<References Name="[metadata].[Pipelines].[Enabled]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="26" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="25" />
 		</Element>
 		<Element Type="SqlDefaultConstraint" Name="[metadata].[DF_Properties_ValidFrom]">
 			<Property Name="DefaultExpressionScript">
@@ -3951,7 +3857,7 @@ WHERE
 					<References Name="[metadata].[Properties].[ValidFrom]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="27" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="26" />
 		</Element>
 		<Element Type="SqlDefaultConstraint" Name="[metadata].[DF_Stages_Enabled]">
 			<Property Name="DefaultExpressionScript">
@@ -3967,7 +3873,7 @@ WHERE
 					<References Name="[metadata].[Stages].[Enabled]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="28" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="27" />
 		</Element>
 		<Element Type="SqlCheckConstraint" Name="[metadata].[EQ_PipelineIdDependantPipelineId]">
 			<Property Name="CheckExpressionScript">
@@ -3986,7 +3892,7 @@ WHERE
 					<References Name="[metadata].[PipelineDependencies]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="29" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="28" />
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[ErrorLog]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -4146,7 +4052,7 @@ WHERE
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="30" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="29" />
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[ExecutePrecursorProcedure]">
 			<Property Name="BodyScript">
@@ -4439,7 +4345,7 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="31" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="30" />
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[ExecutionWrapper]">
 			<Property Name="BodyScript">
@@ -4716,7 +4622,7 @@ END;]]></Value>
 					<References Name="[metadata].[Batches]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="23" />
+			<AttachedAnnotation Disambiguator="22" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_BatchStageLink_Stages]">
 			<Relationship Name="Columns">
@@ -4739,7 +4645,7 @@ END;]]></Value>
 					<References Name="[metadata].[Stages]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="24" />
+			<AttachedAnnotation Disambiguator="23" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_Orchestrators_Subscriptions]">
 			<Relationship Name="Columns">
@@ -4762,7 +4668,7 @@ END;]]></Value>
 					<References Name="[metadata].[Subscriptions]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="32" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="31" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_PipelineAlertLink_Pipelines]">
 			<Relationship Name="Columns">
@@ -4785,7 +4691,7 @@ END;]]></Value>
 					<References Name="[metadata].[Pipelines]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="33" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="32" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_PipelineAlertLink_Recipients]">
 			<Relationship Name="Columns">
@@ -4808,7 +4714,7 @@ END;]]></Value>
 					<References Name="[metadata].[Recipients]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="34" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="33" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_PipelineAuthLink_Orchestrators]">
 			<Relationship Name="Columns">
@@ -4831,7 +4737,7 @@ END;]]></Value>
 					<References Name="[metadata].[Orchestrators]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="35" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="34" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_PipelineAuthLink_Pipelines]">
 			<Relationship Name="Columns">
@@ -4854,7 +4760,7 @@ END;]]></Value>
 					<References Name="[metadata].[Pipelines]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="36" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="35" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_PipelineAuthLink_ServicePrincipals]">
 			<Relationship Name="Columns">
@@ -4877,7 +4783,7 @@ END;]]></Value>
 					<References Name="[dbo].[ServicePrincipals]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="37" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="36" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_PipelineDependencies_Pipelines]">
 			<Relationship Name="Columns">
@@ -4900,7 +4806,7 @@ END;]]></Value>
 					<References Name="[metadata].[Pipelines]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="38" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="37" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_PipelineDependencies_Pipelines1]">
 			<Relationship Name="Columns">
@@ -4923,7 +4829,7 @@ END;]]></Value>
 					<References Name="[metadata].[Pipelines]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="39" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="38" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_PipelineParameters_Pipelines]">
 			<Relationship Name="Columns">
@@ -4946,7 +4852,7 @@ END;]]></Value>
 					<References Name="[metadata].[Pipelines]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="40" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="39" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_Pipelines_Orchestrators]">
 			<Relationship Name="Columns">
@@ -4969,7 +4875,7 @@ END;]]></Value>
 					<References Name="[metadata].[Orchestrators]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="41" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="40" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_Pipelines_Pipelines]">
 			<Relationship Name="Columns">
@@ -4992,7 +4898,7 @@ END;]]></Value>
 					<References Name="[metadata].[Pipelines]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="42" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="41" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_Pipelines_Stages]">
 			<Relationship Name="Columns">
@@ -5015,7 +4921,7 @@ END;]]></Value>
 					<References Name="[metadata].[Stages]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="43" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="42" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_Subscriptions_Tenants]">
 			<Relationship Name="Columns">
@@ -5038,7 +4944,7 @@ END;]]></Value>
 					<References Name="[metadata].[Tenants]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="44" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="43" />
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[GetEmailAlertParts]">
 			<Property Name="BodyScript">
@@ -6923,7 +6829,7 @@ END;]]></Value>
 					<References Name="[metadata].[Recipients]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="45" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="44" />
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[Orchestrators]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -7051,9 +6957,9 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="45" />
+			<AttachedAnnotation Disambiguator="31" />
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="46" />
-			<AttachedAnnotation Disambiguator="32" />
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="47" />
 		</Element>
 		<Element Type="SqlCheckConstraint" Name="[metadata].[OrchestratorType]">
 			<Property Name="CheckExpressionScript">
@@ -7069,7 +6975,7 @@ END;]]></Value>
 					<References Name="[metadata].[Orchestrators]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="46" />
+			<AttachedAnnotation Disambiguator="45" />
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[PipelineAlertLink]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -7162,9 +7068,9 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="48" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="47" />
+			<AttachedAnnotation Disambiguator="32" />
 			<AttachedAnnotation Disambiguator="33" />
-			<AttachedAnnotation Disambiguator="34" />
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[PipelineAuthLink]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -7240,10 +7146,10 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="49" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="48" />
+			<AttachedAnnotation Disambiguator="34" />
 			<AttachedAnnotation Disambiguator="35" />
 			<AttachedAnnotation Disambiguator="36" />
-			<AttachedAnnotation Disambiguator="37" />
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[PipelineDependencies]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -7303,11 +7209,11 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="50" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="49" />
+			<AttachedAnnotation Disambiguator="37" />
 			<AttachedAnnotation Disambiguator="38" />
-			<AttachedAnnotation Disambiguator="39" />
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="51" />
-			<AttachedAnnotation Disambiguator="29" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="50" />
+			<AttachedAnnotation Disambiguator="28" />
 		</Element>
 		<Element Type="SqlSynonym" Name="[metadata].[PipelineDependencyChains]">
 			<Property Name="ForObjectScript">
@@ -7328,113 +7234,6 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-		</Element>
-		<Element Type="SqlTable" Name="[metadata].[PipelineEmailMapping]">
-			<Property Name="IsAnsiNullsOn" Value="True" />
-			<Relationship Name="Columns">
-				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[metadata].[PipelineEmailMapping].[id]">
-						<Property Name="IsNullable" Value="False" />
-						<Property Name="IsIdentity" Value="True" />
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[int]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[metadata].[PipelineEmailMapping].[stageid]">
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[int]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[metadata].[PipelineEmailMapping].[pipelineid]">
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[int]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[metadata].[PipelineEmailMapping].[pipelinename]">
-						<Property Name="Collation" Value="SQL_Latin1_General_CP1_CI_AS" />
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Property Name="Length" Value="500" />
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[metadata].[PipelineEmailMapping].[recipient]">
-						<Property Name="Collation" Value="SQL_Latin1_General_CP1_CI_AS" />
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Property Name="Length" Value="500" />
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[metadata].[PipelineEmailMapping].[enabled]">
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[bit]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="Schema">
-				<Entry>
-					<References Name="[metadata]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="52" />
 		</Element>
 		<Element Type="SqlView" Name="[metadata].[PipelineParameterDataSizes]">
 			<Property Name="QueryScript">
@@ -7590,8 +7389,8 @@ GROUP BY
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="53" />
-			<AttachedAnnotation Disambiguator="40" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="51" />
+			<AttachedAnnotation Disambiguator="39" />
 		</Element>
 		<Element Type="SqlSynonym" Name="[metadata].[PipelineProcesses]">
 			<Property Name="ForObjectScript">
@@ -7711,7 +7510,7 @@ GROUP BY
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="26" />
+						<AttachedAnnotation Disambiguator="25" />
 					</Element>
 				</Entry>
 			</Relationship>
@@ -7720,48 +7519,10 @@ GROUP BY
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="54" />
-			<AttachedAnnotation Disambiguator="43" />
-			<AttachedAnnotation Disambiguator="41" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="52" />
 			<AttachedAnnotation Disambiguator="42" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK__BatchEma__3213E83F388BD5D1]">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[metadata].[BatchEmailMapping].[id]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[metadata].[BatchEmailMapping]" />
-				</Entry>
-			</Relationship>
-			<AttachedAnnotation Disambiguator="19" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK__Pipeline__3213E83FB42E2407]">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[metadata].[PipelineEmailMapping].[id]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[metadata].[PipelineEmailMapping]" />
-				</Entry>
-			</Relationship>
-			<AttachedAnnotation Disambiguator="52" />
+			<AttachedAnnotation Disambiguator="40" />
+			<AttachedAnnotation Disambiguator="41" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_AlertOutcomes]">
 			<Relationship Name="ColumnSpecifications">
@@ -7799,7 +7560,7 @@ GROUP BY
 					<References Name="[metadata].[Batches]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="20" />
+			<AttachedAnnotation Disambiguator="19" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_BatchExecution]">
 			<Relationship Name="ColumnSpecifications">
@@ -7827,7 +7588,7 @@ GROUP BY
 					<References Name="[metadata].[BatchExecution]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="21" />
+			<AttachedAnnotation Disambiguator="20" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_BatchStageLink]">
 			<Relationship Name="ColumnSpecifications">
@@ -7855,7 +7616,7 @@ GROUP BY
 					<References Name="[metadata].[BatchStageLink]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="22" />
+			<AttachedAnnotation Disambiguator="21" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_CurrentExecution]">
 			<Relationship Name="ColumnSpecifications">
@@ -7892,7 +7653,7 @@ GROUP BY
 					<References Name="[metadata].[CurrentExecution]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="25" />
+			<AttachedAnnotation Disambiguator="24" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_ErrorLog]">
 			<Relationship Name="ColumnSpecifications">
@@ -7911,7 +7672,7 @@ GROUP BY
 					<References Name="[metadata].[ErrorLog]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="30" />
+			<AttachedAnnotation Disambiguator="29" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_ExecutionLog]">
 			<Relationship Name="ColumnSpecifications">
@@ -7930,7 +7691,7 @@ GROUP BY
 					<References Name="[metadata].[ExecutionLog]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="31" />
+			<AttachedAnnotation Disambiguator="30" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_Orchestrators]">
 			<Relationship Name="ColumnSpecifications">
@@ -7949,7 +7710,7 @@ GROUP BY
 					<References Name="[metadata].[Orchestrators]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="47" />
+			<AttachedAnnotation Disambiguator="46" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_PipelineAlertLink]">
 			<Relationship Name="ColumnSpecifications">
@@ -7968,7 +7729,7 @@ GROUP BY
 					<References Name="[metadata].[PipelineAlertLink]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="48" />
+			<AttachedAnnotation Disambiguator="47" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_PipelineAuthLink]">
 			<Relationship Name="ColumnSpecifications">
@@ -7987,7 +7748,7 @@ GROUP BY
 					<References Name="[metadata].[PipelineAuthLink]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="49" />
+			<AttachedAnnotation Disambiguator="48" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_PipelineDependencies]">
 			<Relationship Name="ColumnSpecifications">
@@ -8006,7 +7767,7 @@ GROUP BY
 					<References Name="[metadata].[PipelineDependencies]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="50" />
+			<AttachedAnnotation Disambiguator="49" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_PipelineParameters]">
 			<Relationship Name="ColumnSpecifications">
@@ -8025,7 +7786,7 @@ GROUP BY
 					<References Name="[metadata].[PipelineParameters]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="53" />
+			<AttachedAnnotation Disambiguator="51" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_Pipelines]">
 			<Relationship Name="ColumnSpecifications">
@@ -8044,7 +7805,7 @@ GROUP BY
 					<References Name="[metadata].[Pipelines]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="54" />
+			<AttachedAnnotation Disambiguator="52" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_Properties]">
 			<Relationship Name="ColumnSpecifications">
@@ -8072,7 +7833,7 @@ GROUP BY
 					<References Name="[metadata].[Properties]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="55" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="53" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_Recipients]">
 			<Relationship Name="ColumnSpecifications">
@@ -8091,7 +7852,7 @@ GROUP BY
 					<References Name="[metadata].[Recipients]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="56" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="54" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_Stages]">
 			<Relationship Name="ColumnSpecifications">
@@ -8110,7 +7871,7 @@ GROUP BY
 					<References Name="[metadata].[Stages]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="57" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="55" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_Subscriptions]">
 			<Relationship Name="ColumnSpecifications">
@@ -8129,7 +7890,7 @@ GROUP BY
 					<References Name="[metadata].[Subscriptions]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="58" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="56" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_Tenants]">
 			<Relationship Name="ColumnSpecifications">
@@ -8148,7 +7909,7 @@ GROUP BY
 					<References Name="[metadata].[Tenants]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="59" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="57" />
 		</Element>
 		<Element Type="SqlSynonym" Name="[metadata].[ProcessingStageDetails]">
 			<Property Name="ForObjectScript">
@@ -8254,7 +8015,7 @@ GROUP BY
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="27" />
+						<AttachedAnnotation Disambiguator="26" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -8278,7 +8039,7 @@ GROUP BY
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="55" />
+			<AttachedAnnotation Disambiguator="53" />
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[Recipients]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -8374,9 +8135,9 @@ GROUP BY
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="45" />
-			<AttachedAnnotation Disambiguator="56" />
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="60" />
+			<AttachedAnnotation Disambiguator="44" />
+			<AttachedAnnotation Disambiguator="54" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="58" />
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[ResetExecution]">
 			<Property Name="BodyScript">
@@ -10918,7 +10679,7 @@ END;]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="28" />
+						<AttachedAnnotation Disambiguator="27" />
 					</Element>
 				</Entry>
 			</Relationship>
@@ -10927,7 +10688,7 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="57" />
+			<AttachedAnnotation Disambiguator="55" />
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[Subscriptions]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -11003,8 +10764,8 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="58" />
-			<AttachedAnnotation Disambiguator="44" />
+			<AttachedAnnotation Disambiguator="56" />
+			<AttachedAnnotation Disambiguator="43" />
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[Tenants]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -11064,7 +10825,7 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="59" />
+			<AttachedAnnotation Disambiguator="57" />
 		</Element>
 		<Element Type="SqlUniqueConstraint" Name="[metadata].[UK_EmailAddressMessagePreference]">
 			<Relationship Name="ColumnSpecifications">
@@ -11092,7 +10853,7 @@ END;]]></Value>
 					<References Name="[metadata].[Recipients]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="60" />
+			<AttachedAnnotation Disambiguator="58" />
 		</Element>
 		<Element Type="SqlUniqueConstraint" Name="[metadata].[UK_PipelineOutcomeStatus]">
 			<Relationship Name="ColumnSpecifications">
@@ -11139,7 +10900,7 @@ END;]]></Value>
 					<References Name="[metadata].[PipelineDependencies]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="51" />
+			<AttachedAnnotation Disambiguator="50" />
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[UpdateExecutionLog]">
 			<Property Name="BodyScript">
@@ -16060,20 +15821,24 @@ END;]]></Value>
 				<Value><![CDATA[
 BEGIN
 	EXEC [metadataHelpers].[AddPipelineDependant]
-		@PipelineName = 'Intentional Error',
-		@DependantPipelineName = 'Wait 5';
+		@PipelineName = 'task_proj1_api_landing',
+		@DependantPipelineName = 'task_proj1_api_malformed';
 
 	EXEC [metadataHelpers].[AddPipelineDependant]
-		@PipelineName = 'Intentional Error',
-		@DependantPipelineName = 'Wait 6';
+		@PipelineName = 'task_proj1_api_malformed',
+		@DependantPipelineName = 'task_proj1_api_interim';
 
 	EXEC [metadataHelpers].[AddPipelineDependant]
-		@PipelineName = 'Wait 6',
-		@DependantPipelineName = 'Wait 9';
+		@PipelineName = 'task_proj1_api_interim',
+		@DependantPipelineName = 'task_proj1_api_edw';
 
 	EXEC [metadataHelpers].[AddPipelineDependant]
-		@PipelineName = 'Wait 9',
-		@DependantPipelineName = 'Wait 10';
+		@PipelineName = 'task_proj1_api_edw',
+		@DependantPipelineName = 'task_proj1_api_dm';
+
+	EXEC [metadataHelpers].[AddPipelineDependant]
+		@PipelineName = 'task_proj1_api_edw',
+		@DependantPipelineName = 'task_proj1_api_dm2';
 END;]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -16094,7 +15859,7 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="571" />
+				<Property Name="Length" Value="808" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultPipelineDependants]&#xD;&#xA;AS" />
@@ -16120,15 +15885,10 @@ BEGIN
 	VALUES 
 		(1, 'WaitTime', '3'),
 		(2, 'WaitTime', '6'),
-		(6, 'WaitTime', '9'),
+		(3, 'WaitTime', '9'),
 		(4, 'WaitTime', '5'),
 		(5, 'WaitTime', '2'),
-		(3, 'RaiseErrors', 'false'),
-		(3, 'WaitTime', '10'),
-		(7, 'WaitTime', '3'),
-		(8, 'WaitTime', '5'),
-		(9, 'WaitTime', '7'),
-		(11, 'WaitTime', '10');
+		(6, 'WaitTime', '2');
 
 	MERGE INTO [metadata].[PipelineParameters]  AS tgt
 	USING 
@@ -16270,7 +16030,7 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="1176" />
+				<Property Name="Length" Value="1041" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultPipelineParameters]&#xD;&#xA;AS" />
@@ -16293,39 +16053,28 @@ BEGIN
 		(
 		[OrchestratorId],
 		[StageId],
-		[PipelineName], 
+		[PipelineName],
 		[LogicalPredecessorId],
 		[Enabled]
-		) 
-	VALUES 
-		(1,1	,'Wait 1'				,NULL		,1),
-		(1,1	,'Wait 2'				,NULL		,1),
-		(1,1	,'Intentional Error'	,NULL		,1),
-		(1,1	,'Wait 3'				,NULL		,1),
-		(1,2	,'Wait 4'				,NULL		,1),
-		(1,2	,'Wait 5'				,1			,1),
-		(1,2	,'Wait 6'				,1			,1),
-		(1,2	,'Wait 7'				,NULL		,1),
-		(1,3	,'Wait 8'				,1			,1),
-		(1,3	,'Wait 9'				,6			,1),
-		(1,4	,'Wait 10'				,9			,1),
+		)
+	VALUES
+		-- task_<project>_<datasource>_<layer/stage>
+		(1, 1	, 'task_proj1_api_landing'    , NULL		, 1),
+		(1, 2	, 'task_proj1_api_malformed'  , NULL		, 1),
+		(1, 3	, 'task_proj1_api_interim'	  , NULL		, 1),
+		(1, 4	, 'task_proj1_api_edw'		  , NULL		, 1),
+		--synapse/azure sql database to serve dashboard
+		(1, 5	, 'task_proj1_api_dm'		  , NULL		, 1),
+		(1, 5	, 'task_proj1_api_dm2'		  , NULL		, 1),
 		--speed
-		(1,5	,'Wait 1'				,NULL		,0),
-		(1,5	,'Wait 2'				,NULL		,0),
-		(1,5	,'Wait 3'				,NULL		,0),
-		(1,5	,'Wait 4'				,NULL		,0),
-		--synapse
-		(5,1	,'Wait 1'				,NULL		,1),
-		(5,1	,'Wait 2'				,NULL		,1),
-		(5,1	,'Wait 3'				,NULL		,1),
-		(5,1	,'Wait 4'				,NULL		,1);
+		(1, 6	, 'task_proj1_api_speed'	  , NULL		, 0);
 
 	MERGE INTO [metadata].[Pipelines] AS tgt
 	USING 
 		@Pipelines AS src
 			ON tgt.[OrchestratorId] = src.[OrchestratorId]
-				AND tgt.[PipelineName] = src.[PipelineName]
-				AND tgt.[StageId] = src.[StageId]
+		AND tgt.[PipelineName] = src.[PipelineName]
+		AND tgt.[StageId] = src.[StageId]
 	WHEN MATCHED THEN
 		UPDATE
 		SET
@@ -16349,7 +16098,7 @@ BEGIN
 			src.[Enabled]
 			)
 	WHEN NOT MATCHED BY SOURCE THEN
-		DELETE;	
+		DELETE;
 END;]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -16527,7 +16276,7 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="1763" />
+				<Property Name="Length" Value="1569" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultPipelines]&#xD;&#xA;AS" />
@@ -16904,11 +16653,12 @@ BEGIN
 		[Enabled]
 		) 
 	VALUES 
-		('Extract', N'Ingest all data from source systems.', 1),
-		('Transform', N'Transform ingested data and apply business logic.', 1),
-		('Load', N'Load transformed data into data warehouse layer.', 1),
-		('Serve', N'Load transformed data into semantic layer.', 1),
-		('Speed', N'Regular loading of frequently used data.', 0);
+		('Landing', N'The Landing Zone is the initial storage area for raw and unprocessed data as it arrives from various sources. It serves as the first step in the data processing pipeline, often containing data in its original, sometimes unstructured, form.', 1),
+		('Malformed', N'The Malformed Data Layer is a stage where data that doesn''t conform to expected formats or quality standards is temporarily stored. This layer is dedicated to identifying, handling, and potentially correcting data anomalies or errors before further processing.', 1),
+		('Interim', N'The Interim Data Processing Layer is an intermediate stage where data from the landing and malformed layers undergoes necessary transformations and processing. It prepares the data for integration into the more structured layers of the data warehouse.', 1),
+		('EDW', N'The Enterprise Data Warehouse (EDW) is the final repository for cleansed and integrated data. It provides a unified view of the data for analytical purposes, supporting business intelligence, reporting, and decision-making across the organization.', 1),
+		('DM', N'Data Marts are subsets of the Enterprise Data Warehouse, focusing on specific business units or departments. They store and manage data tailored to the needs of individual teams, enabling more targeted and efficient analysis.', 1),
+		('Speed', N'The "Speed Layer" typically refers to a layer within a data processing architecture that focuses on real-time or near-real-time data processing and analysis. The goal of this layer is to rapidly respond to data generated in real-time, enabling timely decision-making or providing real-time insights.', 1);
 
 	MERGE INTO [metadata].[Stages] AS tgt
 	USING 
@@ -17050,7 +16800,7 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="1121" />
+				<Property Name="Length" Value="2448" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultStages]&#xD;&#xA;AS" />

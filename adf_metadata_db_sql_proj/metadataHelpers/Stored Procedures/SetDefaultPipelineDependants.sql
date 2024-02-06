@@ -2,18 +2,22 @@
 AS
 BEGIN
 	EXEC [metadataHelpers].[AddPipelineDependant]
-		@PipelineName = 'Intentional Error',
-		@DependantPipelineName = 'Wait 5';
+		@PipelineName = 'task_proj1_api_landing',
+		@DependantPipelineName = 'task_proj1_api_malformed';
 
 	EXEC [metadataHelpers].[AddPipelineDependant]
-		@PipelineName = 'Intentional Error',
-		@DependantPipelineName = 'Wait 6';
+		@PipelineName = 'task_proj1_api_malformed',
+		@DependantPipelineName = 'task_proj1_api_interim';
 
 	EXEC [metadataHelpers].[AddPipelineDependant]
-		@PipelineName = 'Wait 6',
-		@DependantPipelineName = 'Wait 9';
+		@PipelineName = 'task_proj1_api_interim',
+		@DependantPipelineName = 'task_proj1_api_edw';
 
 	EXEC [metadataHelpers].[AddPipelineDependant]
-		@PipelineName = 'Wait 9',
-		@DependantPipelineName = 'Wait 10';
+		@PipelineName = 'task_proj1_api_edw',
+		@DependantPipelineName = 'task_proj1_api_dm';
+
+	EXEC [metadataHelpers].[AddPipelineDependant]
+		@PipelineName = 'task_proj1_api_edw',
+		@DependantPipelineName = 'task_proj1_api_dm2';
 END;

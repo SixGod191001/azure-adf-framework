@@ -83,8 +83,6 @@
     <Folder Include="metadataTesting\Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="metadata\Tables\BatchEmailMapping.sql" />
-    <Build Include="metadata\Tables\PipelineEmailMapping.sql" />
     <Build Include="metadata\Tables\Pipelines.sql" />
     <Build Include="metadata\Tables\PipelineParameters.sql" />
     <Build Include="metadata\Tables\CurrentExecution.sql" />
