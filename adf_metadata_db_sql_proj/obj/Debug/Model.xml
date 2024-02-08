@@ -16389,18 +16389,18 @@ END;]]></Value>
 				<Value><![CDATA[
 BEGIN
 	EXEC [metadataHelpers].[AddRecipientPipelineAlerts]
-		@RecipientName = N'Test User 1',
+		@RecipientName = N'Jacky Yang',
 		@AlertForStatus = 'All';
 
-	EXEC [metadataHelpers].[AddRecipientPipelineAlerts]
-		@RecipientName = N'Test User 2',
-		@PipelineName = 'Intentional Error',
-		@AlertForStatus = 'Failed';
+	-- EXEC [metadataHelpers].[AddRecipientPipelineAlerts]
+	-- 	@RecipientName = N'Test User 2',
+	-- 	@PipelineName = 'Intentional Error',
+	-- 	@AlertForStatus = 'Failed';
 
-	EXEC [metadataHelpers].[AddRecipientPipelineAlerts]
-		@RecipientName = N'Test User 3',
-		@PipelineName = 'Wait 1',
-		@AlertForStatus = 'Success, Failed, Cancelled';	
+	-- EXEC [metadataHelpers].[AddRecipientPipelineAlerts]
+	-- 	@RecipientName = N'Test User 3',
+	-- 	@PipelineName = 'Wait 1',
+	-- 	@AlertForStatus = 'Success, Failed, Cancelled';	
 END;]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -16414,9 +16414,6 @@ END;]]></Value>
 				<Entry>
 					<References Name="[metadataHelpers].[AddRecipientPipelineAlerts].[@AlertForStatus]" />
 				</Entry>
-				<Entry>
-					<References Name="[metadataHelpers].[AddRecipientPipelineAlerts].[@PipelineName]" />
-				</Entry>
 			</Relationship>
 			<Relationship Name="Schema">
 				<Entry>
@@ -16424,7 +16421,7 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="541" />
+				<Property Name="Length" Value="564" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultRecipientPipelineAlerts]&#xD;&#xA;AS" />
@@ -16446,13 +16443,11 @@ BEGIN
 		(
 		[Name],
 		[EmailAddress],
-		[MessagePreference],
+		[MessagePreference],--TO/CC/BCC
 		[Enabled]
 		)
 	VALUES
-		('Test User 1','test.user1@adfmetadata.com', 'TO', 1),
-		('Test User 2','test.user2@adfmetadata.com', 'CC', 1),
-		('Test User 3','test.user3@adfmetadata.com', 'BCC', 1);
+		('Jacky Yang','sixgod2019@outlook.com', 'TO', 1);
 
 	MERGE INTO [metadata].[Recipients] AS tgt
 	USING 
@@ -16629,7 +16624,7 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="1108" />
+				<Property Name="Length" Value="997" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultRecipients]&#xD;&#xA;AS" />

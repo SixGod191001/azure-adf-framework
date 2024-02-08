@@ -13,13 +13,11 @@ BEGIN
 		(
 		[Name],
 		[EmailAddress],
-		[MessagePreference],
+		[MessagePreference],--TO/CC/BCC
 		[Enabled]
 		)
 	VALUES
-		('Test User 1','test.user1@adfmetadata.com', 'TO', 1),
-		('Test User 2','test.user2@adfmetadata.com', 'CC', 1),
-		('Test User 3','test.user3@adfmetadata.com', 'BCC', 1);
+		('Jacky Yang','sixgod2019@outlook.com', 'TO', 1);
 
 	MERGE INTO [metadata].[Recipients] AS tgt
 	USING 
