@@ -10,7 +10,7 @@
   This project primarily encompasses the following aspects:  
   - [ADF Universal Orchestrator Framework](#ADFUniversalOrchestratorFramework) 
   - [ADF Universal Task Solution](#ADFUniversalTaskSolution) 
-  - [CI/CD Solution For ADF Universal Framework](#CICDForADFUniversalFrameworkSolution) 
+  - [CI/CD Solution For ADF Universal Solution](#CICDForADFUniversalFrameworkSolution) 
   - [DataOps For The Modern Data Warehouse](#DataOpsForTheModernDataWarehouse) 
 
 ## Components:  
@@ -171,4 +171,21 @@ ADF Universal Framework version life cycle:
 6. [CI/CD flow - Continuous deployment improvements](https://learn.microsoft.com/en-us/azure/data-factory/continuous-integration-delivery-improvements)
 7. [Walkthrough of CICD in Azure Data Factory (ADF)](https://medium.com/microsoftazure/walkthrough-of-cicd-in-azure-data-factory-adf-54a07ef90d1b)
 8. [DataOps for the modern data warehouse](https://learn.microsoft.com/en-us/azure/architecture/databases/architecture/dataops-mdw)
-9. [procfwk](https://github.com/mrpaulandrew/procfwk)
+9. [metadata](https://github.com/mrpaulandrew/metadata)
+
+## Improvement features
+Actual difficulties encountered：
+1. Debugging Azure copy activity delimiters
+2. Skip the use of row count
+3. IR configuration
+4. Configuration and usage of key vault
+5. Use the Get metadata component to determine the existence and date time of the file
+6. Parameterized universal pipeline
+   
+Expected functional points：
+1. The pipeline is more universal, and all configured items are configured in the control table
+2. Customize the content of sending emails
+3. Use only one main call to complete the pipeline call
+4. The running status of the pipeline can be recorded in the log table
+5. Able to monitor the running status of the pipeline that needs to be executed in real-time
+6. Implementation of pipeline error rerun mechanism

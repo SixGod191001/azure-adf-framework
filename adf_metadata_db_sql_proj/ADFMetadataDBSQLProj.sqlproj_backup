@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>ADFMetadataDBSQLProj</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{202ebf84-a56b-4999-92a3-10f7ffe4ef25}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>ADFMetadataDBSQLProj</RootNamespace>
+    <AssemblyName>ADFMetadataDBSQLProj</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+    <DefaultSchema>metadata</DefaultSchema>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="metadata\" />
+    <Folder Include="metadata\Tables\" />
+    <Folder Include="metadata\Stored Procedures\" />
+    <Folder Include="Security\" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\Metadata" />
+    <Folder Include="metadata\Views" />
+    <Folder Include="dbo" />
+    <Folder Include="dbo\Tables" />
+    <Folder Include="dbo\Stored Procedures" />
+    <Folder Include="metadata\Synonyms" />
+    <Folder Include="Scripts\LogData" />
+    <Folder Include="metadata\Functions" />
+    <Folder Include="metadataHelpers" />
+    <Folder Include="metadataTesting" />
+    <Folder Include="metadataHelpers\Stored Procedures" />
+    <Folder Include="metadataHelpers\Functions" />
+    <Folder Include="metadataReporting" />
+    <Folder Include="metadataReporting\Views" />
+    <Folder Include="metadataHelpers\Views" />
+    <Folder Include="metadataTesting\Stored Procedures" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="metadata\Tables\Pipelines.sql" />
+    <Build Include="metadata\Tables\PipelineParameters.sql" />
+    <Build Include="metadata\Tables\CurrentExecution.sql" />
+    <Build Include="metadata\Tables\ExecutionLog.sql" />
+    <Build Include="metadata\Tables\Stages.sql" />
+    <Build Include="metadata\Stored Procedures\GetStages.sql" />
+    <Build Include="metadata\Stored Procedures\GetPipelinesInStage.sql" />
+    <Build Include="metadata\Stored Procedures\GetPipelineParameters.sql" />
+    <Build Include="metadata\Stored Procedures\CreateNewExecution.sql" />
+    <Build Include="metadata\Stored Procedures\SetLogStagePreparing.sql" />
+    <Build Include="metadata\Stored Procedures\SetLogPipelineRunning.sql" />
+    <Build Include="metadata\Stored Procedures\SetLogPipelineSuccess.sql" />
+    <Build Include="metadata\Stored Procedures\SetLogPipelineFailed.sql" />
+    <Build Include="metadata\Stored Procedures\UpdateExecutionLog.sql" />
+    <Build Include="Security\metadata.sql" />
+    <Build Include="metadata\Views\CurrentProperties.sql" />
+    <Build Include="metadata\Tables\Properties.sql" />
+    <Build Include="metadata\Stored Procedures\GetPropertyValue.sql" />
+    <Build Include="dbo\Tables\ServicePrincipals.sql" />
+    <Build Include="metadata\Tables\PipelineAuthLink.sql" />
+    <Build Include="Security\metadatauser Role.sql" />
+    <Build Include="dbo\Stored Procedures\FailProcedure.sql" />
+    <Build Include="metadata\Stored Procedures\ResetExecution.sql" />
+    <Build Include="metadata\Stored Procedures\ExecutionWrapper.sql" />
+    <Build Include="metadata\Stored Procedures\CheckForBlockedPipelines.sql" />
+    <Build Include="metadata\Stored Procedures\SetLogPipelineUnknown.sql" />
+    <Build Include="metadata\Stored Procedures\SetLogActivityFailed.sql" />
+    <Build Include="metadata\Synonyms\PipelineProcesses.sql" />
+    <Build Include="metadata\Synonyms\ProcessingStageDetails.sql" />
+    <Build Include="metadata\Synonyms\DataFactoryDetails.sql" />
+    <Build Include="metadata\Stored Procedures\CheckMetadataIntegrity.sql" />
+    <Build Include="metadata\Stored Procedures\SetLogPipelineLastStatusCheck.sql" />
+    <Build Include="metadata\Stored Procedures\SetLogPipelineRunId.sql" />
+    <Build Include="metadata\Tables\ErrorLog.sql" />
+    <Build Include="metadata\Stored Procedures\SetErrorLogDetails.sql" />
+    <Build Include="metadata\Stored Procedures\CheckForEmailAlerts.sql" />
+    <Build Include="metadata\Stored Procedures\GetEmailAlertParts.sql" />
+    <Build Include="metadata\Tables\Recipients.sql" />
+    <Build Include="metadata\Tables\PipelineAlertLink.sql" />
+    <None Include="Scripts\Metadata\Recipients.sql" />
+    <Build Include="metadata\Tables\AlertOutcomes.sql" />
+    <Build Include="metadata\Views\PipelineParameterDataSizes.sql" />
+    <Build Include="metadata\Stored Procedures\SetLogPipelineChecking.sql" />
+    <Build Include="metadata\Tables\PipelineDependencies.sql" />
+    <Build Include="metadata\Functions\GetPropertyValueInternal.sql" />
+    <Build Include="metadata\Stored Procedures\SetExecutionBlockDependants.sql" />
+    <None Include="Scripts\Metadata\PipelineDependencies.sql" />
+    <Build Include="Security\metadataHelpers.sql" />
+    <Build Include="Security\metadataTesting.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\AddPipelineDependant.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\AddProperty.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\AddRecipientPipelineAlerts.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\AddServicePrincipal.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\AddServicePrincipalUrls.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\AddServicePrincipalWrapper.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\CheckStageAndPiplineIntegrity.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\DeleteRecipientAlerts.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\DeleteServicePrincipal.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\GetExecutionDetails.sql" />
+    <Build Include="metadataHelpers\Functions\CheckForValidURL.sql" />
+    <Build Include="metadata\Synonyms\AddPipelineDependant.sql" />
+    <Build Include="metadata\Synonyms\AddProperty.sql" />
+    <Build Include="metadata\Synonyms\AddRecipientPipelineAlerts.sql" />
+    <Build Include="metadata\Synonyms\AddServicePrincipal.sql" />
+    <Build Include="metadata\Synonyms\AddServicePrincipalUrls.sql" />
+    <Build Include="metadata\Synonyms\AddServicePrincipalWrapper.sql" />
+    <Build Include="metadata\Synonyms\CheckForValidURL.sql" />
+    <Build Include="metadata\Synonyms\CheckStageAndPiplineIntegrity.sql" />
+    <Build Include="metadata\Synonyms\DeleteRecipientAlerts.sql" />
+    <Build Include="metadata\Synonyms\DeleteServicePrincipal.sql" />
+    <Build Include="metadata\Synonyms\GetExecutionDetails.sql" />
+    <None Include="Scripts\Metadata\TransferHelperObjects.sql" />
+    <Build Include="Security\metadataReporting.sql" />
+    <Build Include="metadata\Synonyms\AverageStageDuration.sql" />
+    <Build Include="metadata\Synonyms\CompleteExecutionErrorLog.sql" />
+    <Build Include="metadata\Synonyms\CompleteExecutionLog.sql" />
+    <Build Include="metadata\Synonyms\CurrentExecutionSummary.sql" />
+    <Build Include="metadata\Synonyms\LastExecution.sql" />
+    <Build Include="metadata\Synonyms\LastExecutionSummary.sql" />
+    <Build Include="metadata\Synonyms\WorkerParallelismOverTime.sql" />
+    <Build Include="metadata\Synonyms\PipelineDependencyChains.sql" />
+    <Build Include="metadataReporting\Views\AverageStageDuration.sql" />
+    <Build Include="metadataReporting\Views\CompleteExecutionErrorLog.sql" />
+    <Build Include="metadataReporting\Views\CompleteExecutionLog.sql" />
+    <Build Include="metadataReporting\Views\CurrentExecutionSummary.sql" />
+    <Build Include="metadataReporting\Views\LastExecution.sql" />
+    <Build Include="metadataReporting\Views\LastExecutionSummary.sql" />
+    <Build Include="metadataHelpers\Views\PipelineDependencyChains.sql" />
+    <Build Include="metadataReporting\Views\WorkerParallelismOverTime.sql" />
+    <None Include="Scripts\Metadata\DropLegacyObjects.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\DeleteMetadataWithIntegrity.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\DeleteMetadataWithoutIntegrity.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\SetDefaultProperties.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\SetDefaultStages.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\SetDefaultOrchestrators.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\SetDefaultPipelines.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\SetDefaultPipelineParameters.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\SetDefaultPipelineDependants.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\SetDefaultAlertOutcomes.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\SetDefaultRecipients.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\SetDefaultRecipientPipelineAlerts.sql" />
+    <Build Include="metadataTesting\Stored Procedures\CleanUpMetadata.sql" />
+    <Build Include="metadataTesting\Stored Procedures\ResetMetadata.sql" />
+    <Build Include="metadataTesting\Stored Procedures\Add300WorkerPipelines.sql" />
+    <Build Include="metadata\Stored Procedures\ExecutePrecursorProcedure.sql" />
+    <Build Include="dbo\Stored Procedures\ExampleCustomExecutionPrecursor.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\AddPipelineViaPowerShell.sql" />
+    <Build Include="metadata\Stored Procedures\SetLogPipelineCancelled.sql" />
+    <Build Include="metadataTesting\Stored Procedures\GetRunIdWhenAvailable.sql" />
+    <Build Include="metadata\Stored Procedures\GetWorkerAuthDetails.sql" />
+    <Build Include="metadata\Stored Procedures\GetWorkerPipelineDetails.sql" />
+    <Build Include="metadata\Tables\Tenants.sql" />
+    <Build Include="metadata\Tables\Subscriptions.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\SetDefaultSubscription.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\SetDefaultTenant.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\GetServicePrincipal.sql" />
+    <Build Include="dbo\Stored Procedures\DemoModePrecursor.sql" />
+    <Build Include="metadata\Stored Procedures\BatchWrapper.sql" />
+    <Build Include="metadata\Tables\Batches.sql" />
+    <Build Include="metadata\Tables\BatchExecution.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\SetDefaultBatches.sql" />
+    <Build Include="metadata\Tables\BatchStageLink.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\SetDefaultBatchStageLink.sql" />
+    <Build Include="metadata\Stored Procedures\CheckPreviousExeuction.sql" />
+    <Build Include="metadata\Stored Procedures\SetLogPipelineValidating.sql" />
+    <Build Include="metadataTesting\Stored Procedures\Add300WorkerPipelineBatches.sql" />
+    <Build Include="metadataTesting\Stored Procedures\Add20BatchesFor1000Workers.sql" />
+    <Build Include="metadata\Tables\Orchestrators.sql" />
+    <None Include="metadata\Views\DataFactorys.sql" />
+    <Build Include="metadata\Stored Procedures\GetWorkerDetailsWrapper.sql" />
+    <Build Include="metadata\Stored Procedures\GetFrameworkOrchestratorDetails.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\Metadata\Stages.sql" />
+    <None Include="Scripts\Metadata\Pipelines.sql" />
+    <None Include="Scripts\Metadata\PipelineParams.sql" />
+    <None Include="ADFMetadataDBSQLProj.publish.xml" />
+    <None Include="Scripts\Metadata\Orchestrators.sql" />
+    <None Include="Scripts\Metadata\Properties.sql" />
+    <None Include="Scripts\Metadata\DeleteAll.sql" />
+    <None Include="Scripts\Metadata\DropLegacyTables.sql" />
+    <None Include="Scripts\LogData\ExecutionLogBackup.sql" />
+    <None Include="Scripts\LogData\ExecutionLogRestore.sql" />
+    <None Include="Scripts\Script.SetLocalAuthenticationDetails.sql" />
+    <None Include="Scripts\LogData\ErrorLogBackup.sql" />
+    <None Include="Scripts\LogData\ErrorLogRestore.sql" />
+    <None Include="Scripts\Metadata\RecipientAlertsLink.sql" />
+    <None Include="Scripts\Metadata\AlertOutcomes.sql" />
+    <None Include="Scripts\Metadata\TransferReportingObjects.sql" />
+    <None Include="Scripts\Alter Database Scale.sql" />
+    <None Include="Scripts\Handy Selects.sql" />
+    <None Include="Scripts\Metadata\ReplaceDataFactorys.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Scripts\Script.PreDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\AzureV12\SqlSchemas\master.dacpac">
+      <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\AzureV12\SqlSchemas\master.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
+    </ArtifactReference>
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="ADFMetadataDBSQLProj.refactorlog" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,35 @@
+{
+	"name": "Wait 13",
+	"properties": {
+		"description": "Used just so the metadata has something to call during development.",
+		"activities": [
+			{
+				"name": "Wait10",
+				"description": "Framework development worker simulator.",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": {
+						"value": "@pipeline().parameters.WaitTime",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"WaitTime": {
+				"type": "int",
+				"defaultValue": 5
+			}
+		},
+		"folder": {
+			"name": "ADFUniversalOrchestratorFramework/99_Workers"
+		},
+		"annotations": [
+			"_metadataWorker"
+		],
+		"lastPublishTime": "2023-11-24T10:08:12Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

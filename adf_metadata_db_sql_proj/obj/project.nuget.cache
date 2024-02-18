@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "sPgC5rLL+IZ4zInoPHrXjpao3Te8Rt9drjy6lfp3/WbN4OlZkqngB9mkiW2UVKo61LAFmMWiwB+OPbvXeyudYQ==",
+  "success": true,
+  "projectFilePath": "d:\\project\\azure-adf-framework\\adf_metadata_db_sql_proj\\ADFMetadataDBSQLProj.sqlproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\SixGo\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.0\\microsoft.netframework.referenceassemblies.1.0.0.nupkg.sha512",
+    "C:\\Users\\SixGo\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net472\\1.0.0\\microsoft.netframework.referenceassemblies.net472.1.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
