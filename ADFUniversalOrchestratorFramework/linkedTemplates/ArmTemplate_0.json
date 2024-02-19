@@ -199,23 +199,6 @@
 								"type": "Expression"
 							}
 						}
-					},
-					{
-						"name": "Fail2",
-						"type": "Fail",
-						"dependsOn": [
-							{
-								"activity": "Wait1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"message": "\"test failed\"",
-							"errorCode": "404"
-						}
 					}
 				],
 				"policy": {
