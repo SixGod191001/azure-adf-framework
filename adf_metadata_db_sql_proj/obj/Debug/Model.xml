@@ -5486,7 +5486,8 @@ BEGIN
 	SET NOCOUNT ON;
 
 	SELECT 
-		[PipelineId]
+		[PipelineId],
+		[PipelineName]
 	FROM 
 		[metadata].[CurrentExecution]
 	WHERE 
@@ -5505,6 +5506,9 @@ END;]]></Value>
 				</Entry>
 				<Entry>
 					<References Name="[metadata].[CurrentExecution].[PipelineId]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadata].[CurrentExecution].[PipelineName]" />
 				</Entry>
 				<Entry>
 					<References Name="[metadata].[CurrentExecution].[LocalExecutionId]" />
@@ -5563,7 +5567,7 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="387" />
+				<Property Name="Length" Value="406" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[GetPipelinesInStage]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xD;&#xA;&#x9;@StageId INT&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
