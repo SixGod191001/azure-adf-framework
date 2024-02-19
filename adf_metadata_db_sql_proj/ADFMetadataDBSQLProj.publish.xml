@@ -2,7 +2,7 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TargetDatabaseName>frameworkmetadata</TargetDatabaseName>
-    <TargetConnectionString>Data Source=2164696frameworkinstance.database.windows.net;Initial Catalog=frameworkmetadata;User ID=sqldbadmin;Password=******;Pooling=False;Connect Timeout=30;Encrypt=True;Authentication=SqlPassword;Application Name=vscode-mssql-GeneralConnection-languageService;Command Timeout=30</TargetConnectionString>
+    <TargetConnectionString>Data Source=2164696frameworkinstance.database.windows.net;Initial Catalog=frameworkmetadata;User ID=sqldbadmin;Password=******;Pooling=False;Connect Timeout=30;Encrypt=True;Authentication=SqlPassword;Application Name=vscode-mssql-GeneralConnection;Command Timeout=30</TargetConnectionString>
     <AllowIncompatiblePlatform>True</AllowIncompatiblePlatform>
     <DropPermissionsNotInSource>True</DropPermissionsNotInSource>
     <DropObjectsNotInSource>True</DropObjectsNotInSource>
