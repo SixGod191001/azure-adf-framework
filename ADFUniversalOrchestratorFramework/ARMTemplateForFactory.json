@@ -102,7 +102,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[procfwk].[GetStages]",
+								"sqlReaderStoredProcedureName": "[[metadata].[GetStages]",
 								"storedProcedureParameters": {
 									"ExecutionId": {
 										"type": "Guid",
@@ -198,7 +198,7 @@
 									},
 									"userProperties": [],
 									"typeProperties": {
-										"storedProcedureName": "[[procfwk].[SetLogStagePreparing]",
+										"storedProcedureName": "[[metadata].[SetLogStagePreparing]",
 										"storedProcedureParameters": {
 											"ExecutionId": {
 												"value": {
@@ -235,7 +235,7 @@
 									},
 									"userProperties": [],
 									"typeProperties": {
-										"storedProcedureName": "[[procfwk].[CheckForBlockedPipelines]",
+										"storedProcedureName": "[[metadata].[CheckForBlockedPipelines]",
 										"storedProcedureParameters": {
 											"ExecutionId": {
 												"value": {
@@ -284,7 +284,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[procfwk].[ExecutionWrapper]",
+								"sqlReaderStoredProcedureName": "[[metadata].[ExecutionWrapper]",
 								"storedProcedureParameters": {
 									"CallingOrchestratorName": {
 										"type": "String",
@@ -332,7 +332,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"storedProcedureName": "[[procfwk].[UpdateExecutionLog]",
+							"storedProcedureName": "[[metadata].[UpdateExecutionLog]",
 							"storedProcedureParameters": {
 								"PerformErrorCheck": {
 									"value": {
@@ -378,7 +378,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[procfwk].[CheckPreviousExeuction]",
+								"sqlReaderStoredProcedureName": "[[metadata].[CheckPreviousExeuction]",
 								"storedProcedureParameters": {
 									"BatchName": {
 										"type": "String",
@@ -439,7 +439,7 @@
 									},
 									"userProperties": [],
 									"typeProperties": {
-										"storedProcedureName": "[[procfwk].[SetLogPipelineChecking]",
+										"storedProcedureName": "[[metadata].[SetLogPipelineChecking]",
 										"storedProcedureParameters": {
 											"ExecutionId": {
 												"value": {
@@ -505,7 +505,7 @@
 														},
 														"userProperties": [],
 														"typeProperties": {
-															"storedProcedureName": "[[procfwk].[SetLogPipelineFailed]",
+															"storedProcedureName": "[[metadata].[SetLogPipelineFailed]",
 															"storedProcedureParameters": {
 																"ExecutionId": {
 																	"value": {
@@ -558,7 +558,7 @@
 														},
 														"userProperties": [],
 														"typeProperties": {
-															"storedProcedureName": "[[procfwk].[SetLogPipelineSuccess]",
+															"storedProcedureName": "[[metadata].[SetLogPipelineSuccess]",
 															"storedProcedureParameters": {
 																"ExecutionId": {
 																	"value": {
@@ -607,7 +607,7 @@
 														},
 														"userProperties": [],
 														"typeProperties": {
-															"storedProcedureName": "[[procfwk].[SetLogPipelineRunning]",
+															"storedProcedureName": "[[metadata].[SetLogPipelineRunning]",
 															"storedProcedureParameters": {
 																"ExecutionId": {
 																	"value": {
@@ -656,7 +656,7 @@
 														},
 														"userProperties": [],
 														"typeProperties": {
-															"storedProcedureName": "[[procfwk].[SetLogPipelineRunning]",
+															"storedProcedureName": "[[metadata].[SetLogPipelineRunning]",
 															"storedProcedureParameters": {
 																"ExecutionId": {
 																	"value": {
@@ -705,7 +705,7 @@
 														},
 														"userProperties": [],
 														"typeProperties": {
-															"storedProcedureName": "[[procfwk].[SetLogPipelineCancelled]",
+															"storedProcedureName": "[[metadata].[SetLogPipelineCancelled]",
 															"storedProcedureParameters": {
 																"ExecutionId": {
 																	"value": {
@@ -760,7 +760,7 @@
 												},
 												"userProperties": [],
 												"typeProperties": {
-													"storedProcedureName": "[[procfwk].[SetLogPipelineUnknown]",
+													"storedProcedureName": "[[metadata].[SetLogPipelineUnknown]",
 													"storedProcedureParameters": {
 														"ExecutionId": {
 															"value": {
@@ -821,7 +821,7 @@
 									},
 									"userProperties": [],
 									"typeProperties": {
-										"storedProcedureName": "[[procfwk].[SetLogPipelineLastStatusCheck]",
+										"storedProcedureName": "[[metadata].[SetLogPipelineLastStatusCheck]",
 										"storedProcedureParameters": {
 											"ExecutionId": {
 												"value": {
@@ -913,7 +913,7 @@
 									"typeProperties": {
 										"source": {
 											"type": "AzureSqlSource",
-											"sqlReaderStoredProcedureName": "[[procfwk].[GetFrameworkOrchestratorDetails]",
+											"sqlReaderStoredProcedureName": "[[metadata].[GetFrameworkOrchestratorDetails]",
 											"storedProcedureParameters": {
 												"CallingOrchestratorName": {
 													"type": "String",
@@ -1063,7 +1063,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"storedProcedureName": "[[procfwk].[CheckMetadataIntegrity]",
+							"storedProcedureName": "[[metadata].[CheckMetadataIntegrity]",
 							"storedProcedureParameters": {
 								"BatchName": {
 									"value": {
@@ -1145,7 +1145,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[procfwk].[GetPipelinesInStage]",
+								"sqlReaderStoredProcedureName": "[[metadata].[GetPipelinesInStage]",
 								"storedProcedureParameters": {
 									"ExecutionId": {
 										"type": "Guid",
@@ -1293,7 +1293,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[procfwk].[GetPipelineParameters]",
+								"sqlReaderStoredProcedureName": "[[metadata].[GetPipelineParameters]",
 								"storedProcedureParameters": {
 									"PipelineId": {
 										"type": "Int32",
@@ -1327,7 +1327,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"storedProcedureName": "[[procfwk].[SetLogPipelineRunning]",
+							"storedProcedureName": "[[metadata].[SetLogPipelineRunning]",
 							"storedProcedureParameters": {
 								"ExecutionId": {
 									"value": {
@@ -1378,7 +1378,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"storedProcedureName": "[[procfwk].[SetLogActivityFailed]",
+							"storedProcedureName": "[[metadata].[SetLogActivityFailed]",
 							"storedProcedureParameters": {
 								"ExecutionId": {
 									"value": {
@@ -1433,7 +1433,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"storedProcedureName": "[[procfwk].[SetLogPipelineRunId]",
+							"storedProcedureName": "[[metadata].[SetLogPipelineRunId]",
 							"storedProcedureParameters": {
 								"ExecutionId": {
 									"value": {
@@ -1516,7 +1516,7 @@
 									},
 									"userProperties": [],
 									"typeProperties": {
-										"storedProcedureName": "[[procfwk].[SetLogPipelineLastStatusCheck]",
+										"storedProcedureName": "[[metadata].[SetLogPipelineLastStatusCheck]",
 										"storedProcedureParameters": {
 											"ExecutionId": {
 												"value": {
@@ -1567,7 +1567,7 @@
 									},
 									"userProperties": [],
 									"typeProperties": {
-										"storedProcedureName": "[[procfwk].[SetLogActivityFailed]",
+										"storedProcedureName": "[[metadata].[SetLogActivityFailed]",
 										"storedProcedureParameters": {
 											"CallingActivity": {
 												"value": "GetWorkerPipelineStatus",
@@ -1682,7 +1682,7 @@
 									"typeProperties": {
 										"source": {
 											"type": "AzureSqlSource",
-											"sqlReaderStoredProcedureName": "[[procfwk].[GetFrameworkOrchestratorDetails]",
+											"sqlReaderStoredProcedureName": "[[metadata].[GetFrameworkOrchestratorDetails]",
 											"storedProcedureParameters": {
 												"CallingOrchestratorName": {
 													"type": "String",
@@ -1827,7 +1827,7 @@
 											},
 											"userProperties": [],
 											"typeProperties": {
-												"storedProcedureName": "[[procfwk].[SetLogPipelineSuccess]",
+												"storedProcedureName": "[[metadata].[SetLogPipelineSuccess]",
 												"storedProcedureParameters": {
 													"ExecutionId": {
 														"value": {
@@ -1876,7 +1876,7 @@
 											},
 											"userProperties": [],
 											"typeProperties": {
-												"storedProcedureName": "[[procfwk].[SetLogPipelineFailed]",
+												"storedProcedureName": "[[metadata].[SetLogPipelineFailed]",
 												"storedProcedureParameters": {
 													"ExecutionId": {
 														"value": {
@@ -1934,7 +1934,7 @@
 											},
 											"userProperties": [],
 											"typeProperties": {
-												"storedProcedureName": "[[procfwk].[SetErrorLogDetails]",
+												"storedProcedureName": "[[metadata].[SetErrorLogDetails]",
 												"storedProcedureParameters": {
 													"JsonErrorDetails": {
 														"value": {
@@ -2023,7 +2023,7 @@
 											"typeProperties": {
 												"source": {
 													"type": "AzureSqlSource",
-													"sqlReaderStoredProcedureName": "[[procfwk].[GetFrameworkOrchestratorDetails]",
+													"sqlReaderStoredProcedureName": "[[metadata].[GetFrameworkOrchestratorDetails]",
 													"storedProcedureParameters": {
 														"CallingOrchestratorName": {
 															"type": "String",
@@ -2131,7 +2131,7 @@
 											},
 											"userProperties": [],
 											"typeProperties": {
-												"storedProcedureName": "[[procfwk].[SetLogPipelineCancelled]",
+												"storedProcedureName": "[[metadata].[SetLogPipelineCancelled]",
 												"storedProcedureParameters": {
 													"ExecutionId": {
 														"value": {
@@ -2179,7 +2179,7 @@
 									},
 									"userProperties": [],
 									"typeProperties": {
-										"storedProcedureName": "[[procfwk].[SetLogPipelineUnknown]",
+										"storedProcedureName": "[[metadata].[SetLogPipelineUnknown]",
 										"storedProcedureParameters": {
 											"ExecutionId": {
 												"value": {
@@ -2235,7 +2235,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[procfwk].[GetPropertyValue]",
+								"sqlReaderStoredProcedureName": "[[metadata].[GetPropertyValue]",
 								"storedProcedureParameters": {
 									"PropertyName": {
 										"type": "String",
@@ -2344,7 +2344,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[procfwk].[GetFrameworkOrchestratorDetails]",
+								"sqlReaderStoredProcedureName": "[[metadata].[GetFrameworkOrchestratorDetails]",
 								"storedProcedureParameters": {
 									"CallingOrchestratorName": {
 										"type": "String",
@@ -2430,7 +2430,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[procfwk].[GetPropertyValue]",
+								"sqlReaderStoredProcedureName": "[[metadata].[GetPropertyValue]",
 								"storedProcedureParameters": {
 									"PropertyName": {
 										"type": "String",
@@ -2573,7 +2573,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[procfwk].[GetFrameworkOrchestratorDetails]",
+								"sqlReaderStoredProcedureName": "[[metadata].[GetFrameworkOrchestratorDetails]",
 								"storedProcedureParameters": {
 									"CallingOrchestratorName": {
 										"type": "String",
@@ -2609,7 +2609,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[procfwk].[GetPropertyValue]",
+								"sqlReaderStoredProcedureName": "[[metadata].[GetPropertyValue]",
 								"storedProcedureParameters": {
 									"PropertyName": {
 										"type": "String",
@@ -2687,7 +2687,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[procfwk].[GetPropertyValue]",
+								"sqlReaderStoredProcedureName": "[[metadata].[GetPropertyValue]",
 								"storedProcedureParameters": {
 									"PropertyName": {
 										"type": "String",
@@ -3089,7 +3089,7 @@
 					"name": "ADFUniversalOrchestratorFramework/Utils"
 				},
 				"annotations": [
-					"procfwk",
+					"metadata",
 					"Utils"
 				],
 				"lastPublishTime": "2023-11-24T15:55:59Z"
@@ -3104,7 +3104,7 @@
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"description": "Used just so the procfwk has something to call during development.",
+				"description": "Used just so the metadata has something to call during development.",
 				"activities": [
 					{
 						"name": "Wait1",
@@ -3188,7 +3188,7 @@
 					"name": "ADFUniversalOrchestratorFramework/99_Workers"
 				},
 				"annotations": [
-					"_ProcFwkWorker"
+					"_metadataWorker"
 				],
 				"lastPublishTime": "2023-11-06T05:25:05Z"
 			},
@@ -3247,7 +3247,7 @@
 					"name": "ADFUniversalOrchestratorFramework/Utils"
 				},
 				"annotations": [
-					"procfwk",
+					"metadata",
 					"Utils"
 				],
 				"lastPublishTime": "2023-10-31T14:51:35Z"
@@ -3257,11 +3257,213 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Wait 1')]",
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"description": "Used just so the procfwk has something to call during development.",
+				"activities": [
+					{
+						"name": "Web1",
+						"type": "WebActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"method": "GET",
+							"headers": {},
+							"url": {
+								"value": "https://management.azure.com/subscriptions/930d2a20-dc22-431d-bdde-4a2916d0096b/resourceGroups/adf.framework/providers/Microsoft.DataFactory/factories/ADFUniversalOrchestratorFramework/pipelines/02-Pipelines?api-version=2018-06-01",
+								"type": "Expression"
+							},
+							"authentication": {
+								"type": "MSI",
+								"resource": "https://management.core.windows.net/"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "ADFUniversalOrchestratorFramework"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/task_proj1_api_dm')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Used just so the metadata has something to call during development.",
+				"activities": [
+					{
+						"name": "Wait5",
+						"description": "Framework development worker simulator.",
+						"type": "Wait",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": {
+								"value": "@pipeline().parameters.WaitTime",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"WaitTime": {
+						"type": "int",
+						"defaultValue": 5
+					}
+				},
+				"folder": {
+					"name": "ADFUniversalOrchestratorFramework/99_Workers"
+				},
+				"annotations": [
+					"_metadataWorker"
+				],
+				"lastPublishTime": "2023-11-06T05:25:05Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/task_proj1_api_dm2')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Used just so the metadata has something to call during development.",
+				"activities": [
+					{
+						"name": "Wait7",
+						"description": "Framework development worker simulator.",
+						"type": "Wait",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": {
+								"value": "@pipeline().parameters.WaitTime",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"WaitTime": {
+						"type": "int",
+						"defaultValue": 5
+					}
+				},
+				"folder": {
+					"name": "ADFUniversalOrchestratorFramework/99_Workers"
+				},
+				"annotations": [
+					"_metadataWorker"
+				],
+				"lastPublishTime": "2023-11-06T05:25:05Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/task_proj1_api_edw')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Used just so the metadata has something to call during development.",
+				"activities": [
+					{
+						"name": "Wait4",
+						"description": "Framework development worker simulator.",
+						"type": "Wait",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": {
+								"value": "@pipeline().parameters.WaitTime",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"WaitTime": {
+						"type": "int",
+						"defaultValue": 5
+					}
+				},
+				"folder": {
+					"name": "ADFUniversalOrchestratorFramework/99_Workers"
+				},
+				"annotations": [
+					"_metadataWorker"
+				],
+				"lastPublishTime": "2023-11-06T05:25:05Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/task_proj1_api_interim')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Used just so the metadata has something to call during development.",
+				"activities": [
+					{
+						"name": "Wait3",
+						"description": "Framework development worker simulator.",
+						"type": "Wait",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": {
+								"value": "@pipeline().parameters.WaitTime",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"WaitTime": {
+						"type": "int",
+						"defaultValue": 5
+					}
+				},
+				"folder": {
+					"name": "ADFUniversalOrchestratorFramework/99_Workers"
+				},
+				"annotations": [
+					"_metadataWorker"
+				],
+				"lastPublishTime": "2023-11-06T05:25:05Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/task_proj1_api_landing')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Used just so the metadata has something to call during development.",
 				"activities": [
 					{
 						"name": "Wait1",
@@ -3307,235 +3509,18 @@
 					"name": "ADFUniversalOrchestratorFramework/99_Workers"
 				},
 				"annotations": [
-					"_ProcFwkWorker"
+					"_metadataWorker"
 				],
 				"lastPublishTime": "2023-11-24T10:08:12Z"
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Wait 10')]",
+			"name": "[concat(parameters('factoryName'), '/task_proj1_api_malformed')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"description": "Used just so the procfwk has something to call during development.",
-				"activities": [
-					{
-						"name": "Wait10",
-						"description": "Framework development worker simulator.",
-						"type": "Wait",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"waitTimeInSeconds": {
-								"value": "@pipeline().parameters.WaitTime",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"WaitTime": {
-						"type": "int",
-						"defaultValue": 5
-					}
-				},
-				"folder": {
-					"name": "ADFUniversalOrchestratorFramework/99_Workers"
-				},
-				"annotations": [
-					"_ProcFwkWorker"
-				],
-				"lastPublishTime": "2023-11-06T05:25:05Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Wait 11')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Used just so the procfwk has something to call during development.",
-				"activities": [
-					{
-						"name": "Wait10",
-						"description": "Framework development worker simulator.",
-						"type": "Wait",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"waitTimeInSeconds": {
-								"value": "@pipeline().parameters.WaitTime",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"WaitTime": {
-						"type": "int",
-						"defaultValue": 5
-					}
-				},
-				"folder": {
-					"name": "ADFUniversalOrchestratorFramework/99_Workers"
-				},
-				"annotations": [
-					"_ProcFwkWorker"
-				],
-				"lastPublishTime": "2023-11-24T10:04:07Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Wait 12')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Used just so the procfwk has something to call during development.",
-				"activities": [
-					{
-						"name": "Wait10",
-						"description": "Framework development worker simulator.",
-						"type": "Wait",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"waitTimeInSeconds": {
-								"value": "@pipeline().parameters.WaitTime",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Fail1",
-						"type": "Fail",
-						"dependsOn": [
-							{
-								"activity": "Wait10",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"message": "test failed",
-							"errorCode": "500"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"WaitTime": {
-						"type": "int",
-						"defaultValue": 5
-					}
-				},
-				"folder": {
-					"name": "ADFUniversalOrchestratorFramework/99_Workers"
-				},
-				"annotations": [
-					"_ProcFwkWorker"
-				],
-				"lastPublishTime": "2023-11-24T10:14:39Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Wait 13')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Used just so the procfwk has something to call during development.",
-				"activities": [
-					{
-						"name": "Wait10",
-						"description": "Framework development worker simulator.",
-						"type": "Wait",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"waitTimeInSeconds": {
-								"value": "@pipeline().parameters.WaitTime",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"WaitTime": {
-						"type": "int",
-						"defaultValue": 5
-					}
-				},
-				"folder": {
-					"name": "ADFUniversalOrchestratorFramework/99_Workers"
-				},
-				"annotations": [
-					"_ProcFwkWorker"
-				],
-				"lastPublishTime": "2023-11-24T10:08:12Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Wait 14')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Used just so the procfwk has something to call during development.",
-				"activities": [
-					{
-						"name": "Wait10",
-						"description": "Framework development worker simulator.",
-						"type": "Wait",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"waitTimeInSeconds": {
-								"value": "@pipeline().parameters.WaitTime",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"WaitTime": {
-						"type": "int",
-						"defaultValue": 5
-					}
-				},
-				"folder": {
-					"name": "ADFUniversalOrchestratorFramework/99_Workers"
-				},
-				"annotations": [
-					"_ProcFwkWorker"
-				],
-				"lastPublishTime": "2023-11-24T10:08:12Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Wait 2')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Used just so the procfwk has something to call during development.",
+				"description": "Used just so the metadata has something to call during development.",
 				"activities": [
 					{
 						"name": "Wait2",
@@ -3564,138 +3549,18 @@
 					"name": "ADFUniversalOrchestratorFramework/99_Workers"
 				},
 				"annotations": [
-					"_ProcFwkWorker"
+					"_metadataWorker"
 				],
 				"lastPublishTime": "2023-11-06T05:25:05Z"
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Wait 3')]",
+			"name": "[concat(parameters('factoryName'), '/task_proj1_api_speed')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"description": "Used just so the procfwk has something to call during development.",
-				"activities": [
-					{
-						"name": "Wait3",
-						"description": "Framework development worker simulator.",
-						"type": "Wait",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"waitTimeInSeconds": {
-								"value": "@pipeline().parameters.WaitTime",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"WaitTime": {
-						"type": "int",
-						"defaultValue": 5
-					}
-				},
-				"folder": {
-					"name": "ADFUniversalOrchestratorFramework/99_Workers"
-				},
-				"annotations": [
-					"_ProcFwkWorker"
-				],
-				"lastPublishTime": "2023-11-06T05:25:05Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Wait 4')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Used just so the procfwk has something to call during development.",
-				"activities": [
-					{
-						"name": "Wait4",
-						"description": "Framework development worker simulator.",
-						"type": "Wait",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"waitTimeInSeconds": {
-								"value": "@pipeline().parameters.WaitTime",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"WaitTime": {
-						"type": "int",
-						"defaultValue": 5
-					}
-				},
-				"folder": {
-					"name": "ADFUniversalOrchestratorFramework/99_Workers"
-				},
-				"annotations": [
-					"_ProcFwkWorker"
-				],
-				"lastPublishTime": "2023-11-06T05:25:05Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Wait 5')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Used just so the procfwk has something to call during development.",
-				"activities": [
-					{
-						"name": "Wait5",
-						"description": "Framework development worker simulator.",
-						"type": "Wait",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"waitTimeInSeconds": {
-								"value": "@pipeline().parameters.WaitTime",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"WaitTime": {
-						"type": "int",
-						"defaultValue": 5
-					}
-				},
-				"folder": {
-					"name": "ADFUniversalOrchestratorFramework/99_Workers"
-				},
-				"annotations": [
-					"_ProcFwkWorker"
-				],
-				"lastPublishTime": "2023-11-06T05:25:05Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Wait 6')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Used just so the procfwk has something to call during development.",
+				"description": "Used just so the metadata has something to call during development.",
 				"activities": [
 					{
 						"name": "Wait6",
@@ -3743,129 +3608,9 @@
 					"name": "ADFUniversalOrchestratorFramework/99_Workers"
 				},
 				"annotations": [
-					"_ProcFwkWorker"
+					"_metadataWorker"
 				],
 				"lastPublishTime": "2023-11-06T07:11:55Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Wait 7')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Used just so the procfwk has something to call during development.",
-				"activities": [
-					{
-						"name": "Wait7",
-						"description": "Framework development worker simulator.",
-						"type": "Wait",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"waitTimeInSeconds": {
-								"value": "@pipeline().parameters.WaitTime",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"WaitTime": {
-						"type": "int",
-						"defaultValue": 5
-					}
-				},
-				"folder": {
-					"name": "ADFUniversalOrchestratorFramework/99_Workers"
-				},
-				"annotations": [
-					"_ProcFwkWorker"
-				],
-				"lastPublishTime": "2023-11-06T05:25:05Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Wait 8')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Used just so the procfwk has something to call during development.",
-				"activities": [
-					{
-						"name": "Wait8",
-						"description": "Framework development worker simulator.",
-						"type": "Wait",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"waitTimeInSeconds": {
-								"value": "@pipeline().parameters.WaitTime",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"WaitTime": {
-						"type": "int",
-						"defaultValue": 5
-					}
-				},
-				"folder": {
-					"name": "ADFUniversalOrchestratorFramework/99_Workers"
-				},
-				"annotations": [
-					"_ProcFwkWorker"
-				],
-				"lastPublishTime": "2023-11-06T05:25:05Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Wait 9')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Used just so the procfwk has something to call during development.",
-				"activities": [
-					{
-						"name": "Wait9",
-						"description": "Framework development worker simulator.",
-						"type": "Wait",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"waitTimeInSeconds": {
-								"value": "@pipeline().parameters.WaitTime",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"WaitTime": {
-						"type": "int",
-						"defaultValue": 15
-					}
-				},
-				"folder": {
-					"name": "ADFUniversalOrchestratorFramework/99_Workers"
-				},
-				"annotations": [
-					"_ProcFwkWorker"
-				],
-				"lastPublishTime": "2023-11-06T05:25:05Z"
 			},
 			"dependsOn": []
 		},
@@ -3928,6 +3673,16 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AKVLinkedService_UniversalOrchestratorFramework')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SelfHostedIR-Windows')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
 		}
 	]
 }
