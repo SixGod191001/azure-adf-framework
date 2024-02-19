@@ -1,10 +1,10 @@
 {
-	"name": "Wait 3",
+	"name": "task_proj1_api_edw",
 	"properties": {
 		"description": "Used just so the metadata has something to call during development.",
 		"activities": [
 			{
-				"name": "Wait3",
+				"name": "Wait4",
 				"description": "Framework development worker simulator.",
 				"type": "Wait",
 				"dependsOn": [],

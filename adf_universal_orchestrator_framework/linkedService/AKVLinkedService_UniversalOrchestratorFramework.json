@@ -1,5 +1,6 @@
 {
 	"name": "AKVLinkedService_UniversalOrchestratorFramework",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "AzureKeyVault",

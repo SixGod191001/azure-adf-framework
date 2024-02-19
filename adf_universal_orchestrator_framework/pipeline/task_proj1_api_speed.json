@@ -1,10 +1,10 @@
 {
-	"name": "Wait 12",
+	"name": "task_proj1_api_speed",
 	"properties": {
 		"description": "Used just so the metadata has something to call during development.",
 		"activities": [
 			{
-				"name": "Wait10",
+				"name": "Wait6",
 				"description": "Framework development worker simulator.",
 				"type": "Wait",
 				"dependsOn": [],
@@ -17,11 +17,13 @@
 				}
 			},
 			{
-				"name": "Fail1",
+				"name": "Fail Pipe6 to test",
 				"type": "Fail",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
-						"activity": "Wait10",
+						"activity": "Wait6",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -29,8 +31,8 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"message": "test failed",
-					"errorCode": "500"
+					"message": "\"test dependency failed Wait 6\"",
+					"errorCode": "404"
 				}
 			}
 		],
@@ -46,7 +48,7 @@
 		"annotations": [
 			"_metadataWorker"
 		],
-		"lastPublishTime": "2023-11-24T10:14:39Z"
+		"lastPublishTime": "2023-11-06T07:11:55Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

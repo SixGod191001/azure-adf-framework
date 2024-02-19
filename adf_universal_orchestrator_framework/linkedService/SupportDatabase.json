@@ -1,5 +1,6 @@
 {
 	"name": "SupportDatabase",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"description": "Connection between ADF and processing framework metadata SQLDB.",
 		"annotations": [],
@@ -13,11 +14,6 @@
 				},
 				"secretName": "adf-framework-metadata-db-connection-string"
 			}
-		},
-		"connectVia": {
-			"referenceName": "SelfHostedIR-Windows",
-			"type": "IntegrationRuntimeReference"
 		}
-	},
-	"type": "Microsoft.DataFactory/factories/linkedservices"
+	}
 }
