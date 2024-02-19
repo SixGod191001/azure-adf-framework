@@ -1,1 +1,6 @@
-{}
+{
+	"environment": {
+		"type": "string",
+		"value": "dev"
+	}
+}
