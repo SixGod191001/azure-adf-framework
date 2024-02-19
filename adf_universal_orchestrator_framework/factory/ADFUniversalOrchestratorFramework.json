@@ -1,5 +1,13 @@
 {
 	"name": "ADFUniversalOrchestratorFramework",
+	"properties": {
+		"globalParameters": {
+			"environment": {
+				"type": "string",
+				"value": "dev"
+			}
+		}
+	},
 	"location": "japaneast",
 	"identity": {
 		"type": "SystemAssigned",
