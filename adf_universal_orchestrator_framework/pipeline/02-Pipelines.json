@@ -72,6 +72,9 @@
 							"description": "Run the required worker pipeline and wait for its completion. Update metadata once done.",
 							"type": "ExecutePipeline",
 							"dependsOn": [],
+							"policy": {
+								"secureInput": false
+							},
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
@@ -117,7 +120,7 @@
 		"annotations": [
 			"02-Pipelines"
 		],
-		"lastPublishTime": "2023-11-06T03:59:52Z"
+		"lastPublishTime": "2024-02-19T03:51:51Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

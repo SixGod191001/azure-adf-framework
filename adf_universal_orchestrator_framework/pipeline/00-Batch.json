@@ -8,6 +8,9 @@
 				"description": "Call Stage",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
@@ -36,7 +39,7 @@
 		"annotations": [
 			"Batch"
 		],
-		"lastPublishTime": "2023-11-04T15:59:48Z"
+		"lastPublishTime": "2024-02-19T03:51:52Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
