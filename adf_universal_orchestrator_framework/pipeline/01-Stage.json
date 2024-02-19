@@ -78,6 +78,9 @@
 									]
 								}
 							],
+							"policy": {
+								"secureInput": false
+							},
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
@@ -801,11 +804,11 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
+								"method": "GET",
 								"url": {
 									"value": "https://management.azure.com/subscriptions/@{variables('SubscriptionId')}/resourceGroups/@{variables('ResourceGroupName')}/providers/Microsoft.DataFactory/factories/@{pipeline().DataFactory}/pipelineruns/@{item().PipelineRunId}?api-version=2018-06-01\n",
 									"type": "Expression"
 								},
-								"method": "GET",
 								"authentication": {
 									"type": "MSI",
 									"resource": {
@@ -932,6 +935,9 @@
 				"description": "Establish before anything else if the stage pipeline is already running. Batch execution aware.",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
@@ -1023,7 +1029,7 @@
 		"annotations": [
 			"Stage"
 		],
-		"lastPublishTime": "2023-11-06T14:31:36Z"
+		"lastPublishTime": "2024-02-19T03:51:52Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

@@ -1,10 +1,10 @@
 {
-	"name": "Wait 6",
+	"name": "task_proj1_api_dm",
 	"properties": {
 		"description": "Used just so the metadata has something to call during development.",
 		"activities": [
 			{
-				"name": "Wait6",
+				"name": "Wait5",
 				"description": "Framework development worker simulator.",
 				"type": "Wait",
 				"dependsOn": [],
@@ -14,25 +14,6 @@
 						"value": "@pipeline().parameters.WaitTime",
 						"type": "Expression"
 					}
-				}
-			},
-			{
-				"name": "Fail Pipe6 to test",
-				"type": "Fail",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
-				"dependsOn": [
-					{
-						"activity": "Wait6",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"message": "\"test dependency failed Wait 6\"",
-					"errorCode": "404"
 				}
 			}
 		],
@@ -48,7 +29,7 @@
 		"annotations": [
 			"_metadataWorker"
 		],
-		"lastPublishTime": "2023-11-06T07:11:55Z"
+		"lastPublishTime": "2024-02-19T03:51:50Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
