@@ -80,19 +80,19 @@ BEGIN
 				)
 		END;
 
-	--Check 3:
-	IF NOT EXISTS 
-		(
-		SELECT 1 FROM [dbo].[ServicePrincipals]
-		)
-		BEGIN
-			INSERT INTO @MetadataIntegrityIssues
-			VALUES
-				( 
-				3,
-				'No service principal details have been added to the metadata. Orchestrator cannot authorise pipeline executions.'
-				)		
-		END;
+	--Check 3: Disable ServicePrincipals check as there is no azure function and cross account functions.
+	-- IF NOT EXISTS 
+	-- 	(
+	-- 	SELECT 1 FROM [dbo].[ServicePrincipals]
+	-- 	)
+	-- 	BEGIN
+	-- 		INSERT INTO @MetadataIntegrityIssues
+	-- 		VALUES
+	-- 			( 
+	-- 			3,
+	-- 			'No service principal details have been added to the metadata. Orchestrator cannot authorise pipeline executions.'
+	-- 			)		
+	-- 	END;
 
 	--Check 4:
 	IF NOT EXISTS
@@ -136,27 +136,27 @@ BEGIN
 				)		
 		END;
 
-	--Check 7:
-	IF EXISTS
-		( 
-		SELECT 
-			* 
-		FROM 
-			[metadata].[Pipelines] p
-			LEFT OUTER JOIN [metadata].[PipelineAuthLink] al
-				ON p.[PipelineId] = al.[PipelineId]
-		WHERE
-			p.[Enabled] = 1
-			AND al.[PipelineId] IS NULL
-		)
-		BEGIN
-			INSERT INTO @MetadataIntegrityIssues
-			VALUES
-				( 
-				7,
-				'Enabled pipelines are missing a valid Service Principal link.'
-				)		
-		END;
+	--Check 7: Disable PipelineAuthLink check as there is no azure function and cross account functions.
+	-- IF EXISTS
+	-- 	( 
+	-- 	SELECT 
+	-- 		* 
+	-- 	FROM 
+	-- 		[metadata].[Pipelines] p
+	-- 		LEFT OUTER JOIN [metadata].[PipelineAuthLink] al
+	-- 			ON p.[PipelineId] = al.[PipelineId]
+	-- 	WHERE
+	-- 		p.[Enabled] = 1
+	-- 		AND al.[PipelineId] IS NULL
+	-- 	)
+	-- 	BEGIN
+	-- 		INSERT INTO @MetadataIntegrityIssues
+	-- 		VALUES
+	-- 			( 
+	-- 			7,
+	-- 			'Enabled pipelines are missing a valid Service Principal link.'
+	-- 			)		
+	-- 	END;
 
 	--Check 8:
 	IF EXISTS

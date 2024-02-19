@@ -43,12 +43,12 @@ BEGIN
 
 	EXEC [metadataHelpers].[AddProperty]
 		@PropertyName = N'FailureHandling',
-		@PropertyValue = N'Simple',
+		@PropertyValue = N'DependencyChain',
 		@Description = N'Accepted values: None, Simple, DependencyChain. Controls processing bahaviour in the event of Worker failures. See v1.8 release notes for full details.';
 
 	EXEC [metadataHelpers].[AddProperty]
 		@PropertyName = N'SPNHandlingMethod',
-		@PropertyValue = N'StoreInDatabase',
+		@PropertyValue = N'StoreInKeyVault',
 		@Description = N'Accepted values: StoreInDatabase, StoreInKeyVault. See v1.8.2 release notes for full details.';
 
 	EXEC [metadataHelpers].[AddProperty]
