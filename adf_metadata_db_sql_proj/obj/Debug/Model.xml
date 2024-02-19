@@ -16328,12 +16328,12 @@ BEGIN
 
 	EXEC [metadataHelpers].[AddProperty]
 		@PropertyName = N'FailureHandling',
-		@PropertyValue = N'Simple',
+		@PropertyValue = N'DependencyChain',
 		@Description = N'Accepted values: None, Simple, DependencyChain. Controls processing bahaviour in the event of Worker failures. See v1.8 release notes for full details.';
 
 	EXEC [metadataHelpers].[AddProperty]
 		@PropertyName = N'SPNHandlingMethod',
-		@PropertyValue = N'StoreInDatabase',
+		@PropertyValue = N'StoreInKeyVault',
 		@Description = N'Accepted values: StoreInDatabase, StoreInKeyVault. See v1.8.2 release notes for full details.';
 
 	EXEC [metadataHelpers].[AddProperty]
@@ -16378,7 +16378,7 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="3924" />
+				<Property Name="Length" Value="3933" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultProperties]&#xD;&#xA;AS" />
