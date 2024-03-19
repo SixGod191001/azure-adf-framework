@@ -39,7 +39,7 @@ steps:
 - task: Npm@1
   inputs:
     command: 'custom'
-    workingDir: '$(Build.Repository.LocalPath)/build' #replace with the package.json folder
+    workingDir: '$(Build.Repository.LocalPath)/$(PackageFolder)' #replace with the package.json folder
     customCommand: 'run build export $(Build.Repository.LocalPath)/$(adfRootFolder) /subscriptions/$(subscriptionId)/resourceGroups/$(resourceGroup)/providers/Microsoft.DataFactory/factories/$(dataFactory) "ArmTemplate"'
   displayName: 'Generate ARM template'
 
