@@ -6,7 +6,7 @@
 # Build Pipeline Name: ADF CI Option 2 Build Pipeline
 
 trigger:
-- main
+- develop
 
 pool:
   name: Default
