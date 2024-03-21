@@ -56,7 +56,17 @@ This project is a universal Azure Data Factory framework designed to simplify an
 
 ### Get Started With Universal Task Project
 
+
 ## Get Started With CI/CD Project
+     1. Enable creation of classic build and release pipelines.
+     ![image](https://github.com/SixGod191001/azure-adf-framework/assets/127569124/13fe5682-b622-4f48-8a2c-b573acc76343)
+     2. Create service connection to authorize devops to access azure resource, this will create an application for devops, and assign a contributor role for this app to the specified resource group automatically.
+     ![image](https://github.com/SixGod191001/azure-adf-framework/assets/127569124/8ce7d631-56ad-43b3-9b66-3bc4d4cd8f19)
+     3. Choose your self agent in the build and release pipelines.
+     ![image](https://github.com/SixGod191001/azure-adf-framework/assets/127569124/b533b209-6818-48b2-9d0f-4bc1f78f8d45)
+   
+
+
 
 
 
