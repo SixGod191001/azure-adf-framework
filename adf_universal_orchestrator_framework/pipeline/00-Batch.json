@@ -39,7 +39,7 @@
 		"annotations": [
 			"Batch"
 		],
-		"lastPublishTime": "2024-02-19T03:51:52Z"
+		"lastPublishTime": "2024-02-20T03:29:17Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
