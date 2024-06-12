@@ -17,7 +17,7 @@ trigger:
 
   paths:
     include:
-      - common/**
+      - databricks_ci_cd/common/**
 
 stages:
 
@@ -30,22 +30,22 @@ stages:
         startsWith(variables['Build.SourceBranch'], 'refs/heads/production')
       )
   jobs:
-  - template: ./template/test-lib-job.yml
+  - template: databricks_ci_cd/devops/template/test-lib-job.yml
     parameters:
       environmentName: 'STG'  
-  - template: ./template/deploy-lib-job.yml
+  - template: databricks_ci_cd/devops/template/deploy-lib-job.yml
     parameters:
       environmentName: 'STG'
       databricksDomain: '$(databricksDomain_stg)'
       databricksToken: '$(databricksToken_stg)'
       databricksClusterId: '$(databricksClusterId_stg)'
-  - template: ./template/deploy-notebook-job.yml
+  - template: databricks_ci_cd/devops/template/deploy-notebook-job.yml
     parameters:
       environmentName: 'STG'
       databricksDomain: '$(databricksDomain_stg)'
       databricksToken: '$(databricksToken_stg)'
       databricksNotebookPath: '/Shared/notebook-tests/dbxbuild_$(Build.BuildId)/'
-  - template: ./template/test-notebook-job.yml
+  - template: databricks_ci_cd/devops/template/test-notebook-job.yml
     parameters:
       environmentName: 'STG'
       databricksDomain: '$(databricksDomain_stg)'
@@ -62,16 +62,16 @@ stages:
       succeeded('test_at_stg')
     )
   jobs:
-  - template: ./template/test-lib-job.yml
+  - template: databricks_ci_cd/devops/template/test-lib-job.yml
     parameters:
       environmentName: 'PROD' 
-  - template: ./template/deploy-lib-job.yml
+  - template: databricks_ci_cd/devops/template/deploy-lib-job.yml
     parameters:
       environmentName: 'PROD'
       databricksDomain: '$(databricksDomain_prod)'
       databricksToken: '$(databricksToken_prod)'
       databricksClusterId: '$(databricksClusterId_prod)'
-  - template: ./template/deploy-notebook-job.yml
+  - template: databricks_ci_cd/devops/template/deploy-notebook-job.yml
     parameters:
       environmentName: 'PROD'
       databricksDomain: '$(databricksDomain_prod)'
