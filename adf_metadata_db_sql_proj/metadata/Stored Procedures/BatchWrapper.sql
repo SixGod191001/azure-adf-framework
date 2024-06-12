@@ -12,7 +12,7 @@ BEGIN
 	--get restart overide property	
 	SELECT @RestartStatus = [metadata].[GetPropertyValueInternal]('OverideRestart')
 
-	--check for running batch execution
+	--check for running batch execution -demo
 	IF EXISTS
 		(
 		SELECT 1 FROM [metadata].[BatchExecution] WHERE [BatchId] = @BatchId AND ISNULL([BatchStatus],'') = 'Running'
