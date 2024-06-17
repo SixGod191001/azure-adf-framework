@@ -6,8 +6,10 @@
 # Build Pipeline Name: ADF CI Option 2 Build Pipeline
 
 trigger:
-- develop
-paths:
+  branches:
+    include:
+    - develop
+  paths:
     include:
     - cicd_proj
     exclude:
