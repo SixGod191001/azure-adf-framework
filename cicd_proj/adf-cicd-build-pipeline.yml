@@ -7,7 +7,11 @@
 
 trigger:
 - develop
-
+paths:
+    include:
+    - cicd_proj
+    exclude:
+    - cicd_proj/README.md
 pool:
   name: Default
 
