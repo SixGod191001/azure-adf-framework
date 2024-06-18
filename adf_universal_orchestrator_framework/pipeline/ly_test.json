@@ -1,0 +1,20 @@
+{
+	"name": "ly_test",
+	"properties": {
+		"activities": [
+			{
+				"name": "Wait1",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
+				}
+			}
+		],
+		"folder": {
+			"name": "ADFUniversalOrchestratorFramework/Utils"
+		},
+		"annotations": []
+	}
+}
