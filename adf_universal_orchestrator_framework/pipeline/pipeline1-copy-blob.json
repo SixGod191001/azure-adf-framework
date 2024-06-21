@@ -51,6 +51,9 @@
 				]
 			}
 		],
+		"folder": {
+			"name": "ADFUniversalOrchestratorFramework/99_Workers"
+		},
 		"annotations": []
 	}
 }
