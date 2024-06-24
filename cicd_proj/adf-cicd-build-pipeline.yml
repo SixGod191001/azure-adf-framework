@@ -6,8 +6,14 @@
 # Build Pipeline Name: ADF CI Option 2 Build Pipeline
 
 trigger:
-- develop
-
+  branches:
+    include:
+    - develop
+  paths:
+    include:
+    - adf_universal_orchestrator_framework
+    exclude:
+    - adf_universal_orchestrator_framework/README.md
 pool:
   name: Default
 

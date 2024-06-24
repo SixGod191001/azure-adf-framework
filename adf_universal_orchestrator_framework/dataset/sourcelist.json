@@ -1,0 +1,20 @@
+{
+	"name": "sourcelist",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "CPA_Package_SKU_Mapping.xlsx",
+				"folderPath": "cpa",
+				"container": "prelanding"
+			}
+		},
+		"schema": {}
+	}
+}

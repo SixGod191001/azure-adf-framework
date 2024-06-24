@@ -395,6 +395,10 @@
 											"value": "https://management.azure.com/subscriptions/@{variables('SubscriptionId')}/resourceGroups/@{variables('ResourceGroupName')}/providers/Microsoft.DataFactory/factories/@{pipeline().DataFactory}/pipelines/@{pipeline().parameters.PipelineName}?api-version=2018-06-01",
 											"type": "Expression"
 										},
+										"connectVia": {
+											"referenceName": "SelfHostedIR-Windows-LiuYang",
+											"type": "IntegrationRuntimeReference"
+										},
 										"authentication": {
 											"type": "MSI",
 											"resource": "https://management.core.windows.net/"
@@ -426,6 +430,10 @@
 										"url": {
 											"value": "https://management.azure.com/subscriptions/@{variables('SubscriptionId')}/resourceGroups/@{variables('ResourceGroupName')}/providers/Microsoft.DataFactory/factories/@{pipeline().DataFactory}/queryPipelineRuns?api-version=2018-06-01",
 											"type": "Expression"
+										},
+										"connectVia": {
+											"referenceName": "SelfHostedIR-Windows-LiuYang",
+											"type": "IntegrationRuntimeReference"
 										},
 										"body": {
 											"value": "{\n  \"lastUpdatedAfter\": \"@{adddays(utcnow(),int(variables('QueryRunDays')))}\",\n  \"lastUpdatedBefore\": \"@{utcnow()}\",\n  \"filters\": [\n    {\n      \"operand\": \"PipelineName\",\n      \"operator\": \"Equals\",\n      \"values\": [\n        \"@{pipeline().parameters.PipelineName}\"\n      ]\n    }\n  ]\n}",
