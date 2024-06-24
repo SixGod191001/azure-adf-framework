@@ -5,11 +5,20 @@
 		"factoryName": {
 			"value": "ADFUniversalOrchestratorFramework"
 		},
+		"AzureBlobStorage_connectionString": {
+			"value": ""
+		},
+		"dl_cedc_accountKey": {
+			"value": ""
+		},
 		"AKVLinkedService_UniversalOrchestratorFramework_properties_typeProperties_baseUrl": {
 			"value": "https://adf-framework.vault.azure.net/"
 		},
 		"SupportDatabase_properties_typeProperties_connectionString_secretName": {
 			"value": "adf-framework-metadata-db-connection-string"
+		},
+		"dl_cedc_properties_typeProperties_url": {
+			"value": "https://cedcsa.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"value": ""

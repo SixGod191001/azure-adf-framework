@@ -4,7 +4,7 @@
 	"parameters": {
 		"factoryName": {
 			"type": "string",
-			"metadata": "Data Factory name",
+			"metadata": "数据工厂名称",
 			"defaultValue": "ADFUniversalOrchestratorFramework"
 		}
 	},
@@ -12,6 +12,195 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Throw Exception Utils')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Provide a simple way of throwing an exception within Data Factory using TSQL error handling.",
+				"activities": [
+					{
+						"name": "Raise Error",
+						"description": "Using a SQL database to raise an error/exception but wrapped up as a data factory pipeline. Error message information exposed as a pipeline parameter.",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.00:10:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": {
+									"value": "RAISERROR('@{pipeline().parameters.Message}',16,1);",
+									"type": "Expression"
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "GetSetMetadata",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"firstRowOnly": false
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"Message": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "ADFUniversalOrchestratorFramework/Utils"
+				},
+				"annotations": [
+					"metadata",
+					"Utils"
+				],
+				"lastPublishTime": "2024-02-20T03:29:15Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1-copy-blob')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "sourcelist",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "targelist",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "ADFUniversalOrchestratorFramework/99_Workers"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1-copy-blob_copy1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "sourcelist",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "targelist",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/02-Pipelines')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
@@ -35,7 +224,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[procfwk].[GetPipelinesInStage]",
+								"sqlReaderStoredProcedureName": "[[metadata].[GetPipelinesInStage]",
 								"storedProcedureParameters": {
 									"ExecutionId": {
 										"type": "Guid",
@@ -140,7 +329,7 @@
 				"annotations": [
 					"02-Pipelines"
 				],
-				"lastPublishTime": "2023-11-06T03:59:52Z"
+				"lastPublishTime": "2024-02-20T03:29:16Z"
 			},
 			"dependsOn": []
 		},
@@ -191,7 +380,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[procfwk].[GetFrameworkOrchestratorDetails]",
+								"sqlReaderStoredProcedureName": "[[metadata].[GetFrameworkOrchestratorDetails]",
 								"storedProcedureParameters": {
 									"CallingOrchestratorName": {
 										"type": "String",
@@ -227,7 +416,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[procfwk].[GetPropertyValue]",
+								"sqlReaderStoredProcedureName": "[[metadata].[GetPropertyValue]",
 								"storedProcedureParameters": {
 									"PropertyName": {
 										"type": "String",
@@ -305,7 +494,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[procfwk].[GetPropertyValue]",
+								"sqlReaderStoredProcedureName": "[[metadata].[GetPropertyValue]",
 								"storedProcedureParameters": {
 									"PropertyName": {
 										"type": "String",
@@ -547,6 +736,10 @@
 													"value": "https://management.azure.com/subscriptions/@{variables('SubscriptionId')}/resourceGroups/@{variables('ResourceGroupName')}/providers/Microsoft.DataFactory/factories/@{pipeline().DataFactory}/pipelines/@{pipeline().parameters.PipelineName}?api-version=2018-06-01",
 													"type": "Expression"
 												},
+												"connectVia": {
+													"referenceName": "SelfHostedIR-Windows-LiuYang",
+													"type": "IntegrationRuntimeReference"
+												},
 												"authentication": {
 													"type": "MSI",
 													"resource": "https://management.core.windows.net/"
@@ -579,6 +772,10 @@
 												"url": {
 													"value": "https://management.azure.com/subscriptions/@{variables('SubscriptionId')}/resourceGroups/@{variables('ResourceGroupName')}/providers/Microsoft.DataFactory/factories/@{pipeline().DataFactory}/queryPipelineRuns?api-version=2018-06-01",
 													"type": "Expression"
+												},
+												"connectVia": {
+													"referenceName": "SelfHostedIR-Windows-LiuYang",
+													"type": "IntegrationRuntimeReference"
 												},
 												"body": {
 													"value": "{\n  \"lastUpdatedAfter\": \"@{adddays(utcnow(),int(variables('QueryRunDays')))}\",\n  \"lastUpdatedBefore\": \"@{utcnow()}\",\n  \"filters\": [\n    {\n      \"operand\": \"PipelineName\",\n      \"operator\": \"Equals\",\n      \"values\": [\n        \"@{pipeline().parameters.PipelineName}\"\n      ]\n    }\n  ]\n}",
@@ -707,12 +904,14 @@
 					"name": "ADFUniversalOrchestratorFramework/Utils"
 				},
 				"annotations": [
-					"procfwk",
+					"metadata",
 					"Utils"
 				],
-				"lastPublishTime": "2023-11-24T15:55:59Z"
+				"lastPublishTime": "2024-02-20T03:29:16Z"
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Throw Exception Utils')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/01-Stage')]",
@@ -744,7 +943,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[procfwk].[GetStages]",
+								"sqlReaderStoredProcedureName": "[[metadata].[GetStages]",
 								"storedProcedureParameters": {
 									"ExecutionId": {
 										"type": "Guid",
@@ -840,7 +1039,7 @@
 									},
 									"userProperties": [],
 									"typeProperties": {
-										"storedProcedureName": "[[procfwk].[SetLogStagePreparing]",
+										"storedProcedureName": "[[metadata].[SetLogStagePreparing]",
 										"storedProcedureParameters": {
 											"ExecutionId": {
 												"value": {
@@ -877,7 +1076,7 @@
 									},
 									"userProperties": [],
 									"typeProperties": {
-										"storedProcedureName": "[[procfwk].[CheckForBlockedPipelines]",
+										"storedProcedureName": "[[metadata].[CheckForBlockedPipelines]",
 										"storedProcedureParameters": {
 											"ExecutionId": {
 												"value": {
@@ -926,7 +1125,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[procfwk].[ExecutionWrapper]",
+								"sqlReaderStoredProcedureName": "[[metadata].[ExecutionWrapper]",
 								"storedProcedureParameters": {
 									"CallingOrchestratorName": {
 										"type": "String",
@@ -974,7 +1173,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"storedProcedureName": "[[procfwk].[UpdateExecutionLog]",
+							"storedProcedureName": "[[metadata].[UpdateExecutionLog]",
 							"storedProcedureParameters": {
 								"PerformErrorCheck": {
 									"value": {
@@ -1020,7 +1219,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[procfwk].[CheckPreviousExeuction]",
+								"sqlReaderStoredProcedureName": "[[metadata].[CheckPreviousExeuction]",
 								"storedProcedureParameters": {
 									"BatchName": {
 										"type": "String",
@@ -1081,7 +1280,7 @@
 									},
 									"userProperties": [],
 									"typeProperties": {
-										"storedProcedureName": "[[procfwk].[SetLogPipelineChecking]",
+										"storedProcedureName": "[[metadata].[SetLogPipelineChecking]",
 										"storedProcedureParameters": {
 											"ExecutionId": {
 												"value": {
@@ -1147,7 +1346,7 @@
 														},
 														"userProperties": [],
 														"typeProperties": {
-															"storedProcedureName": "[[procfwk].[SetLogPipelineFailed]",
+															"storedProcedureName": "[[metadata].[SetLogPipelineFailed]",
 															"storedProcedureParameters": {
 																"ExecutionId": {
 																	"value": {
@@ -1200,7 +1399,7 @@
 														},
 														"userProperties": [],
 														"typeProperties": {
-															"storedProcedureName": "[[procfwk].[SetLogPipelineSuccess]",
+															"storedProcedureName": "[[metadata].[SetLogPipelineSuccess]",
 															"storedProcedureParameters": {
 																"ExecutionId": {
 																	"value": {
@@ -1249,7 +1448,7 @@
 														},
 														"userProperties": [],
 														"typeProperties": {
-															"storedProcedureName": "[[procfwk].[SetLogPipelineRunning]",
+															"storedProcedureName": "[[metadata].[SetLogPipelineRunning]",
 															"storedProcedureParameters": {
 																"ExecutionId": {
 																	"value": {
@@ -1298,7 +1497,7 @@
 														},
 														"userProperties": [],
 														"typeProperties": {
-															"storedProcedureName": "[[procfwk].[SetLogPipelineRunning]",
+															"storedProcedureName": "[[metadata].[SetLogPipelineRunning]",
 															"storedProcedureParameters": {
 																"ExecutionId": {
 																	"value": {
@@ -1347,7 +1546,7 @@
 														},
 														"userProperties": [],
 														"typeProperties": {
-															"storedProcedureName": "[[procfwk].[SetLogPipelineCancelled]",
+															"storedProcedureName": "[[metadata].[SetLogPipelineCancelled]",
 															"storedProcedureParameters": {
 																"ExecutionId": {
 																	"value": {
@@ -1402,7 +1601,7 @@
 												},
 												"userProperties": [],
 												"typeProperties": {
-													"storedProcedureName": "[[procfwk].[SetLogPipelineUnknown]",
+													"storedProcedureName": "[[metadata].[SetLogPipelineUnknown]",
 													"storedProcedureParameters": {
 														"ExecutionId": {
 															"value": {
@@ -1463,7 +1662,7 @@
 									},
 									"userProperties": [],
 									"typeProperties": {
-										"storedProcedureName": "[[procfwk].[SetLogPipelineLastStatusCheck]",
+										"storedProcedureName": "[[metadata].[SetLogPipelineLastStatusCheck]",
 										"storedProcedureParameters": {
 											"ExecutionId": {
 												"value": {
@@ -1555,7 +1754,7 @@
 									"typeProperties": {
 										"source": {
 											"type": "AzureSqlSource",
-											"sqlReaderStoredProcedureName": "[[procfwk].[GetFrameworkOrchestratorDetails]",
+											"sqlReaderStoredProcedureName": "[[metadata].[GetFrameworkOrchestratorDetails]",
 											"storedProcedureParameters": {
 												"CallingOrchestratorName": {
 													"type": "String",
@@ -1705,7 +1904,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"storedProcedureName": "[[procfwk].[CheckMetadataIntegrity]",
+							"storedProcedureName": "[[metadata].[CheckMetadataIntegrity]",
 							"storedProcedureParameters": {
 								"BatchName": {
 									"value": {
@@ -1755,7 +1954,7 @@
 				"annotations": [
 					"Stage"
 				],
-				"lastPublishTime": "2023-11-06T14:31:36Z"
+				"lastPublishTime": "2024-02-20T03:29:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/Check For Running Pipeline Utils')]",
@@ -1808,7 +2007,7 @@
 				"annotations": [
 					"Batch"
 				],
-				"lastPublishTime": "2023-11-04T15:59:48Z"
+				"lastPublishTime": "2024-02-20T03:29:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/01-Stage')]"

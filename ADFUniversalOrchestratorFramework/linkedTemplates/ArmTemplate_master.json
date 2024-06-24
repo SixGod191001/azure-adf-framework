@@ -4,8 +4,16 @@
 	"parameters": {
 		"factoryName": {
 			"type": "string",
-			"metadata": "Data Factory name",
+			"metadata": "数据工厂名称",
 			"defaultValue": "ADFUniversalOrchestratorFramework"
+		},
+		"AzureBlobStorage_connectionString": {
+			"type": "secureString",
+			"metadata": "“AzureBlobStorage”的“connectionString”的安全字符串"
+		},
+		"dl_cedc_accountKey": {
+			"type": "secureString",
+			"metadata": "“dl_cedc”的“accountKey”的安全字符串"
 		},
 		"AKVLinkedService_UniversalOrchestratorFramework_properties_typeProperties_baseUrl": {
 			"type": "string",
@@ -15,13 +23,17 @@
 			"type": "string",
 			"defaultValue": "adf-framework-metadata-db-connection-string"
 		},
+		"dl_cedc_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://cedcsa.dfs.core.windows.net/"
+		},
 		"containerUri": {
 			"type": "string",
-			"metadata": "URI to storage account containing linked ARM templates"
+			"metadata": "包含链接 ARM 模板的存储帐户的 URI"
 		},
 		"containerSasToken": {
 			"type": "string",
-			"metadata": "Sas token to storage account containing linked ARM templates"
+			"metadata": "包含链接 ARM 模板的存储帐户的 SAS 令牌"
 		}
 	},
 	"variables": {
@@ -42,8 +54,17 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"dl_cedc_accountKey": {
+						"value": "[parameters('dl_cedc_accountKey')]"
+					},
+					"AzureBlobStorage_connectionString": {
+						"value": "[parameters('AzureBlobStorage_connectionString')]"
+					},
 					"AKVLinkedService_UniversalOrchestratorFramework_properties_typeProperties_baseUrl": {
 						"value": "[parameters('AKVLinkedService_UniversalOrchestratorFramework_properties_typeProperties_baseUrl')]"
+					},
+					"dl_cedc_properties_typeProperties_url": {
+						"value": "[parameters('dl_cedc_properties_typeProperties_url')]"
 					},
 					"SupportDatabase_properties_typeProperties_connectionString_secretName": {
 						"value": "[parameters('SupportDatabase_properties_typeProperties_connectionString_secretName')]"
@@ -51,6 +72,26 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "ADFUniversalOrchestratorFramework_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ADFUniversalOrchestratorFramework_ArmTemplate_0')]"
+			]
 		}
 	]
 }

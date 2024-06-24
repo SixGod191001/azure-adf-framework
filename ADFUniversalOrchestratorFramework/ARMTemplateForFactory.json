@@ -4,8 +4,16 @@
 	"parameters": {
 		"factoryName": {
 			"type": "string",
-			"metadata": "Data Factory name",
+			"metadata": "数据工厂名称",
 			"defaultValue": "ADFUniversalOrchestratorFramework"
+		},
+		"AzureBlobStorage_connectionString": {
+			"type": "secureString",
+			"metadata": "“AzureBlobStorage”的“connectionString”的安全字符串"
+		},
+		"dl_cedc_accountKey": {
+			"type": "secureString",
+			"metadata": "“dl_cedc”的“accountKey”的安全字符串"
 		},
 		"AKVLinkedService_UniversalOrchestratorFramework_properties_typeProperties_baseUrl": {
 			"type": "string",
@@ -14,6 +22,10 @@
 		"SupportDatabase_properties_typeProperties_connectionString_secretName": {
 			"type": "string",
 			"defaultValue": "adf-framework-metadata-db-connection-string"
+		},
+		"dl_cedc_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://cedcsa.dfs.core.windows.net/"
 		}
 	},
 	"variables": {
@@ -1658,6 +1670,10 @@
 											"value": "https://management.azure.com/subscriptions/@{variables('SubscriptionId')}/resourceGroups/@{variables('ResourceGroupName')}/providers/Microsoft.DataFactory/factories/@{pipeline().DataFactory}/pipelineruns/@{variables('WorkerRunId')}?api-version=2018-06-01",
 											"type": "Expression"
 										},
+										"connectVia": {
+											"referenceName": "SelfHostedIR-Windows-LiuYang",
+											"type": "IntegrationRuntimeReference"
+										},
 										"authentication": {
 											"type": "MSI",
 											"resource": {
@@ -2315,6 +2331,10 @@
 								"value": "https://management.azure.com/subscriptions/@{variables('SubscriptionId')}/resourceGroups/@{variables('ResourceGroupName')}/providers/Microsoft.DataFactory/factories/@{pipeline().DataFactory}/pipelines/@{pipeline().parameters.PipelineName}/createRun?api-version=2018-06-01",
 								"type": "Expression"
 							},
+							"connectVia": {
+								"referenceName": "SelfHostedIR-Windows-LiuYang",
+								"type": "IntegrationRuntimeReference"
+							},
 							"body": {
 								"value": "@activity('Get Pipeline Params').output.firstRow",
 								"type": "Expression"
@@ -2523,7 +2543,8 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/GetSetMetadata')]",
-				"[concat(variables('factoryId'), '/linkedServices/SupportDatabase')]"
+				"[concat(variables('factoryId'), '/linkedServices/SupportDatabase')]",
+				"[concat(variables('factoryId'), '/integrationRuntimes/SelfHostedIR-Windows-LiuYang')]"
 			]
 		},
 		{
@@ -2929,6 +2950,10 @@
 													"value": "https://management.azure.com/subscriptions/@{variables('SubscriptionId')}/resourceGroups/@{variables('ResourceGroupName')}/providers/Microsoft.DataFactory/factories/@{pipeline().DataFactory}/pipelines/@{pipeline().parameters.PipelineName}?api-version=2018-06-01",
 													"type": "Expression"
 												},
+												"connectVia": {
+													"referenceName": "SelfHostedIR-Windows-LiuYang",
+													"type": "IntegrationRuntimeReference"
+												},
 												"authentication": {
 													"type": "MSI",
 													"resource": "https://management.core.windows.net/"
@@ -2961,6 +2986,10 @@
 												"url": {
 													"value": "https://management.azure.com/subscriptions/@{variables('SubscriptionId')}/resourceGroups/@{variables('ResourceGroupName')}/providers/Microsoft.DataFactory/factories/@{pipeline().DataFactory}/queryPipelineRuns?api-version=2018-06-01",
 													"type": "Expression"
+												},
+												"connectVia": {
+													"referenceName": "SelfHostedIR-Windows-LiuYang",
+													"type": "IntegrationRuntimeReference"
 												},
 												"body": {
 													"value": "{\n  \"lastUpdatedAfter\": \"@{adddays(utcnow(),int(variables('QueryRunDays')))}\",\n  \"lastUpdatedBefore\": \"@{utcnow()}\",\n  \"filters\": [\n    {\n      \"operand\": \"PipelineName\",\n      \"operator\": \"Equals\",\n      \"values\": [\n        \"@{pipeline().parameters.PipelineName}\"\n      ]\n    }\n  ]\n}",
@@ -3096,7 +3125,8 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/GetSetMetadata')]",
-				"[concat(variables('factoryId'), '/pipelines/Throw Exception Utils')]"
+				"[concat(variables('factoryId'), '/pipelines/Throw Exception Utils')]",
+				"[concat(variables('factoryId'), '/integrationRuntimes/SelfHostedIR-Windows-LiuYang')]"
 			]
 		},
 		{
@@ -3255,6 +3285,195 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/GetSetMetadata')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ly_test')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Wait1",
+						"type": "Wait",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 2
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "ADFUniversalOrchestratorFramework/Utils"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1-copy-blob')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "sourcelist",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "targelist",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "ADFUniversalOrchestratorFramework/99_Workers"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/sourcelist')]",
+				"[concat(variables('factoryId'), '/datasets/targelist')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1-copy-blob_copy1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "sourcelist",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "targelist",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/sourcelist')]",
+				"[concat(variables('factoryId'), '/datasets/targelist')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/task_call_databricks')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Wait1",
+						"type": "Wait",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 1
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "ADFUniversalOrchestratorFramework/99_Workers"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/task_proj1_api_dm')]",
@@ -3580,6 +3799,54 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/sourcelist')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "CPA_Package_SKU_Mapping.xlsx",
+						"folderPath": "cpa",
+						"container": "prelanding"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/targelist')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "landing"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AKVLinkedService_UniversalOrchestratorFramework')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -3591,6 +3858,25 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "SelfHostedIR-Windows-LiuYang",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/SelfHostedIR-Windows-LiuYang')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/SupportDatabase')]",
@@ -3609,11 +3895,43 @@
 						},
 						"secretName": "[parameters('SupportDatabase_properties_typeProperties_connectionString_secretName')]"
 					}
+				},
+				"connectVia": {
+					"referenceName": "SelfHostedIR-Windows-LiuYang",
+					"type": "IntegrationRuntimeReference"
 				}
 			},
 			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/SelfHostedIR-Windows-LiuYang')]",
 				"[concat(variables('factoryId'), '/linkedServices/AKVLinkedService_UniversalOrchestratorFramework')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dl_cedc')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('dl_cedc_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('dl_cedc_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SelfHostedIR-Windows-LiuYang')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/SelfHostedIR-Windows')]",
