@@ -1,0 +1,35 @@
+{
+	"name": "task_proj1_api_landing_copy1",
+	"properties": {
+		"description": "Used just so the metadata has something to call during development.",
+		"activities": [
+			{
+				"name": "Wait1",
+				"description": "Framework development worker simulator.",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": {
+						"value": "@pipeline().parameters.WaitTime",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"WaitTime": {
+				"type": "int",
+				"defaultValue": 5
+			}
+		},
+		"folder": {
+			"name": "ADFUniversalOrchestratorFramework/99_Workers"
+		},
+		"annotations": [
+			"_metadataWorker"
+		],
+		"lastPublishTime": "2024-02-20T03:29:14Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
