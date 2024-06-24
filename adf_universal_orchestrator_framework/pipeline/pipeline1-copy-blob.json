@@ -45,7 +45,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "targetlist",
+						"referenceName": "targelist",
 						"type": "DatasetReference"
 					}
 				]
