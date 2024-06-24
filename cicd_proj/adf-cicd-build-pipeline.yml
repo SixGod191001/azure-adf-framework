@@ -25,6 +25,12 @@ variables:
   adfRootFolder: 'adf_universal_orchestrator_framework'                  # Use the GIT folder under which you have the ADF resources. If it's root leave as blank
 
 steps:
+# Install Node and npm packages saved in package.json file in the build
+- task: UseNode@1
+  inputs:
+    version: '18.x'
+  displayName: 'Install Node.js'
+  
 # Installs the npm packages saved in your package.json file in the build
 - task: Npm@1
   inputs:
