@@ -1,0 +1,22 @@
+{
+	"name": "AzureDatabricks_Abbott",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "MySql",
+		"typeProperties": {
+			"server": "locahost",
+			"port": 3306,
+			"database": "test",
+			"username": "root",
+			"sslMode": 1,
+			"useSystemTrustStore": 0,
+			"driverVersion": "v2",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4NTAxMGE4Mi01NzgxLTQwYTMtYTRmYy1iYTk4NmYwNGJkM2YiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "SelfHostedIR-Windows-LiuYang",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
