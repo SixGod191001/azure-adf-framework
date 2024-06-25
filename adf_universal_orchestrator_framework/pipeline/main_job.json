@@ -1,0 +1,138 @@
+{
+	"name": "main_job",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set Execute Datetime",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "execute_datetime",
+					"value": {
+						"value": "@formatDateTime(addHours(utcNow(),8),'yyyy-MM-dd HH:mm:ss')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Execute pl_master_blob",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Set Execute Datetime",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute pl_detail_dlt_job",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute pl_master_blob",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute Refinement Notebook",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute pl_detail_dlt_job",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"waitOnCompletion": true,
+					"parameters": {
+						"execute_datetime": {
+							"value": "@variables('execute_datetime')",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Execute send_email Pipeline",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute Refinement Notebook",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"waitOnCompletion": true,
+					"parameters": {
+						"storage_url": {
+							"value": "@activity('Execute pl_detail_dlt_job').output.pipelineReturnValue.storage_url",
+							"type": "Expression"
+						},
+						"start_time": {
+							"value": "@variables('execute_datetime')",
+							"type": "Expression"
+						},
+						"data_factory_name": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"pipeline_name": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"variables": {
+			"execute_datetime": {
+				"type": "String"
+			},
+			"execute_pl_start_time": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Abbott-DataFactory"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-11-30T03:27:42Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
