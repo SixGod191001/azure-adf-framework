@@ -65,7 +65,7 @@ steps:
   # Install Az.Accounts
 - task: AzurePowerShell@5
   inputs:
-    azureSubscription: 'platform'
+    azureSubscription: 'adf-dev-rg'
     ScriptType: 'InlineScript'
     Inline: |
       Install-Module -Name Az.Accounts -Force -AllowClobber -Scope CurrentUser
