@@ -26,18 +26,18 @@ variables:
 
 steps:
 # Install Node and npm packages saved in package.json file in the build
-# - task: UseNode@1
-#   inputs:
-#     version: '18.x'
-#   displayName: 'Install Node.js'
+- task: UseNode@1
+  inputs:
+    version: '18.x'
+  displayName: 'Install Node.js'
   
 # Installs the npm packages saved in your package.json file in the build
-# - task: Npm@1
-#   inputs:
-#     command: 'install'
-#     workingDir: '$(Build.Repository.LocalPath)/$(packageFolder)' #replace with the package.json folder
-#     verbose: true
-#   displayName: 'Install npm packages'
+- task: Npm@1
+  inputs:
+    command: 'install'
+    workingDir: '$(Build.Repository.LocalPath)/$(packageFolder)' #replace with the package.json folder
+    verbose: true
+  displayName: 'Install npm packages'
 # Validates all of the Data Factory resources in the repository. You'll get the same validation errors as when "Validate All" is selected.
 - task: Npm@1
   inputs:
@@ -63,9 +63,9 @@ steps:
   displayName: 'Publish ARM tempate'
 
 # Install Az.Accounts
-#- task: AzurePowerShell@5
-#  inputs:
-#    azureSubscription: 'adf-dev-rg'
+- task: AzurePowerShell@5
+  inputs:
+    azureSubscription: 'adf-dev-rg'
 #    ScriptType: 'InlineScript'
 #    Inline: |
 #      Install-Module -Name Az.Accounts -Force -AllowClobber -Scope CurrentUser
