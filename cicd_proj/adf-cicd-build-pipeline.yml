@@ -62,11 +62,11 @@ steps:
     publishLocation: 'pipeline'
   displayName: 'Publish ARM tempate'
 
-  # Install Az.Accounts
-- task: AzurePowerShell@5
-  inputs:
-    azureSubscription: 'adf-dev-rg'
-    ScriptType: 'InlineScript'
-    Inline: |
-      Install-Module -Name Az.Accounts -Force -AllowClobber -Scope CurrentUser
-    azurePowerShellVersion: LatestVersion
+# Install Az.Accounts
+#- task: AzurePowerShell@5
+#  inputs:
+#    azureSubscription: 'adf-dev-rg'
+#    ScriptType: 'InlineScript'
+#    Inline: |
+#      Install-Module -Name Az.Accounts -Force -AllowClobber -Scope CurrentUser
+#    azurePowerShellVersion: LatestVersion
