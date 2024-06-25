@@ -1,0 +1,219 @@
+{
+	"name": "pl_master_blob",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup Ctrl Table",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Log Start",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureDatabricksDeltaLakeSource",
+						"query": "select * from controller.config_ctrl_raw_manual where is_enable = 1;"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEach Ctrl Table",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup Ctrl Table",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup Ctrl Table').output.value",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"activities": [
+						{
+							"name": "Switch1",
+							"type": "Switch",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"on": {
+									"value": "@item().file_type",
+									"type": "Expression"
+								},
+								"cases": [
+									{
+										"value": "excel",
+										"activities": [
+											{
+												"name": "Execute pl_detail_detail_excel",
+												"type": "ExecutePipeline",
+												"dependsOn": [],
+												"policy": {
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"waitOnCompletion": true,
+													"parameters": {
+														"source_container": {
+															"value": "@item().source_container",
+															"type": "Expression"
+														},
+														"source_directory": {
+															"value": "@item().source_directory",
+															"type": "Expression"
+														},
+														"source_file_wildcard": {
+															"value": "@item().source_file_wildcard",
+															"type": "Expression"
+														},
+														"sheet_name": {
+															"value": "@item().sheet_name",
+															"type": "Expression"
+														},
+														"target_file_prefix": {
+															"value": "@item().target_file_prefix",
+															"type": "Expression"
+														},
+														"mapping_json": {
+															"value": "@item().mapping_json",
+															"type": "Expression"
+														},
+														"source": {
+															"value": "@item().source",
+															"type": "Expression"
+														},
+														"raw_container": {
+															"value": "@item().raw_container",
+															"type": "Expression"
+														},
+														"raw_directory": {
+															"value": "@item().raw_directory",
+															"type": "Expression"
+														},
+														"storage_account": {
+															"value": "@item().storage_account",
+															"type": "Expression"
+														},
+														"execute_datetime": {
+															"value": "@pipeline().parameters.execute_datetime",
+															"type": "Expression"
+														},
+														"job_type": {
+															"value": "@pipeline().parameters.job_type",
+															"type": "Expression"
+														}
+													}
+												}
+											}
+										]
+									}
+								]
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "Log Start",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Shared/log/log_etl_adf_activity_info",
+					"baseParameters": {
+						"date_time": {
+							"value": "@formatDateTime(addHours(utcNow(), 8), 'yyyy-MM-dd hh:rr:ss')",
+							"type": "Expression"
+						},
+						"step": "Pipeline Start",
+						"job_type": {
+							"value": "@pipeline().parameters.job_type",
+							"type": "Expression"
+						},
+						"pipeline_run_id": {
+							"value": "@pipeline().RunId",
+							"type": "Expression"
+						},
+						"pipeline_name": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"dlt_pipeline_id": "null",
+						"notebook_name": "null",
+						"notebook_file_path": "null",
+						"source": {
+							"value": "@pipeline().parameters.source",
+							"type": "Expression"
+						},
+						"source_table_name": "null",
+						"target_file_prefix": "null",
+						"rows_read": "null",
+						"rows_copied": "null",
+						"copy_duration": "null",
+						"copy_errors": "null",
+						"execute_start_time": "null",
+						"execute_end_time": "null",
+						"execute_status": "success",
+						"error_code": "null",
+						"error_message": "null",
+						"batch_id": {
+							"value": "@formatDateTime(pipeline().parameters.execute_datetime, 'yyyy-MM-dd hh:mm:ss')",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"execute_datetime": {
+				"type": "string"
+			},
+			"source": {
+				"type": "string"
+			},
+			"job_type": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"execute_pl_start_time": {
+				"type": "String"
+			},
+			"storage_url": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Abbott-DataFactory/Extract Data/blob"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-12-06T07:15:37Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
