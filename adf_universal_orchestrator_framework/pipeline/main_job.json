@@ -35,6 +35,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_master_blob",
+						"type": "PipelineReference"
+					},
 					"waitOnCompletion": true
 				}
 			},
