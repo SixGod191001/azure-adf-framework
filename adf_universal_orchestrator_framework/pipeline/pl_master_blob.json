@@ -71,57 +71,11 @@
 												},
 												"userProperties": [],
 												"typeProperties": {
-													"waitOnCompletion": true,
-													"parameters": {
-														"source_container": {
-															"value": "@item().source_container",
-															"type": "Expression"
-														},
-														"source_directory": {
-															"value": "@item().source_directory",
-															"type": "Expression"
-														},
-														"source_file_wildcard": {
-															"value": "@item().source_file_wildcard",
-															"type": "Expression"
-														},
-														"sheet_name": {
-															"value": "@item().sheet_name",
-															"type": "Expression"
-														},
-														"target_file_prefix": {
-															"value": "@item().target_file_prefix",
-															"type": "Expression"
-														},
-														"mapping_json": {
-															"value": "@item().mapping_json",
-															"type": "Expression"
-														},
-														"source": {
-															"value": "@item().source",
-															"type": "Expression"
-														},
-														"raw_container": {
-															"value": "@item().raw_container",
-															"type": "Expression"
-														},
-														"raw_directory": {
-															"value": "@item().raw_directory",
-															"type": "Expression"
-														},
-														"storage_account": {
-															"value": "@item().storage_account",
-															"type": "Expression"
-														},
-														"execute_datetime": {
-															"value": "@pipeline().parameters.execute_datetime",
-															"type": "Expression"
-														},
-														"job_type": {
-															"value": "@pipeline().parameters.job_type",
-															"type": "Expression"
-														}
-													}
+													"pipeline": {
+														"referenceName": "pl_detail_excel_blob",
+														"type": "PipelineReference"
+													},
+													"waitOnCompletion": true
 												}
 											}
 										]
