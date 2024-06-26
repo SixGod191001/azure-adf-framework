@@ -81,13 +81,11 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"waitOnCompletion": true,
-					"parameters": {
-						"execute_datetime": {
-							"value": "@variables('execute_datetime')",
-							"type": "Expression"
-						}
-					}
+					"pipeline": {
+						"referenceName": "pl_master_refinement_notebook",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
 				}
 			},
 			{
