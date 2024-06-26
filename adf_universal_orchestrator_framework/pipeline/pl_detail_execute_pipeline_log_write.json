@@ -1,0 +1,65 @@
+{
+	"name": "pl_detail_execute_pipeline_log_write",
+	"properties": {
+		"activities": [
+			{
+				"name": "Write Execute Pipeline Log",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/2083856@cognizant.com/code/write_adf_execute_pipeline_log_to_delta_lake",
+					"baseParameters": {
+						"execute_pl_start_time": {
+							"value": "@pipeline().parameters.execute_pl_start_time",
+							"type": "Expression"
+						},
+						"execute_pl_end_time": {
+							"value": "@formatDateTime(addHours(utcNow(),8),'yyyy-MM-dd HH:mm:ss.fff')",
+							"type": "Expression"
+						},
+						"pipeline_run_id": {
+							"value": "@pipeline().parameters.pipeline_run_id",
+							"type": "Expression"
+						},
+						"pipeline_name": {
+							"value": "@pipeline().parameters.pipeline_name",
+							"type": "Expression"
+						},
+						"activity_type": {
+							"value": "@pipeline().parameters.activity_type",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"execute_pl_start_time": {
+				"type": "string"
+			},
+			"pipeline_run_id": {
+				"type": "string"
+			},
+			"pipeline_name": {
+				"type": "string"
+			},
+			"activity_type": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "Execute Pipeline Log Write"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-11-27T05:45:13Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
