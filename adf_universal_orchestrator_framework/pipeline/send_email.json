@@ -1,0 +1,118 @@
+{
+	"name": "send_email",
+	"properties": {
+		"activities": [
+			{
+				"name": "Write Error Log",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/2083856@cognizant.com/code/write_failed_message_to_file",
+					"baseParameters": {
+						"start_time": {
+							"value": "@pipeline().parameters.start_time",
+							"type": "Expression"
+						},
+						"storage_url": {
+							"value": "@pipeline().parameters.storage_url",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Verify Is Not Error",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Write Error Log",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@activity('Write Error Log').output.runOutPut",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "Send Failed Email",
+							"type": "WebActivity",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"method": "POST",
+								"url": "https://abbott-logicapp.azurewebsites.net:443/api/failed_email/triggers/When_a_HTTP_request_is_received/invoke?api-version=2022-05-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=vk9sKnVq8lla-3QbUtCFYteJ3I6ZhIgO9cNh2eUosCo",
+								"body": {
+									"value": "{\n\"DataFactoryName\":\"@{pipeline().parameters.data_factory_name}\",\n\"PipeLineName\":\"@{pipeline().parameters.pipeline_name}\"\n}",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "Send Success Email",
+							"type": "WebActivity",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"method": "POST",
+								"url": "https://abbott-logicapp.azurewebsites.net:443/api/success_email/triggers/When_a_HTTP_request_is_received/invoke?api-version=2022-05-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=Xu_e8XgTFyPcPVoQDdTQBzQtXXarK3Hl257QlN4zXlM",
+								"body": {
+									"value": "{\n\"DataFactoryName\":\"@{pipeline().parameters.data_factory_name}\",\n\"PipeLineName\":\"@{pipeline().parameters.pipeline_name}\",\n\"Message\":\"Hi All,<br>&nbsp;&nbsp;&nbsp;&nbsp;@{pipeline().parameters.pipeline_name} 执行完成。执行开始时间：@{pipeline().parameters.start_time},执行结束时间：@{formatDateTime(addHours(utcNow(),8),'yyyy-MM-dd HH:mm:ss.fff')}<br>Thanks!\"\n}",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"storage_url": {
+				"type": "string"
+			},
+			"start_time": {
+				"type": "string"
+			},
+			"data_factory_name": {
+				"type": "string"
+			},
+			"pipeline_name": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "Abbott-DataFactory/Send Email"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-11-27T05:45:13Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -104,25 +104,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"waitOnCompletion": true,
-					"parameters": {
-						"storage_url": {
-							"value": "@activity('Execute pl_detail_dlt_job').output.pipelineReturnValue.storage_url",
-							"type": "Expression"
-						},
-						"start_time": {
-							"value": "@variables('execute_datetime')",
-							"type": "Expression"
-						},
-						"data_factory_name": {
-							"value": "@pipeline().DataFactory",
-							"type": "Expression"
-						},
-						"pipeline_name": {
-							"value": "@pipeline().Pipeline",
-							"type": "Expression"
-						}
-					}
+					"waitOnCompletion": true
 				}
 			}
 		],
