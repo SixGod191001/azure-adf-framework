@@ -1,0 +1,149 @@
+{
+	"name": "pl_master_refinement_notebook",
+	"properties": {
+		"activities": [
+			{
+				"name": "Select CONFIG_CTRL_NOTEBOOK_DATABRICKS Level",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Set Execute Pipeline Start Time",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureDatabricksDeltaLakeSource",
+						"query": "select distinct level from controller.config_ctrl_notebook_databricks where is_enable = 1 order by level asc;"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEach CONFIG_CTRL_NOTEBOOK_DATABRICKS Level Info",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Select CONFIG_CTRL_NOTEBOOK_DATABRICKS Level",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Select CONFIG_CTRL_NOTEBOOK_DATABRICKS Level').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Execute Refinement Notebook By Level",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"policy": {
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"waitOnCompletion": true,
+								"parameters": {
+									"level": {
+										"value": "@item().level",
+										"type": "Expression"
+									},
+									"execute_datetime": {
+										"value": "@pipeline().parameters.execute_datetime",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "Set Execute Pipeline Start Time",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "execute_pl_start_time",
+					"value": {
+						"value": "@formatDateTime(addHours(utcNow(),8),'yyyy-MM-dd HH:mm:ss.fff')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Execute Pl_Detail_Blob Pipeline Log Write",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ForEach CONFIG_CTRL_NOTEBOOK_DATABRICKS Level Info",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_detail_execute_pipeline_log_write",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"execute_pl_start_time": {
+							"value": "@variables('execute_pl_start_time')",
+							"type": "Expression"
+						},
+						"pipeline_run_id": {
+							"value": "@pipeline().RunId",
+							"type": "Expression"
+						},
+						"pipeline_name": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"activity_type": "Execute pl_master_unify_notebook Pipeline"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"execute_datetime": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"execute_pl_start_time": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Abbott-DataFactory/Refinement Notebook"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-11-28T16:08:50Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
