@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "pl_detail_dlt_job",
 	"properties": {
 		"folder": {
 			"name": "Abbott-DataFactory/DLT Job"
