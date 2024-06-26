@@ -225,6 +225,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_detail_execute_pipeline_log_write",
+						"type": "PipelineReference"
+					},
 					"waitOnCompletion": true
 				}
 			}
