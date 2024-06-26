@@ -104,6 +104,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"pipeline": {
+						"referenceName": "send_email",
+						"type": "PipelineReference"
+					},
 					"waitOnCompletion": true
 				}
 			}
