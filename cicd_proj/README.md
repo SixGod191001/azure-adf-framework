@@ -23,7 +23,7 @@ Follow the guidance of the link below:
 
 ## Release Pipeline
 Follow the guidance of the link below:  
-- Automate continuous integration using Azure Pipelines releases
+- Automate continuous integration using Azure Pipelines releases:
 <https://learn.microsoft.com/en-us/azure/data-factory/continuous-integration-delivery-automate-azure-pipelines>
-- Sample pre- and post-deployment script
+- Sample pre- and post-deployment script:
 <https://learn.microsoft.com/en-us/azure/data-factory/continuous-integration-delivery-sample-script>
