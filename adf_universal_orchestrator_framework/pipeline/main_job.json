@@ -58,6 +58,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"pipeline": {
+						"referenceName": "00-Batch",
+						"type": "PipelineReference"
+					},
 					"waitOnCompletion": true
 				}
 			},
