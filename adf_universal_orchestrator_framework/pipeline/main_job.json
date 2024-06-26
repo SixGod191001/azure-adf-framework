@@ -59,7 +59,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "00-Batch",
+						"referenceName": "pl_detail_dlt_job",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
