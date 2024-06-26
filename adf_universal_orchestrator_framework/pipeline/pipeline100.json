@@ -1,0 +1,209 @@
+{
+	"name": "pipeline100",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy Source To Raw_copy1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Notebook1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "Data flow1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Copy Source To Raw_copy1",
+						"dependencyConditions": [
+							"Succeeded",
+							"Skipped"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "Get Metadata1",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
+				}
+			},
+			{
+				"name": "Get Metadata2",
+				"type": "GetMetadata",
+				"dependsOn": [
+					{
+						"activity": "Get Metadata1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"fieldList": [],
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
+				}
+			},
+			{
+				"name": "Notebook1",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Get Metadata2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Shared/test_notebook",
+					"baseParameters": {
+						"arr": {
+							"value": "@string(activity('Get Metadata2').output.structure)",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"source_container": {
+				"type": "string",
+				"defaultValue": "inbound"
+			},
+			"source_directory": {
+				"type": "string",
+				"defaultValue": "ims/excel/all_product"
+			},
+			"source_file_wildcard": {
+				"type": "string",
+				"defaultValue": "ALL PRODUCT*.xlsx"
+			},
+			"sheet_name": {
+				"type": "string",
+				"defaultValue": "CHPA Syndicated Monthly"
+			},
+			"target_file_prefix": {
+				"type": "string",
+				"defaultValue": "fact_sales_all_product_ims_"
+			},
+			"mapping_json": {
+				"type": "string"
+			},
+			"source": {
+				"type": "string",
+				"defaultValue": "ims"
+			},
+			"raw_container": {
+				"type": "string",
+				"defaultValue": "raw"
+			},
+			"raw_directory": {
+				"type": "string",
+				"defaultValue": "abbott_epd_dco_phase_2/ims/fact_sales_all_product_ims"
+			},
+			"storage_account": {
+				"type": "string",
+				"defaultValue": "abbottblobenv"
+			},
+			"execute_datetime": {
+				"type": "string",
+				"defaultValue": "2023-11-30 16:16:00"
+			},
+			"job_type": {
+				"type": "string",
+				"defaultValue": "Extract Data"
+			},
+			"rename_file_name": {
+				"type": "string",
+				"defaultValue": "ims_data.parquet"
+			}
+		},
+		"variables": {
+			"execute_datetime": {
+				"type": "String"
+			},
+			"execute_start_time": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Extract Data/blob"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-12-05T12:21:57Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
