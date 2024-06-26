@@ -1047,6 +1047,10 @@
 						"value": "https://management.azure.com/subscriptions/@{variables('SubscriptionId')}/resourceGroups/@{variables('ResourceGroupName')}/providers/Microsoft.DataFactory/factories/@{pipeline().DataFactory}/pipelines/@{pipeline().parameters.PipelineName}/createRun?api-version=2018-06-01",
 						"type": "Expression"
 					},
+					"connectVia": {
+						"referenceName": "SelfHostedIR-Windows",
+						"type": "IntegrationRuntimeReference"
+					},
 					"body": {
 						"value": "@activity('Get Pipeline Params').output.firstRow",
 						"type": "Expression"
