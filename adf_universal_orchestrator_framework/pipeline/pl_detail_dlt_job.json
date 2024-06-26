@@ -1,9 +1,253 @@
 {
 	"name": "pl_detail_dlt_job",
 	"properties": {
-		"folder": {
-			"name": "Abbott-DataFactory/DLT Job"
+		"activities": [
+			{
+				"name": "Run Databricks Dlt Job",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Set Execute Pipeline Start Time",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://adb-7663310678260190.10.azuredatabricks.net/api/2.0/jobs/run-now",
+					"body": {
+						"job_id": "941473507215910"
+					}
+				}
+			},
+			{
+				"name": "Get Job Run Id",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Run Databricks Dlt Job",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "run_id",
+					"value": {
+						"value": "@concat(activity('Run Databricks Dlt Job').output.run_id)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Verify Job State",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "Get Job Run Id",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@or(or(equals(activity('Get Job State').output.state.life_cycle_state, 'TERMINATED'), equals(activity('Get Job State').output.state.life_cycle_state, 'INTERNAL_ERROR')), equals(activity('Get Job State').output.state.life_cycle_state, 'SKIPPED'))",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Wait Job",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 10
+							}
+						},
+						{
+							"name": "Get Job State",
+							"type": "WebActivity",
+							"dependsOn": [
+								{
+									"activity": "Wait Job",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"method": "GET",
+								"url": {
+									"value": "@concat('https://adb-7663310678260190.10.azuredatabricks.net/api/2.0/jobs/runs/get?run_id=',variables('run_id'))",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "0.12:00:00"
+				}
+			},
+			{
+				"name": "Get Dlt Pipeline Id",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Verify Job State",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "dlt_pipeline_id",
+					"value": {
+						"value": "@concat(activity('Get Job State').output.task.pipeline_task.pipeline_id)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Get Dlt Pipeline Message",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Get Dlt Pipeline Id",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "GET",
+					"url": {
+						"value": "@concat('https://adb-7663310678260190.10.azuredatabricks.net/api/2.0/pipelines/',variables('dlt_pipeline_id'))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set Storage Url",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Get Dlt Pipeline Message",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pipelineReturnValue",
+					"value": [
+						{
+							"key": "storage_url",
+							"value": {
+								"type": "Expression",
+								"content": "@concat(activity('Get Dlt Pipeline Message').output.spec.storage)"
+							}
+						}
+					],
+					"setSystemVariable": true
+				}
+			},
+			{
+				"name": "Set Execute Pipeline Start Time",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "execute_pl_start_time",
+					"value": {
+						"value": "@formatDateTime(addHours(utcNow(),8),'yyyy-MM-dd HH:mm:ss.fff')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Execute pl_detail_dlt_job Pipeline Log Write",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Set Storage Url",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"variables": {
+			"run_id": {
+				"type": "String"
+			},
+			"storage_url": {
+				"type": "String"
+			},
+			"dlt_pipeline_id": {
+				"type": "String"
+			},
+			"execute_pl_start_time": {
+				"type": "String"
+			}
 		},
-		"annotations": []
-	}
+		"folder": {
+			"name": "DLT Job"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-11-28T16:09:24Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }
