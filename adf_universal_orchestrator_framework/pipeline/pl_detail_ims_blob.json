@@ -1,0 +1,471 @@
+{
+	"name": "pl_detail_ims_blob",
+	"properties": {
+		"activities": [
+			{
+				"name": "Log Start",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Shared/log/log_etl_adf_activity_info",
+					"baseParameters": {
+						"date_time": {
+							"value": "@formatDateTime(addHours(utcNow(), 8), 'yyyy-MM-dd hh:mm:ss')",
+							"type": "Expression"
+						},
+						"step": "Pipeline Start",
+						"job_type": {
+							"value": "@pipeline().parameters.job_type",
+							"type": "Expression"
+						},
+						"pipeline_run_id": {
+							"value": "@pipeline().RunId",
+							"type": "Expression"
+						},
+						"pipeline_name": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"dlt_pipeline_id": "null",
+						"notebook_name": "null",
+						"notebook_file_path": "null",
+						"source": {
+							"value": "@pipeline().parameters.source",
+							"type": "Expression"
+						},
+						"source_table_name": "null",
+						"target_file_prefix": "null",
+						"rows_read": "null",
+						"rows_copied": "null",
+						"copy_duration": "null",
+						"copy_errors": "null",
+						"execute_start_time": "null",
+						"execute_end_time": "null",
+						"execute_status": "success",
+						"error_code": "null",
+						"error_message": "null",
+						"batch_id": {
+							"value": "@pipeline().parameters.execute_datetime",
+							"type": "Expression"
+						},
+						"dlt_pipeline_name": "null"
+					}
+				}
+			},
+			{
+				"name": "Set Execute Start Time",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Log Start",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "execute_start_time",
+					"value": {
+						"value": "@formatDateTime(addHours(utcNow(),8),'yyyy-MM-dd HH:mm:ss.fff')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Check File Exists",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Set Execute Start Time",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": false,
+							"wildcardFolderPath": {
+								"value": "@pipeline().parameters.source_directory",
+								"type": "Expression"
+							},
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.source_file_wildcard",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						}
+					}
+				}
+			},
+			{
+				"name": "If File Exists",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Check File Exists",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@contains(activity('Check File Exists').output, 'firstRow')",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "Log Pipeline Skip",
+							"type": "DatabricksNotebook",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"notebookPath": "/Shared/log/log_etl_adf_activity_info",
+								"baseParameters": {
+									"date_time": {
+										"value": "@formatDateTime(addHours(utcNow(), 8), 'yyyy-MM-dd hh:mm:ss')",
+										"type": "Expression"
+									},
+									"step": "Complete",
+									"job_type": {
+										"value": "@pipeline().parameters.job_type",
+										"type": "Expression"
+									},
+									"pipeline_run_id": {
+										"value": "@pipeline().RunId",
+										"type": "Expression"
+									},
+									"pipeline_name": {
+										"value": "@pipeline().Pipeline",
+										"type": "Expression"
+									},
+									"dlt_pipeline_id": "null",
+									"notebook_name": "null",
+									"notebook_file_path": "null",
+									"source": {
+										"value": "@pipeline().parameters.source",
+										"type": "Expression"
+									},
+									"source_table_name": {
+										"value": "@pipeline().parameters.source_file_wildcard",
+										"type": "Expression"
+									},
+									"target_file_prefix": {
+										"value": "@pipeline().parameters.target_file_prefix",
+										"type": "Expression"
+									},
+									"rows_read": "null",
+									"rows_copied": "null",
+									"copy_duration": "null",
+									"copy_errors": "null",
+									"execute_start_time": {
+										"value": "@variables('execute_start_time')",
+										"type": "Expression"
+									},
+									"execute_end_time": {
+										"value": "@formatDateTime(addHours(utcNow(), 8), 'yyyy-MM-dd hh:mm:ss')",
+										"type": "Expression"
+									},
+									"execute_status": "success",
+									"error_code": "null",
+									"error_message": "null",
+									"batch_id": {
+										"value": "@pipeline().parameters.execute_datetime",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "Log Copy Source To Raw Success",
+							"type": "DatabricksNotebook",
+							"dependsOn": [
+								{
+									"activity": "IMS Transform",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"notebookPath": "/Shared/log/log_etl_adf_activity_info",
+								"baseParameters": {
+									"date_time": {
+										"value": "@formatDateTime(addHours(utcNow(), 8), 'yyyy-MM-dd hh:mm:ss')",
+										"type": "Expression"
+									},
+									"step": "Copy Source To Raw",
+									"job_type": {
+										"value": "@pipeline().parameters.job_type",
+										"type": "Expression"
+									},
+									"pipeline_run_id": {
+										"value": "@pipeline().RunId",
+										"type": "Expression"
+									},
+									"pipeline_name": {
+										"value": "@pipeline().Pipeline",
+										"type": "Expression"
+									},
+									"dlt_pipeline_id": "null",
+									"notebook_name": "null",
+									"notebook_file_path": "null",
+									"source": {
+										"value": "@pipeline().parameters.source",
+										"type": "Expression"
+									},
+									"source_table_name": {
+										"value": "@pipeline().parameters.source_file_wildcard",
+										"type": "Expression"
+									},
+									"target_file_prefix": {
+										"value": "@pipeline().parameters.target_file_prefix",
+										"type": "Expression"
+									},
+									"rows_read": {
+										"value": "@activity('Copy Source To Raw').output.rowsRead",
+										"type": "Expression"
+									},
+									"rows_copied": {
+										"value": "@activity('Copy Source To Raw').output.rowsCopied",
+										"type": "Expression"
+									},
+									"copy_duration": {
+										"value": "@activity('Copy Source To Raw').output.copyDuration",
+										"type": "Expression"
+									},
+									"copy_errors": {
+										"value": "@string(activity('Copy Source To Raw').output.errors)",
+										"type": "Expression"
+									},
+									"execute_start_time": {
+										"value": "@variables('execute_start_time')",
+										"type": "Expression"
+									},
+									"execute_end_time": {
+										"value": "@formatDateTime(addHours(utcNow(),8),'yyyy-MM-dd HH:mm:ss.fff')",
+										"type": "Expression"
+									},
+									"execute_status": "success",
+									"error_code": "null",
+									"error_message": "null",
+									"batch_id": {
+										"value": "@pipeline().parameters.execute_datetime",
+										"type": "Expression"
+									},
+									"dlt_pipeline_name": "null"
+								}
+							}
+						},
+						{
+							"name": "Log Copy Source To Raw Fail",
+							"type": "DatabricksNotebook",
+							"dependsOn": [
+								{
+									"activity": "IMS Transform",
+									"dependencyConditions": [
+										"Failed"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"notebookPath": "/Shared/log/log_etl_adf_activity_info",
+								"baseParameters": {
+									"date_time": {
+										"value": "@formatDateTime(addHours(utcNow(), 8), 'yyyy-MM-dd hh:mm:ss')",
+										"type": "Expression"
+									},
+									"step": "Complete",
+									"job_type": {
+										"value": "@pipeline().parameters.job_type",
+										"type": "Expression"
+									},
+									"pipeline_run_id": {
+										"value": "@pipeline().RunId",
+										"type": "Expression"
+									},
+									"pipeline_name": {
+										"value": "@pipeline().Pipeline",
+										"type": "Expression"
+									},
+									"dlt_pipeline_id": "null",
+									"notebook_name": "null",
+									"notebook_file_path": "null",
+									"source": {
+										"value": "@pipeline().parameters.source",
+										"type": "Expression"
+									},
+									"source_table_name": {
+										"value": "@pipeline().parameters.source_file_wildcard",
+										"type": "Expression"
+									},
+									"target_file_prefix": {
+										"value": "@pipeline().parameters.target_file_prefix",
+										"type": "Expression"
+									},
+									"rows_read": {
+										"value": "@activity('Copy Source To Raw').output.rowsRead",
+										"type": "Expression"
+									},
+									"rows_copied": {
+										"value": "@activity('Copy Source To Raw').output.rowsCopied",
+										"type": "Expression"
+									},
+									"copy_duration": {
+										"value": "@activity('Copy Source To Raw').output.copyDuration",
+										"type": "Expression"
+									},
+									"copy_errors": {
+										"value": "@string(activity('Copy Source To Raw').output.errors)",
+										"type": "Expression"
+									},
+									"execute_start_time": {
+										"value": "@variables('execute_start_time')",
+										"type": "Expression"
+									},
+									"execute_end_time": {
+										"value": "@formatDateTime(addHours(utcNow(),8),'yyyy-MM-dd HH:mm:ss')",
+										"type": "Expression"
+									},
+									"execute_status": "fail",
+									"error_code": {
+										"value": "@activity('Copy Source To Raw').error.errorCode",
+										"type": "Expression"
+									},
+									"error_message": {
+										"value": "@activity('Copy Source To Raw').error.Message",
+										"type": "Expression"
+									},
+									"batch_id": {
+										"value": "@pipeline().parameters.execute_datetime",
+										"type": "Expression"
+									},
+									"dlt_pipeline_name": "null"
+								}
+							}
+						},
+						{
+							"name": "IMS Transform",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"policy": {
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "pl_detail_ims_transform",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"source_container": {
+				"type": "string"
+			},
+			"source_directory": {
+				"type": "string"
+			},
+			"source_file_wildcard": {
+				"type": "string"
+			},
+			"sheet_name": {
+				"type": "string"
+			},
+			"target_file_prefix": {
+				"type": "string"
+			},
+			"mapping_json": {
+				"type": "string"
+			},
+			"source": {
+				"type": "string"
+			},
+			"raw_container": {
+				"type": "string"
+			},
+			"raw_directory": {
+				"type": "string"
+			},
+			"storage_account": {
+				"type": "string"
+			},
+			"execute_datetime": {
+				"type": "string"
+			},
+			"job_type": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"execute_datetime": {
+				"type": "String"
+			},
+			"execute_start_time": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Extract Data/blob"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-12-04T13:22:16Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

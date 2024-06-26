@@ -1,0 +1,319 @@
+{
+	"name": "pl_detail_ims_transform",
+	"properties": {
+		"activities": [
+			{
+				"name": "Switch IMS Data",
+				"type": "Switch",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"on": {
+						"value": "@pipeline().parameters.target_file_prefix",
+						"type": "Expression"
+					},
+					"cases": [
+						{
+							"value": "fact_sales_all_product_ims_",
+							"activities": [
+								{
+									"name": "Rename Source File Column",
+									"type": "ExecuteDataFlow",
+									"dependsOn": [
+										{
+											"activity": "Notebook1",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"dataflow": {
+											"referenceName": "df_ims_all_product_rename",
+											"type": "DataFlowReference",
+											"parameters": {
+												"wildcard_paths": {
+													"value": "'@{concat(pipeline().parameters.source_directory, '/', pipeline().parameters.source_file_wildcard)}'",
+													"type": "Expression"
+												},
+												"rename_file_name": {
+													"value": "'@{pipeline().parameters.rename_file_name}'",
+													"type": "Expression"
+												}
+											}
+										},
+										"compute": {
+											"coreCount": 8,
+											"computeType": "General"
+										},
+										"traceLevel": "Fine"
+									}
+								},
+								{
+									"name": "Copy Source To Raw",
+									"type": "ExecuteDataFlow",
+									"dependsOn": [
+										{
+											"activity": "Rename Source File Column",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"dataflow": {
+											"referenceName": "df_ims_all_product_unpivot",
+											"type": "DataFlowReference",
+											"parameters": {
+												"target_file_name": {
+													"value": "'@{concat(pipeline().parameters.target_file_prefix, formatDateTime(pipeline().parameters.execute_datetime,'yyyyMMddHHmmss'),'.parquet')}'",
+													"type": "Expression"
+												},
+												"rename_file_name": {
+													"value": "'@{pipeline().parameters.rename_file_name}'",
+													"type": "Expression"
+												},
+												"year_month_value": {
+													"value": "@activity('Notebook1').output.runOutput",
+													"type": "Expression"
+												},
+												"batch_id": {
+													"value": "'@{formatDateTime(pipeline().parameters.execute_datetime, 'yyyyMMddHHmmss')}'",
+													"type": "Expression"
+												}
+											},
+											"datasetParameters": {
+												"NewColumnSource": {
+													"raw_directory": {
+														"value": "@pipeline().parameters.raw_directory",
+														"type": "Expression"
+													},
+													"rename_file_name": {
+														"value": "@pipeline().parameters.rename_file_name",
+														"type": "Expression"
+													}
+												},
+												"TargetRawSink": {
+													"raw_container": {
+														"value": "@pipeline().parameters.raw_container",
+														"type": "Expression"
+													},
+													"raw_directory": {
+														"value": "@pipeline().parameters.raw_directory",
+														"type": "Expression"
+													},
+													"raw_filename": {
+														"value": "@pipeline().parameters.target_file_prefix",
+														"type": "Expression"
+													}
+												}
+											}
+										},
+										"compute": {
+											"coreCount": 8,
+											"computeType": "General"
+										},
+										"traceLevel": "Fine"
+									}
+								},
+								{
+									"name": "Get Filename",
+									"type": "GetMetadata",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"fieldList": [
+											"childItems"
+										],
+										"storeSettings": {
+											"type": "AzureBlobStorageReadSettings",
+											"recursive": true,
+											"enablePartitionDiscovery": false
+										}
+									}
+								},
+								{
+									"name": "Get File Structure",
+									"type": "GetMetadata",
+									"dependsOn": [
+										{
+											"activity": "Get Filename",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"fieldList": [
+											"structure"
+										],
+										"storeSettings": {
+											"type": "AzureBlobStorageReadSettings",
+											"recursive": true,
+											"enablePartitionDiscovery": false
+										}
+									}
+								},
+								{
+									"name": "Notebook1",
+									"type": "DatabricksNotebook",
+									"dependsOn": [
+										{
+											"activity": "Get File Structure",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"notebookPath": "/Shared/test_notebook",
+										"baseParameters": {
+											"arr": {
+												"value": "@string(activity('Get Metadata2').output.structure)",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								{
+									"name": "Set Rows_read",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "Copy Source To Raw",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "pipelineReturnValue",
+										"value": [
+											{
+												"key": "rows_read",
+												"value": {
+													"type": "Expression",
+													"content": "@activity('Copy Source To Raw').output.runStatus.metrics.TargetRawSink.stages[0].recordsRead"
+												}
+											}
+										],
+										"setSystemVariable": true
+									}
+								},
+								{
+									"name": "Set Rows_copied",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "Copy Source To Raw",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "pipelineReturnValue",
+										"value": [
+											{
+												"key": "rows_copied",
+												"value": {
+													"type": "Expression",
+													"content": "@activity('Copy Source To Raw').output.runStatus.metrics.TargetRawSink.stages[0].bytesWritten"
+												}
+											}
+										],
+										"setSystemVariable": true
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"target_file_prefix": {
+				"type": "string"
+			},
+			"source_container": {
+				"type": "string"
+			},
+			"source_directory": {
+				"type": "string"
+			},
+			"sheet_name": {
+				"type": "string"
+			},
+			"raw_container": {
+				"type": "string"
+			},
+			"raw_directory": {
+				"type": "string"
+			},
+			"rename_file_name": {
+				"type": "string"
+			},
+			"execute_datetime": {
+				"type": "string"
+			},
+			"source_file_wildcard": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "Extract Data/blob"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-12-06T03:36:52Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
