@@ -1,0 +1,135 @@
+{
+	"name": "pl_detail_refinement_notebook",
+	"properties": {
+		"activities": [
+			{
+				"name": "Write Message Delta Lake",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Execute Unify Notebook",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/2083856@cognizant.com/code/write_adf_execute_notebook_log_to_delta_lake",
+					"baseParameters": {
+						"notebook_output": {
+							"value": "@concat(activity('Execute Unify Notebook').output)",
+							"type": "Expression"
+						},
+						"notebook_start_time": {
+							"value": "@variables('execute_unify_notebook_start_time')",
+							"type": "Expression"
+						},
+						"notebook_end_time": {
+							"value": "@formatDateTime(addHours(utcNow(),8),'yyyy-MM-dd HH:mm:ss.fff')",
+							"type": "Expression"
+						},
+						"notebook_name": {
+							"value": "@pipeline().parameters.notebook_name",
+							"type": "Expression"
+						},
+						"notebook_file_path": {
+							"value": "@pipeline().parameters.notebook_path",
+							"type": "Expression"
+						},
+						"activity_type": "Execute pl_detail_unify Pipeline",
+						"pipeline_run_id": {
+							"value": "@pipeline().RunId",
+							"type": "Expression"
+						},
+						"pipeline_name": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Set Execute Unify Notebook Start Time",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "execute_unify_notebook_start_time",
+					"value": {
+						"value": "@formatDateTime(addHours(utcNow(),8),'yyyy-MM-dd HH:mm:ss.fff')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Execute Unify Notebook",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Set Execute Unify Notebook Start Time",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().parameters.notebook_path",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"execute_datetime": {
+							"value": "@pipeline().parameters.execute_datetime",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"notebook_path": {
+				"type": "string"
+			},
+			"notebook_name": {
+				"type": "string"
+			},
+			"execute_datetime": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"execute_unify_notebook_start_time": {
+				"type": "String"
+			},
+			"output": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Refinement Notebook"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-11-28T16:08:49Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

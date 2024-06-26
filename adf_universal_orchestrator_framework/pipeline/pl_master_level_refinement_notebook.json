@@ -1,9 +1,9 @@
 {
-	"name": "pl_master_refinement_notebook",
+	"name": "pl_master_level_refinement_notebook",
 	"properties": {
 		"activities": [
 			{
-				"name": "Select CONFIG_CTRL_NOTEBOOK_DATABRICKS Level",
+				"name": "Select CONFIG_CTRL_NOTEBOOK_DATABRICKS Info",
 				"type": "Lookup",
 				"dependsOn": [
 					{
@@ -24,17 +24,20 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureDatabricksDeltaLakeSource",
-						"query": "select distinct level from controller.config_ctrl_notebook_databricks where is_enable = 1 order by level asc;"
+						"query": {
+							"value": "select * from controller.config_ctrl_notebook_databricks where is_enable = 1 and level = @{pipeline().parameters.level};",
+							"type": "Expression"
+						}
 					},
 					"firstRowOnly": false
 				}
 			},
 			{
-				"name": "ForEach CONFIG_CTRL_NOTEBOOK_DATABRICKS Level Info",
+				"name": "ForEach UnifyNotebook",
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Select CONFIG_CTRL_NOTEBOOK_DATABRICKS Level",
+						"activity": "Select CONFIG_CTRL_NOTEBOOK_DATABRICKS Info",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -43,25 +46,49 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Select CONFIG_CTRL_NOTEBOOK_DATABRICKS Level').output.value",
+						"value": "@activity('Select CONFIG_CTRL_NOTEBOOK_DATABRICKS Info').output.value",
 						"type": "Expression"
 					},
-					"isSequential": true,
+					"isSequential": false,
 					"activities": [
 						{
-							"name": "Execute Refinement Notebook By Level",
+							"name": "Execute pl_deltail_refinement",
 							"type": "ExecutePipeline",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "Set Execute Pl_Detail_Refinement Start Time",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"policy": {
 								"secureInput": false
 							},
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "pl_master_level_refinement_notebook",
+									"referenceName": "pl_detail_refinement_notebook",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": true
+							}
+						},
+						{
+							"name": "Set Execute Pl_Detail_Refinement Start Time",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "execute_pl_start_time",
+								"value": {
+									"value": "@formatDateTime(addHours(utcNow(),8),'yyyy-MM-dd HH:mm:ss.fff')",
+									"type": "Expression"
+								}
 							}
 						}
 					]
@@ -89,7 +116,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "ForEach CONFIG_CTRL_NOTEBOOK_DATABRICKS Level Info",
+						"activity": "ForEach UnifyNotebook",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -118,12 +145,15 @@
 							"value": "@pipeline().Pipeline",
 							"type": "Expression"
 						},
-						"activity_type": "Execute pl_master_unify_notebook Pipeline"
+						"activity_type": "Execute pl_master_level_unify_notebook Pipeline"
 					}
 				}
 			}
 		],
 		"parameters": {
+			"level": {
+				"type": "int"
+			},
 			"execute_datetime": {
 				"type": "string"
 			}
@@ -137,7 +167,7 @@
 			"name": "Abbott-DataFactory/Refinement Notebook"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-11-28T16:08:50Z"
+		"lastPublishTime": "2023-11-28T16:08:49Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
