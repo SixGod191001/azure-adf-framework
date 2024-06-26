@@ -56,7 +56,7 @@
 			}
 		},
 		"folder": {
-			"name": "Execute Pipeline Log Write"
+			"name": "Abbott-DataFactory/Execute Pipeline Log Write"
 		},
 		"annotations": [],
 		"lastPublishTime": "2023-11-27T05:45:13Z"
