@@ -1,7 +1,7 @@
 # Develop Standard
 ## Azure data factory pipeline naming standard:
-- Worker pipeline: naming folder as <batch name>, create pipelines under corresponding folder, naming pipeline as task_<batch name>_<layer_name>_<task name>
-- Data set name: naming folder as <batch name>, create data sets under corresponding folder, naming data set as ds_<batch name>_<file name>
+- Worker pipeline: naming folder as <batch_name>, create pipelines under corresponding folder, naming pipeline as task_<batch_name>_<layer_name>_<task_name>
+- Data set name: naming folder as <batch_name>, create data sets under corresponding folder, naming data set as ds_<batch_name>_<file_name>
 - Universal pipeline: create pipeline under 'Utils' folder
 
 ## CI/CD Develop Standard
