@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "*",
+				"fileName": "dim_date.csv",
 				"container": "ecdc"
 			},
 			"columnDelimiter": ",",
