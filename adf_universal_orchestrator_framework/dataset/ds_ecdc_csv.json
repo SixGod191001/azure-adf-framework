@@ -1,0 +1,23 @@
+{
+	"name": "ds_ecdc_csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lk_blob_cedc",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "*",
+				"container": "ecdc"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
