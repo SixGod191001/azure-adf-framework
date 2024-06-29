@@ -1,5 +1,5 @@
 {
-	"name": "ds_ecdc_landing",
+	"name": "ds_ecdc_dim_date",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "lk_dl_cedc",
