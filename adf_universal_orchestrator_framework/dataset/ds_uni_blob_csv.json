@@ -10,9 +10,6 @@
 				"type": "String",
 				"defaultValue": "ecdc"
 			},
-			"path": {
-				"type": "string"
-			},
 			"file": {
 				"type": "string",
 				"defaultValue": "cases_deaths.csv"

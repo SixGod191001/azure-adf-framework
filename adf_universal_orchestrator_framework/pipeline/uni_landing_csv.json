@@ -1,17 +1,60 @@
 {
-	"name": "ly_test",
+	"name": "uni_landing_csv",
 	"properties": {
 		"activities": [
 			{
-				"name": "Wait1",
-				"type": "Wait",
+				"name": "Copy data1",
+				"type": "Copy",
 				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
-					"waitTimeInSeconds": 2
-				}
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_uni_blob_csv",
+						"type": "DatasetReference",
+						"parameters": {
+							"container": {
+								"value": "@pipeline().parameters.source_container",
+								"type": "Expression"
+							},
+							"file": {
+								"value": "@pipeline().parameters.source_file",
+								"type": "Expression"
+							}
+						}
+					}
+				]
 			}
 		],
+		"parameters": {
+			"source_container": {
+				"type": "string",
+				"defaultValue": "ecdc"
+			},
+			"source_file": {
+				"type": "string",
+				"defaultValue": "cases_deaths.csv"
+			}
+		},
 		"folder": {
 			"name": "ADFUniversalOrchestratorFramework/Utils"
 		},
