@@ -1,0 +1,120 @@
+{
+	"name": "task_uni_blob_dl_excel",
+	"properties": {
+		"activities": [
+			{
+				"name": "copy data",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_uni_blob_excel",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_container": {
+								"value": "@pipeline().parameters.p_blob_container",
+								"type": "Expression"
+							},
+							"p_filename": {
+								"value": "@pipeline().parameters.p_blob_filename",
+								"type": "Expression"
+							},
+							"p_sheet": {
+								"value": "@pipeline().parameters.p_sheet",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_uni_dl_csv",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_container": {
+								"value": "@pipeline().parameters.p_dl_container",
+								"type": "Expression"
+							},
+							"p_path": {
+								"value": "@pipeline().parameters.p_dl_path",
+								"type": "Expression"
+							},
+							"p_filename": {
+								"value": "@pipeline().parameters.p_dl_filename",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"p_blob_container": {
+				"type": "string",
+				"defaultValue": "cpa"
+			},
+			"p_blob_filename": {
+				"type": "string",
+				"defaultValue": "CPA_Franchise_Marketing_Mapping.xlsx"
+			},
+			"p_sheet": {
+				"type": "string",
+				"defaultValue": "Sheet1"
+			},
+			"p_dl_container": {
+				"type": "string",
+				"defaultValue": "landing"
+			},
+			"p_dl_filename": {
+				"type": "string",
+				"defaultValue": "CPA_Franchise_Marketing_Mapping.csv"
+			},
+			"p_dl_path": {
+				"type": "string",
+				"defaultValue": "cpa"
+			}
+		},
+		"folder": {
+			"name": "Universal"
+		},
+		"annotations": []
+	}
+}
