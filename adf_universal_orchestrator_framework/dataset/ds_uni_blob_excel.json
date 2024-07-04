@@ -39,7 +39,8 @@
 					"value": "@dataset().p_container",
 					"type": "Expression"
 				}
-			}
+			},
+			"firstRowAsHeader": true
 		},
 		"schema": []
 	}
