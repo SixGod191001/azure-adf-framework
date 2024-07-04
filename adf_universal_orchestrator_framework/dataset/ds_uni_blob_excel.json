@@ -1,0 +1,46 @@
+{
+	"name": "ds_uni_blob_excel",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lk_blob_cedc",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_container": {
+				"type": "string",
+				"defaultValue": "cpa"
+			},
+			"p_filename": {
+				"type": "string",
+				"defaultValue": "CPA_Franchise_Marketing_Mapping.xlsx"
+			},
+			"p_sheet": {
+				"type": "string",
+				"defaultValue": "Sheet1"
+			}
+		},
+		"folder": {
+			"name": "Universal"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": {
+				"value": "@dataset().p_sheet",
+				"type": "Expression"
+			},
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().p_filename",
+					"type": "Expression"
+				},
+				"container": {
+					"value": "@dataset().p_container",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": []
+	}
+}
