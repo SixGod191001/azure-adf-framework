@@ -19,6 +19,7 @@
 						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -56,7 +57,7 @@
 			}
 		},
 		"folder": {
-			"name": "ADFUniversalOrchestratorFramework/Utils"
+			"name": "ADFUniversalOrchestratorFramework/Universal"
 		},
 		"annotations": []
 	}
