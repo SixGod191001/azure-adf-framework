@@ -1,0 +1,50 @@
+{
+	"name": "ds_uni_dl_csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lk_dl_cedc",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_container": {
+				"type": "string",
+				"defaultValue": "landing"
+			},
+			"p_path": {
+				"type": "string",
+				"defaultValue": "cpa"
+			},
+			"p_filename": {
+				"type": "string",
+				"defaultValue": "CPA_Franchise_Marketing_Mapping.csv"
+			}
+		},
+		"folder": {
+			"name": "Universal"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().p_filename",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().p_path",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().p_container",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
