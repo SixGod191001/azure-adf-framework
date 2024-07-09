@@ -74,6 +74,16 @@ BEGIN
 				[metadata].[Batches]
 			WHERE
 				[BatchName] = @BatchName;
+
+			--If using batch mode, pipeline should be linked to a batch else raise error.
+			IF NOT EXISTS
+				(
+				SELECT * FROM [metadata].[Pipelines] WHERE BatchId = @BatchId
+				)
+				BEGIN
+					RAISERROR('If using batch mode, pipeline should be linked to a batch else raise error.',16,1);
+					RETURN 0;
+				END;
 			
 			--create local execution id now for the batch
 			EXEC [metadata].[BatchWrapper]
