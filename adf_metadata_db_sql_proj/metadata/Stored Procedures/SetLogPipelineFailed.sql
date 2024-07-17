@@ -36,7 +36,8 @@ BEGIN
 		[PipelineStatus],
 		[EndDateTime],
 		[PipelineRunId],
-		[PipelineParamsUsed]
+		[PipelineParamsUsed],
+		[TaskName]
 		)
 	SELECT
 		[LocalExecutionId],
@@ -51,7 +52,8 @@ BEGIN
 		[PipelineStatus],
 		[EndDateTime],
 		[PipelineRunId],
-		[PipelineParamsUsed]
+		[PipelineParamsUsed],
+		[TaskName]
 	FROM
 		[metadata].[CurrentExecution]
 	WHERE

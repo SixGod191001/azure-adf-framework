@@ -21,7 +21,8 @@ BEGIN
 				[PipelineName],
 				[StartDateTime],
 				[PipelineStatus],
-				[EndDateTime]
+				[EndDateTime],
+				[TaskName]
 				)
 			SELECT
 				[LocalExecutionId],
@@ -34,7 +35,8 @@ BEGIN
 				[PipelineName],
 				[StartDateTime],
 				'Unknown',
-				[EndDateTime]
+				[EndDateTime],
+				[TaskName]
 			FROM
 				[metadata].[CurrentExecution]
 			WHERE
@@ -83,7 +85,8 @@ BEGIN
 				[PipelineName],
 				[StartDateTime],
 				[PipelineStatus],
-				[EndDateTime]
+				[EndDateTime],
+				[TaskName]
 				)
 			SELECT
 				[LocalExecutionId],
@@ -96,7 +99,8 @@ BEGIN
 				[PipelineName],
 				[StartDateTime],
 				'Unknown',
-				[EndDateTime]
+				[EndDateTime],
+				[TaskName]
 			FROM
 				[metadata].[CurrentExecution]
 			WHERE
