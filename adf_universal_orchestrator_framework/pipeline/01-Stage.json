@@ -140,7 +140,7 @@
 								}
 							},
 							"linkedServiceName": {
-								"referenceName": "SupportDatabase2",
+								"referenceName": "SupportDatabase",
 								"type": "LinkedServiceReference"
 							}
 						},
