@@ -2,7 +2,7 @@
 	"name": "CSV_COPY_BLOB_GEN2_m8j_SourceDS",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "lk_blob_cedc",
+			"referenceName": "AzureBlobStorage",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {

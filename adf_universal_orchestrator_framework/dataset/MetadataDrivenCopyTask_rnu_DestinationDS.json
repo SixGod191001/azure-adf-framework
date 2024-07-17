@@ -2,7 +2,7 @@
 	"name": "MetadataDrivenCopyTask_rnu_DestinationDS",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "lk_dl_cedc",
+			"referenceName": "lk_dl_cedc_2",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
