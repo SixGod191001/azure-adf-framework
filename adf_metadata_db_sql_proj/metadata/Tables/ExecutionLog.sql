@@ -14,6 +14,7 @@
     [EndDateTime]      DATETIME         NULL,
     [PipelineRunId] UNIQUEIDENTIFIER NULL,
     [PipelineParamsUsed] NVARCHAR(MAX) NULL DEFAULT ('None'), 
+    [TaskName] [VARCHAR](255) NULL,
     CONSTRAINT [PK_ExecutionLog] PRIMARY KEY CLUSTERED ([LogId] ASC)
     );
 
