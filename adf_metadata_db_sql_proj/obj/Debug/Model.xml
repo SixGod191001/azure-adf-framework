@@ -11,14 +11,14 @@
 			<Metadata Name="CompatibilityMode" Value="150" />
 		</CustomData>
 		<CustomData Category="Reference" Type="SqlSchema">
-			<Metadata Name="FileName" Value="c:\Users\SixGo\.vscode\extensions\ms-mssql.sql-database-projects-vscode-1.4.1\BuildDirectory\SystemDacpacs\AzureV12\master.dacpac" />
+			<Metadata Name="FileName" Value="c:\Users\luyan\.vscode\extensions\ms-mssql.sql-database-projects-vscode-1.4.1\BuildDirectory\SystemDacpacs\AzureV12\master.dacpac" />
 			<Metadata Name="LogicalName" Value="master.dacpac" />
 			<Metadata Name="ExternalParts" Value="[master]" />
 			<Metadata Name="SuppressMissingDependenciesErrors" Value="False" />
 		</CustomData>
 		<CustomData Category="Reference" Type="Assembly">
 			<Metadata Name="LogicalName" Value="ADFMetadataDBSQLProj.dll" />
-			<Metadata Name="FileName" Value="d:\project\azure-adf-framework\adf_metadata_db_sql_proj\obj\Debug\ADFMetadataDBSQLProj.dll" />
+			<Metadata Name="FileName" Value="d:\azure-adf-framework\adf_metadata_db_sql_proj\obj\Debug\ADFMetadataDBSQLProj.dll" />
 			<Metadata Name="AssemblyName" Value="ADFMetadataDBSQLProj" />
 			<Metadata Name="PermissionSet" Value="SAFE" />
 			<Metadata Name="Owner" Value="" />
@@ -26,7 +26,7 @@
 			<Metadata Name="IsVisible" Value="True" />
 			<Metadata Name="IsModelAware" Value="True" />
 			<Metadata Name="SkipCreationIfEmpty" Value="True" />
-			<Metadata Name="AssemblySymbolsName" Value="d:\project\azure-adf-framework\adf_metadata_db_sql_proj\obj\Debug\ADFMetadataDBSQLProj.pdb" />
+			<Metadata Name="AssemblySymbolsName" Value="d:\azure-adf-framework\adf_metadata_db_sql_proj\obj\Debug\ADFMetadataDBSQLProj.pdb" />
 		</CustomData>
 		<CustomData Category="SqlCmdVariables" Type="SqlCmdVariable" />
 	</Header>
@@ -66,16 +66,16 @@
 		</Element>
 		<Element Type="SqlDefaultConstraint">
 			<Property Name="DefaultExpressionScript">
-				<Value><![CDATA[('TO')]]></Value>
+				<Value><![CDATA[0]]></Value>
 			</Property>
 			<Relationship Name="DefiningTable">
 				<Entry>
-					<References Name="[metadata].[Recipients]" />
+					<References Name="[metadata].[CurrentExecution]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="ForColumn">
 				<Entry>
-					<References Name="[metadata].[Recipients].[MessagePreference]" />
+					<References Name="[metadata].[CurrentExecution].[IsBlocked]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="5" />
@@ -118,31 +118,15 @@
 			</Property>
 			<Relationship Name="DefiningTable">
 				<Entry>
-					<References Name="[metadata].[Batches]" />
+					<References Name="[metadata].[Pipelines]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="ForColumn">
 				<Entry>
-					<References Name="[metadata].[Batches].[Enabled]" />
+					<References Name="[metadata].[Pipelines].[UniversalFlag]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="8" />
-		</Element>
-		<Element Type="SqlDefaultConstraint">
-			<Property Name="DefaultExpressionScript">
-				<Value><![CDATA[('None')]]></Value>
-			</Property>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[metadata].[ExecutionLog]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForColumn">
-				<Entry>
-					<References Name="[metadata].[ExecutionLog].[PipelineParamsUsed]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="9" />
 		</Element>
 		<Element Type="SqlDefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -156,6 +140,22 @@
 			<Relationship Name="ForColumn">
 				<Entry>
 					<References Name="[metadata].[ExecutionLog].[ResourceGroupName]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="9" />
+		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[('None')]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[metadata].[ExecutionLog]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[metadata].[ExecutionLog].[PipelineParamsUsed]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="10" />
@@ -178,19 +178,35 @@
 		</Element>
 		<Element Type="SqlDefaultConstraint">
 			<Property Name="DefaultExpressionScript">
-				<Value><![CDATA[1]]></Value>
+				<Value><![CDATA[('TO')]]></Value>
 			</Property>
 			<Relationship Name="DefiningTable">
 				<Entry>
-					<References Name="[metadata].[PipelineAlertLink]" />
+					<References Name="[metadata].[Recipients]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="ForColumn">
 				<Entry>
-					<References Name="[metadata].[PipelineAlertLink].[Enabled]" />
+					<References Name="[metadata].[Recipients].[MessagePreference]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="12" />
+		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[(1)]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[metadata].[DataProcessType]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[metadata].[DataProcessType].[Enabled]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="13" />
 		</Element>
 		<Element Type="SqlDefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -206,23 +222,39 @@
 					<References Name="[metadata].[ExecutionLog].[OrchestratorName]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="13" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="14" />
 		</Element>
 		<Element Type="SqlDefaultConstraint">
 			<Property Name="DefaultExpressionScript">
-				<Value><![CDATA[0]]></Value>
+				<Value><![CDATA[('dataflow')]]></Value>
 			</Property>
 			<Relationship Name="DefiningTable">
 				<Entry>
-					<References Name="[metadata].[CurrentExecution]" />
+					<References Name="[metadata].[DataProcessType]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="ForColumn">
 				<Entry>
-					<References Name="[metadata].[CurrentExecution].[IsBlocked]" />
+					<References Name="[metadata].[DataProcessType].[DataProcessType]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="14" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="15" />
+		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[(0)]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[metadata].[Batches]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[metadata].[Batches].[Enabled]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="16" />
 		</Element>
 		<Element Type="SqlDefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -238,7 +270,23 @@
 					<References Name="[metadata].[ExecutionLog].[CallingOrchestratorName]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="15" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="17" />
+		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[1]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[metadata].[PipelineAlertLink]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[metadata].[PipelineAlertLink].[Enabled]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="18" />
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[DemoModePrecursor]">
 			<Property Name="BodyScript">
@@ -411,10 +459,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="2080" />
+				<Property Name="Length" Value="1995" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[DemoModePrecursor]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[DemoModePrecursor]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[ExampleCustomExecutionPrecursor]">
@@ -526,10 +574,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="989" />
+				<Property Name="Length" Value="948" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[ExampleCustomExecutionPrecursor]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[ExampleCustomExecutionPrecursor]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[FailProcedure]">
@@ -573,10 +621,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="208" />
+				<Property Name="Length" Value="197" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[FailProcedure]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@RaiseError VARCHAR(50)&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[FailProcedure]&#xA;&#x9;(&#xA;&#x9;@RaiseError VARCHAR(50)&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[dbo].[PK_ServicePrincipals]">
@@ -596,7 +644,7 @@ END;]]></Value>
 					<References Name="[dbo].[ServicePrincipals]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="16" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="19" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[ServicePrincipals]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -703,7 +751,7 @@ END;]]></Value>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="16" />
+			<AttachedAnnotation Disambiguator="19" />
 		</Element>
 		<Element Type="SqlPermissionStatement" Name="[Grant.Alter.Schema].[metadatauser].[dbo].[metadata]">
 			<Property Name="Permission" Value="1001" />
@@ -940,8 +988,8 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="17" />
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="18" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="20" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="21" />
 		</Element>
 		<Element Type="SqlSynonym" Name="[metadata].[AverageStageDuration]">
 			<Property Name="ForObjectScript">
@@ -953,7 +1001,7 @@ END;]]></Value>
 					<Annotation Type="PersistedResolvableAnnotation" Name="[metadataReporting].[AverageStageDuration]">
 						<Property Name="TargetTypeStorage" Value="ISqlSynonymTarget" />
 						<Property Name="Length" Value="42" />
-						<Property Name="Offset" Value="54" />
+						<Property Name="Offset" Value="53" />
 					</Annotation>
 				</Entry>
 			</Relationship>
@@ -1017,6 +1065,70 @@ END;]]></Value>
 					</Element>
 				</Entry>
 				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[metadata].[Batches].[SourceSystemName]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[metadata].[Batches].[TargetSystemName]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[metadata].[Batches].[InterfaceType]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[metadata].[Batches].[ConnectionType]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
 					<Element Type="SqlSimpleColumn" Name="[metadata].[Batches].[Enabled]">
 						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
@@ -1030,7 +1142,7 @@ END;]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="8" />
+						<AttachedAnnotation Disambiguator="16" />
 					</Element>
 				</Entry>
 			</Relationship>
@@ -1039,7 +1151,7 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="19" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="22" />
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[BatchExecution]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -1147,7 +1259,7 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="20" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="23" />
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[BatchStageLink]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -1190,9 +1302,9 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="21" />
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="22" />
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="23" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="24" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="25" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="26" />
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[BatchWrapper]">
 			<Property Name="BodyScript">
@@ -1205,7 +1317,7 @@ BEGIN
 	--get restart overide property	
 	SELECT @RestartStatus = [metadata].[GetPropertyValueInternal]('OverideRestart')
 
-	--check for running batch execution
+	--check for running batch execution -demo
 	IF EXISTS
 		(
 		SELECT 1 FROM [metadata].[BatchExecution] WHERE [BatchId] = @BatchId AND ISNULL([BatchStatus],'') = 'Running'
@@ -1410,10 +1522,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="2885" />
+				<Property Name="Length" Value="2770" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[BatchWrapper]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@BatchId UNIQUEIDENTIFIER,&#xD;&#xA;&#x9;@LocalExecutionId UNIQUEIDENTIFIER OUTPUT&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[BatchWrapper]&#xA;&#x9;(&#xA;&#x9;@BatchId UNIQUEIDENTIFIER,&#xA;&#x9;@LocalExecutionId UNIQUEIDENTIFIER OUTPUT&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[CheckForBlockedPipelines]">
@@ -1711,10 +1823,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="4327" />
+				<Property Name="Length" Value="4183" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[CheckForBlockedPipelines]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xD;&#xA;&#x9;@StageId INT&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[CheckForBlockedPipelines]&#xA;&#x9;(&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xA;&#x9;@StageId INT&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[CheckForEmailAlerts]">
@@ -1854,10 +1966,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="1175" />
+				<Property Name="Length" Value="1124" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[CheckForEmailAlerts]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@PipelineId INT&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[CheckForEmailAlerts]&#xA;&#x9;(&#xA;&#x9;@PipelineId INT&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlSynonym" Name="[metadata].[CheckForValidURL]">
@@ -2678,10 +2790,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="14181" />
+				<Property Name="Length" Value="13630" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[CheckMetadataIntegrity]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@DebugMode BIT = 0,&#xD;&#xA;&#x9;@BatchName VARCHAR(255) = NULL&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[CheckMetadataIntegrity]&#xA;&#x9;(&#xA;&#x9;@DebugMode BIT = 0,&#xA;&#x9;@BatchName VARCHAR(255) = NULL&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[CheckPreviousExeuction]">
@@ -2942,10 +3054,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="3008" />
+				<Property Name="Length" Value="2897" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[CheckPreviousExeuction]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@BatchName VARCHAR(255) = NULL&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[CheckPreviousExeuction]&#xA;&#x9;(&#xA;&#x9;@BatchName VARCHAR(255) = NULL&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlSynonym" Name="[metadata].[CheckStageAndPiplineIntegrity]">
@@ -2978,7 +3090,7 @@ END;]]></Value>
 					<Annotation Type="PersistedResolvableAnnotation" Name="[metadataReporting].[CompleteExecutionErrorLog]">
 						<Property Name="TargetTypeStorage" Value="ISqlSynonymTarget" />
 						<Property Name="Length" Value="47" />
-						<Property Name="Offset" Value="59" />
+						<Property Name="Offset" Value="58" />
 					</Annotation>
 				</Entry>
 			</Relationship>
@@ -2998,7 +3110,7 @@ END;]]></Value>
 					<Annotation Type="PersistedResolvableAnnotation" Name="[metadataReporting].[CompleteExecutionLog]">
 						<Property Name="TargetTypeStorage" Value="ISqlSynonymTarget" />
 						<Property Name="Length" Value="42" />
-						<Property Name="Offset" Value="54" />
+						<Property Name="Offset" Value="53" />
 					</Annotation>
 				</Entry>
 			</Relationship>
@@ -3363,10 +3475,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="3560" />
+				<Property Name="Length" Value="3414" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[CreateNewExecution]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@CallingOrchestratorName NVARCHAR(200),&#xD;&#xA;&#x9;@LocalExecutionId UNIQUEIDENTIFIER = NULL&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[CreateNewExecution]&#xA;&#x9;(&#xA;&#x9;@CallingOrchestratorName NVARCHAR(200),&#xA;&#x9;@LocalExecutionId UNIQUEIDENTIFIER = NULL&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[CurrentExecution]">
@@ -3580,7 +3692,7 @@ END;]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="14" />
+						<AttachedAnnotation Disambiguator="5" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -3614,13 +3726,29 @@ END;]]></Value>
 						</Relationship>
 					</Element>
 				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[metadata].[CurrentExecution].[TaskName]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
 			</Relationship>
 			<Relationship Name="Schema">
 				<Entry>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="24" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="27" />
 		</Element>
 		<Element Type="SqlIndex" Name="[metadata].[CurrentExecution].[IDX_GetPipelinesInStage]">
 			<Relationship Name="ColumnSpecifications">
@@ -3685,7 +3813,7 @@ END;]]></Value>
 					<Annotation Type="PersistedResolvableAnnotation" Name="[metadataReporting].[CurrentExecutionSummary]">
 						<Property Name="TargetTypeStorage" Value="ISqlSynonymTarget" />
 						<Property Name="Length" Value="45" />
-						<Property Name="Offset" Value="57" />
+						<Property Name="Offset" Value="56" />
 					</Annotation>
 				</Entry>
 			</Relationship>
@@ -3748,10 +3876,10 @@ WHERE
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="152" />
+				<Property Name="Length" Value="143" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE VIEW [metadata].[CurrentProperties]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE VIEW [metadata].[CurrentProperties]&#xA;AS" />
 				<Property Name="FooterContents" Value=";" />
 			</Annotation>
 		</Element>
@@ -3765,7 +3893,7 @@ WHERE
 					<Annotation Type="PersistedResolvableAnnotation" Name="[metadata].[Orchestrators]">
 						<Property Name="TargetTypeStorage" Value="ISqlSynonymTarget" />
 						<Property Name="Length" Value="26" />
-						<Property Name="Offset" Value="52" />
+						<Property Name="Offset" Value="51" />
 					</Annotation>
 				</Entry>
 			</Relationship>
@@ -3774,6 +3902,69 @@ WHERE
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
+		</Element>
+		<Element Type="SqlTable" Name="[metadata].[DataProcessType]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[metadata].[DataProcessType].[DataProcessTypeId]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[metadata].[DataProcessType].[DataProcessType]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="15" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[metadata].[DataProcessType].[Enabled]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="13" />
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References Name="[metadata]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="28" />
 		</Element>
 		<Element Type="SqlSynonym" Name="[metadata].[DeleteRecipientAlerts]">
 			<Property Name="ForObjectScript">
@@ -3829,7 +4020,7 @@ WHERE
 					<References Name="[metadata].[Pipelines].[Enabled]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="25" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="29" />
 		</Element>
 		<Element Type="SqlDefaultConstraint" Name="[metadata].[DF_Properties_ValidFrom]">
 			<Property Name="DefaultExpressionScript">
@@ -3845,7 +4036,7 @@ WHERE
 					<References Name="[metadata].[Properties].[ValidFrom]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="26" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="30" />
 		</Element>
 		<Element Type="SqlDefaultConstraint" Name="[metadata].[DF_Stages_Enabled]">
 			<Property Name="DefaultExpressionScript">
@@ -3861,7 +4052,7 @@ WHERE
 					<References Name="[metadata].[Stages].[Enabled]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="27" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="31" />
 		</Element>
 		<Element Type="SqlCheckConstraint" Name="[metadata].[EQ_PipelineIdDependantPipelineId]">
 			<Property Name="CheckExpressionScript">
@@ -3880,7 +4071,7 @@ WHERE
 					<References Name="[metadata].[PipelineDependencies]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="28" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="32" />
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[ErrorLog]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -4040,7 +4231,7 @@ WHERE
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="29" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="33" />
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[ExecutePrecursorProcedure]">
 			<Property Name="BodyScript">
@@ -4086,10 +4277,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="611" />
+				<Property Name="Length" Value="588" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[ExecutePrecursorProcedure]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[ExecutePrecursorProcedure]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[ExecutionLog]">
@@ -4175,7 +4366,7 @@ END;]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="15" />
+						<AttachedAnnotation Disambiguator="17" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -4193,7 +4384,7 @@ END;]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="10" />
+						<AttachedAnnotation Disambiguator="9" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -4229,7 +4420,7 @@ END;]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="13" />
+						<AttachedAnnotation Disambiguator="14" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -4324,7 +4515,23 @@ END;]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="9" />
+						<AttachedAnnotation Disambiguator="10" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[metadata].[ExecutionLog].[TaskName]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
 					</Element>
 				</Entry>
 			</Relationship>
@@ -4333,7 +4540,7 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="30" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="34" />
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[ExecutionWrapper]">
 			<Property Name="BodyScript">
@@ -4583,10 +4790,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="3766" />
+				<Property Name="Length" Value="3635" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[ExecutionWrapper]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@CallingOrchestratorName NVARCHAR(200) = NULL,&#xD;&#xA;&#x9;@BatchName VARCHAR(255) = NULL&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[ExecutionWrapper]&#xA;&#x9;(&#xA;&#x9;@CallingOrchestratorName NVARCHAR(200) = NULL,&#xA;&#x9;@BatchName VARCHAR(255) = NULL&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_BatchStageLink_Batches]">
@@ -4610,7 +4817,7 @@ END;]]></Value>
 					<References Name="[metadata].[Batches]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="22" />
+			<AttachedAnnotation Disambiguator="25" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_BatchStageLink_Stages]">
 			<Relationship Name="Columns">
@@ -4633,7 +4840,7 @@ END;]]></Value>
 					<References Name="[metadata].[Stages]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="23" />
+			<AttachedAnnotation Disambiguator="26" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_Orchestrators_Subscriptions]">
 			<Relationship Name="Columns">
@@ -4656,7 +4863,7 @@ END;]]></Value>
 					<References Name="[metadata].[Subscriptions]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="31" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="35" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_PipelineAlertLink_Pipelines]">
 			<Relationship Name="Columns">
@@ -4679,7 +4886,7 @@ END;]]></Value>
 					<References Name="[metadata].[Pipelines]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="32" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="36" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_PipelineAlertLink_Recipients]">
 			<Relationship Name="Columns">
@@ -4702,7 +4909,7 @@ END;]]></Value>
 					<References Name="[metadata].[Recipients]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="33" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="37" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_PipelineAuthLink_Orchestrators]">
 			<Relationship Name="Columns">
@@ -4725,7 +4932,7 @@ END;]]></Value>
 					<References Name="[metadata].[Orchestrators]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="34" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="38" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_PipelineAuthLink_Pipelines]">
 			<Relationship Name="Columns">
@@ -4748,7 +4955,7 @@ END;]]></Value>
 					<References Name="[metadata].[Pipelines]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="35" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="39" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_PipelineAuthLink_ServicePrincipals]">
 			<Relationship Name="Columns">
@@ -4771,7 +4978,7 @@ END;]]></Value>
 					<References Name="[dbo].[ServicePrincipals]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="36" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="40" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_PipelineDependencies_Pipelines]">
 			<Relationship Name="Columns">
@@ -4794,7 +5001,7 @@ END;]]></Value>
 					<References Name="[metadata].[Pipelines]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="37" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="41" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_PipelineDependencies_Pipelines1]">
 			<Relationship Name="Columns">
@@ -4817,7 +5024,7 @@ END;]]></Value>
 					<References Name="[metadata].[Pipelines]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="38" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="42" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_PipelineParameters_Pipelines]">
 			<Relationship Name="Columns">
@@ -4840,7 +5047,7 @@ END;]]></Value>
 					<References Name="[metadata].[Pipelines]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="39" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="43" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_Pipelines_Orchestrators]">
 			<Relationship Name="Columns">
@@ -4863,7 +5070,7 @@ END;]]></Value>
 					<References Name="[metadata].[Orchestrators]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="40" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="44" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_Pipelines_Pipelines]">
 			<Relationship Name="Columns">
@@ -4886,7 +5093,7 @@ END;]]></Value>
 					<References Name="[metadata].[Pipelines]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="41" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="45" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_Pipelines_Stages]">
 			<Relationship Name="Columns">
@@ -4909,7 +5116,7 @@ END;]]></Value>
 					<References Name="[metadata].[Stages]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="42" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="46" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[metadata].[FK_Subscriptions_Tenants]">
 			<Relationship Name="Columns">
@@ -4932,7 +5139,7 @@ END;]]></Value>
 					<References Name="[metadata].[Tenants]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="43" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="47" />
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[GetEmailAlertParts]">
 			<Property Name="BodyScript">
@@ -5229,10 +5436,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="4467" />
+				<Property Name="Length" Value="4327" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[GetEmailAlertParts]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@PipelineId INT&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[GetEmailAlertParts]&#xA;&#x9;(&#xA;&#x9;@PipelineId INT&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlSynonym" Name="[metadata].[GetExecutionDetails]">
@@ -5341,10 +5548,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="832" />
+				<Property Name="Length" Value="797" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[GetFrameworkOrchestratorDetails]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@CallingOrchestratorName NVARCHAR(200)&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[GetFrameworkOrchestratorDetails]&#xA;&#x9;(&#xA;&#x9;@CallingOrchestratorName NVARCHAR(200)&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[GetPipelineParameters]">
@@ -5473,10 +5680,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="1617" />
+				<Property Name="Length" Value="1553" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[GetPipelineParameters]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@PipelineId INT&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[GetPipelineParameters]&#xA;&#x9;(&#xA;&#x9;@PipelineId INT&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[GetPipelinesInStage]">
@@ -5567,10 +5774,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="406" />
+				<Property Name="Length" Value="385" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[GetPipelinesInStage]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xD;&#xA;&#x9;@StageId INT&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[GetPipelinesInStage]&#xA;&#x9;(&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xA;&#x9;@StageId INT&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[GetPropertyValue]">
@@ -5661,10 +5868,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="900" />
+				<Property Name="Length" Value="863" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[GetPropertyValue]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@PropertyName VARCHAR(128)&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[GetPropertyValue]&#xA;&#x9;(&#xA;&#x9;@PropertyName VARCHAR(128)&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlScalarFunction" Name="[metadata].[GetPropertyValueInternal]">
@@ -5705,10 +5912,10 @@ BEGIN
 END;]]></Value>
 						</Property>
 						<Annotation Type="SysCommentsObjectAnnotation">
-							<Property Name="Length" Value="339" />
+							<Property Name="Length" Value="322" />
 							<Property Name="StartLine" Value="1" />
 							<Property Name="StartColumn" Value="1" />
-							<Property Name="HeaderContents" Value="CREATE FUNCTION [metadata].[GetPropertyValueInternal]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@PropertyName VARCHAR(128)&#xD;&#xA;&#x9;)&#xD;&#xA;RETURNS NVARCHAR(MAX)&#xD;&#xA;AS" />
+							<Property Name="HeaderContents" Value="CREATE FUNCTION [metadata].[GetPropertyValueInternal]&#xA;&#x9;(&#xA;&#x9;@PropertyName VARCHAR(128)&#xA;&#x9;)&#xA;RETURNS NVARCHAR(MAX)&#xA;AS" />
 						</Annotation>
 					</Element>
 				</Entry>
@@ -5829,10 +6036,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="642" />
+				<Property Name="Length" Value="609" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[GetStages]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[GetStages]&#xA;&#x9;(&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[GetWorkerAuthDetails]">
@@ -6297,10 +6504,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="4750" />
+				<Property Name="Length" Value="4596" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[GetWorkerAuthDetails]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xD;&#xA;&#x9;@StageId INT,&#xD;&#xA;&#x9;@PipelineId INT&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[GetWorkerAuthDetails]&#xA;&#x9;(&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xA;&#x9;@StageId INT,&#xA;&#x9;@PipelineId INT&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[GetWorkerDetailsWrapper]">
@@ -6647,10 +6854,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="1606" />
+				<Property Name="Length" Value="1537" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[GetWorkerDetailsWrapper]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xD;&#xA;&#x9;@StageId INT,&#xD;&#xA;&#x9;@PipelineId INT&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[GetWorkerDetailsWrapper]&#xA;&#x9;(&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xA;&#x9;@StageId INT,&#xA;&#x9;@PipelineId INT&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[GetWorkerPipelineDetails]">
@@ -6761,10 +6968,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="414" />
+				<Property Name="Length" Value="393" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[GetWorkerPipelineDetails]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xD;&#xA;&#x9;@StageId INT,&#xD;&#xA;&#x9;@PipelineId INT&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[GetWorkerPipelineDetails]&#xA;&#x9;(&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xA;&#x9;@StageId INT,&#xA;&#x9;@PipelineId INT&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlSynonym" Name="[metadata].[LastExecution]">
@@ -6777,7 +6984,7 @@ END;]]></Value>
 					<Annotation Type="PersistedResolvableAnnotation" Name="[metadataReporting].[LastExecution]">
 						<Property Name="TargetTypeStorage" Value="ISqlSynonymTarget" />
 						<Property Name="Length" Value="35" />
-						<Property Name="Offset" Value="47" />
+						<Property Name="Offset" Value="46" />
 					</Annotation>
 				</Entry>
 			</Relationship>
@@ -6797,7 +7004,7 @@ END;]]></Value>
 					<Annotation Type="PersistedResolvableAnnotation" Name="[metadataReporting].[LastExecutionSummary]">
 						<Property Name="TargetTypeStorage" Value="ISqlSynonymTarget" />
 						<Property Name="Length" Value="42" />
-						<Property Name="Offset" Value="54" />
+						<Property Name="Offset" Value="53" />
 					</Annotation>
 				</Entry>
 			</Relationship>
@@ -6821,7 +7028,7 @@ END;]]></Value>
 					<References Name="[metadata].[Recipients]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="44" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="48" />
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[Orchestrators]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -6949,9 +7156,9 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="45" />
-			<AttachedAnnotation Disambiguator="31" />
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="46" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="49" />
+			<AttachedAnnotation Disambiguator="35" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="50" />
 		</Element>
 		<Element Type="SqlCheckConstraint" Name="[metadata].[OrchestratorType]">
 			<Property Name="CheckExpressionScript">
@@ -6967,7 +7174,7 @@ END;]]></Value>
 					<References Name="[metadata].[Orchestrators]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="45" />
+			<AttachedAnnotation Disambiguator="49" />
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[PipelineAlertLink]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -7051,7 +7258,7 @@ END;]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="12" />
+						<AttachedAnnotation Disambiguator="18" />
 					</Element>
 				</Entry>
 			</Relationship>
@@ -7060,9 +7267,9 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="47" />
-			<AttachedAnnotation Disambiguator="32" />
-			<AttachedAnnotation Disambiguator="33" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="51" />
+			<AttachedAnnotation Disambiguator="36" />
+			<AttachedAnnotation Disambiguator="37" />
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[PipelineAuthLink]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -7138,10 +7345,10 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="48" />
-			<AttachedAnnotation Disambiguator="34" />
-			<AttachedAnnotation Disambiguator="35" />
-			<AttachedAnnotation Disambiguator="36" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="52" />
+			<AttachedAnnotation Disambiguator="38" />
+			<AttachedAnnotation Disambiguator="39" />
+			<AttachedAnnotation Disambiguator="40" />
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[PipelineDependencies]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -7201,11 +7408,11 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="49" />
-			<AttachedAnnotation Disambiguator="37" />
-			<AttachedAnnotation Disambiguator="38" />
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="50" />
-			<AttachedAnnotation Disambiguator="28" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="53" />
+			<AttachedAnnotation Disambiguator="41" />
+			<AttachedAnnotation Disambiguator="42" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="54" />
+			<AttachedAnnotation Disambiguator="32" />
 		</Element>
 		<Element Type="SqlSynonym" Name="[metadata].[PipelineDependencyChains]">
 			<Property Name="ForObjectScript">
@@ -7217,7 +7424,7 @@ END;]]></Value>
 					<Annotation Type="PersistedResolvableAnnotation" Name="[metadataHelpers].[PipelineDependencyChains]">
 						<Property Name="TargetTypeStorage" Value="ISqlSynonymTarget" />
 						<Property Name="Length" Value="44" />
-						<Property Name="Offset" Value="58" />
+						<Property Name="Offset" Value="57" />
 					</Annotation>
 				</Entry>
 			</Relationship>
@@ -7283,10 +7490,10 @@ GROUP BY
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="301" />
+				<Property Name="Length" Value="286" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE VIEW [metadata].[PipelineParameterDataSizes]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE VIEW [metadata].[PipelineParameterDataSizes]&#xA;AS" />
 				<Property Name="FooterContents" Value=";" />
 			</Annotation>
 		</Element>
@@ -7381,8 +7588,8 @@ GROUP BY
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="51" />
-			<AttachedAnnotation Disambiguator="39" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="55" />
+			<AttachedAnnotation Disambiguator="43" />
 		</Element>
 		<Element Type="SqlSynonym" Name="[metadata].[PipelineProcesses]">
 			<Property Name="ForObjectScript">
@@ -7394,7 +7601,7 @@ GROUP BY
 					<Annotation Type="PersistedResolvableAnnotation" Name="[metadata].[Pipelines]">
 						<Property Name="TargetTypeStorage" Value="ISqlSynonymTarget" />
 						<Property Name="Length" Value="22" />
-						<Property Name="Offset" Value="51" />
+						<Property Name="Offset" Value="50" />
 					</Annotation>
 				</Entry>
 			</Relationship>
@@ -7502,7 +7709,69 @@ GROUP BY
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="25" />
+						<AttachedAnnotation Disambiguator="29" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[metadata].[Pipelines].[BatchId]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[metadata].[Pipelines].[UniversalFlag]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="8" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[metadata].[Pipelines].[TaskName]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[metadata].[Pipelines].[DataProcessTypeId]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
 					</Element>
 				</Entry>
 			</Relationship>
@@ -7511,10 +7780,10 @@ GROUP BY
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="52" />
-			<AttachedAnnotation Disambiguator="42" />
-			<AttachedAnnotation Disambiguator="40" />
-			<AttachedAnnotation Disambiguator="41" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="56" />
+			<AttachedAnnotation Disambiguator="46" />
+			<AttachedAnnotation Disambiguator="44" />
+			<AttachedAnnotation Disambiguator="45" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_AlertOutcomes]">
 			<Relationship Name="ColumnSpecifications">
@@ -7533,7 +7802,7 @@ GROUP BY
 					<References Name="[metadata].[AlertOutcomes]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="17" />
+			<AttachedAnnotation Disambiguator="20" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_Batches]">
 			<Relationship Name="ColumnSpecifications">
@@ -7552,7 +7821,7 @@ GROUP BY
 					<References Name="[metadata].[Batches]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="19" />
+			<AttachedAnnotation Disambiguator="22" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_BatchExecution]">
 			<Relationship Name="ColumnSpecifications">
@@ -7580,7 +7849,7 @@ GROUP BY
 					<References Name="[metadata].[BatchExecution]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="20" />
+			<AttachedAnnotation Disambiguator="23" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_BatchStageLink]">
 			<Relationship Name="ColumnSpecifications">
@@ -7608,7 +7877,7 @@ GROUP BY
 					<References Name="[metadata].[BatchStageLink]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="21" />
+			<AttachedAnnotation Disambiguator="24" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_CurrentExecution]">
 			<Relationship Name="ColumnSpecifications">
@@ -7645,7 +7914,26 @@ GROUP BY
 					<References Name="[metadata].[CurrentExecution]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="24" />
+			<AttachedAnnotation Disambiguator="27" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_DataProcessType]">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[metadata].[DataProcessType].[DataProcessTypeId]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[metadata].[DataProcessType]" />
+				</Entry>
+			</Relationship>
+			<AttachedAnnotation Disambiguator="28" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_ErrorLog]">
 			<Relationship Name="ColumnSpecifications">
@@ -7664,7 +7952,7 @@ GROUP BY
 					<References Name="[metadata].[ErrorLog]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="29" />
+			<AttachedAnnotation Disambiguator="33" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_ExecutionLog]">
 			<Relationship Name="ColumnSpecifications">
@@ -7683,7 +7971,7 @@ GROUP BY
 					<References Name="[metadata].[ExecutionLog]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="30" />
+			<AttachedAnnotation Disambiguator="34" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_Orchestrators]">
 			<Relationship Name="ColumnSpecifications">
@@ -7702,7 +7990,7 @@ GROUP BY
 					<References Name="[metadata].[Orchestrators]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="46" />
+			<AttachedAnnotation Disambiguator="50" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_PipelineAlertLink]">
 			<Relationship Name="ColumnSpecifications">
@@ -7721,7 +8009,7 @@ GROUP BY
 					<References Name="[metadata].[PipelineAlertLink]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="47" />
+			<AttachedAnnotation Disambiguator="51" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_PipelineAuthLink]">
 			<Relationship Name="ColumnSpecifications">
@@ -7740,7 +8028,7 @@ GROUP BY
 					<References Name="[metadata].[PipelineAuthLink]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="48" />
+			<AttachedAnnotation Disambiguator="52" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_PipelineDependencies]">
 			<Relationship Name="ColumnSpecifications">
@@ -7759,7 +8047,7 @@ GROUP BY
 					<References Name="[metadata].[PipelineDependencies]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="49" />
+			<AttachedAnnotation Disambiguator="53" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_PipelineParameters]">
 			<Relationship Name="ColumnSpecifications">
@@ -7778,7 +8066,7 @@ GROUP BY
 					<References Name="[metadata].[PipelineParameters]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="51" />
+			<AttachedAnnotation Disambiguator="55" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_Pipelines]">
 			<Relationship Name="ColumnSpecifications">
@@ -7797,7 +8085,7 @@ GROUP BY
 					<References Name="[metadata].[Pipelines]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="52" />
+			<AttachedAnnotation Disambiguator="56" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_Properties]">
 			<Relationship Name="ColumnSpecifications">
@@ -7825,7 +8113,7 @@ GROUP BY
 					<References Name="[metadata].[Properties]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="53" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="57" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_Recipients]">
 			<Relationship Name="ColumnSpecifications">
@@ -7844,7 +8132,7 @@ GROUP BY
 					<References Name="[metadata].[Recipients]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="54" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="58" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_Stages]">
 			<Relationship Name="ColumnSpecifications">
@@ -7863,7 +8151,7 @@ GROUP BY
 					<References Name="[metadata].[Stages]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="55" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="59" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_Subscriptions]">
 			<Relationship Name="ColumnSpecifications">
@@ -7882,7 +8170,7 @@ GROUP BY
 					<References Name="[metadata].[Subscriptions]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="56" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="60" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[metadata].[PK_Tenants]">
 			<Relationship Name="ColumnSpecifications">
@@ -7901,7 +8189,7 @@ GROUP BY
 					<References Name="[metadata].[Tenants]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="57" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="61" />
 		</Element>
 		<Element Type="SqlSynonym" Name="[metadata].[ProcessingStageDetails]">
 			<Property Name="ForObjectScript">
@@ -7913,7 +8201,7 @@ GROUP BY
 					<Annotation Type="PersistedResolvableAnnotation" Name="[metadata].[Stages]">
 						<Property Name="TargetTypeStorage" Value="ISqlSynonymTarget" />
 						<Property Name="Length" Value="19" />
-						<Property Name="Offset" Value="56" />
+						<Property Name="Offset" Value="55" />
 					</Annotation>
 				</Entry>
 			</Relationship>
@@ -8007,7 +8295,7 @@ GROUP BY
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="26" />
+						<AttachedAnnotation Disambiguator="30" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -8031,7 +8319,7 @@ GROUP BY
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="53" />
+			<AttachedAnnotation Disambiguator="57" />
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[Recipients]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -8101,7 +8389,7 @@ GROUP BY
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="5" />
+						<AttachedAnnotation Disambiguator="12" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -8127,9 +8415,9 @@ GROUP BY
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="44" />
-			<AttachedAnnotation Disambiguator="54" />
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="58" />
+			<AttachedAnnotation Disambiguator="48" />
+			<AttachedAnnotation Disambiguator="58" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="62" />
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[ResetExecution]">
 			<Property Name="BodyScript">
@@ -8401,10 +8689,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="3220" />
+				<Property Name="Length" Value="3081" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[ResetExecution]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@LocalExecutionId UNIQUEIDENTIFIER = NULL&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[ResetExecution]&#xA;&#x9;(&#xA;&#x9;@LocalExecutionId UNIQUEIDENTIFIER = NULL&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[SetErrorLogDetails]">
@@ -8522,10 +8810,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="987" />
+				<Property Name="Length" Value="943" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetErrorLogDetails]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@LocalExecutionId UNIQUEIDENTIFIER,&#xD;&#xA;&#x9;@JsonErrorDetails VARCHAR(MAX)&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetErrorLogDetails]&#xA;&#x9;(&#xA;&#x9;@LocalExecutionId UNIQUEIDENTIFIER,&#xA;&#x9;@JsonErrorDetails VARCHAR(MAX)&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[SetExecutionBlockDependants]">
@@ -8621,10 +8909,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="477" />
+				<Property Name="Length" Value="457" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetExecutionBlockDependants]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER = NULL,&#xD;&#xA;&#x9;@PipelineId INT&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetExecutionBlockDependants]&#xA;&#x9;(&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER = NULL,&#xA;&#x9;@PipelineId INT&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[SetLogActivityFailed]">
@@ -8920,10 +9208,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="2598" />
+				<Property Name="Length" Value="2494" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetLogActivityFailed]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xD;&#xA;&#x9;@StageId INT,&#xD;&#xA;&#x9;@PipelineId INT,&#xD;&#xA;&#x9;@CallingActivity VARCHAR(255)&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetLogActivityFailed]&#xA;&#x9;(&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xA;&#x9;@StageId INT,&#xA;&#x9;@PipelineId INT,&#xA;&#x9;@CallingActivity VARCHAR(255)&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[SetLogPipelineCancelled]">
@@ -9236,10 +9524,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="2960" />
+				<Property Name="Length" Value="2844" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetLogPipelineCancelled]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xD;&#xA;&#x9;@StageId INT,&#xD;&#xA;&#x9;@PipelineId INT,&#xD;&#xA;&#x9;@CleanUpRun BIT = 0&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetLogPipelineCancelled]&#xA;&#x9;(&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xA;&#x9;@StageId INT,&#xA;&#x9;@PipelineId INT,&#xA;&#x9;@CleanUpRun BIT = 0&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[SetLogPipelineChecking]">
@@ -9338,10 +9626,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="352" />
+				<Property Name="Length" Value="334" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetLogPipelineChecking]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xD;&#xA;&#x9;@StageId INT,&#xD;&#xA;&#x9;@PipelineId INT&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetLogPipelineChecking]&#xA;&#x9;(&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xA;&#x9;@StageId INT,&#xA;&#x9;@PipelineId INT&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[SetLogPipelineFailed]">
@@ -9658,10 +9946,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="2816" />
+				<Property Name="Length" Value="2699" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetLogPipelineFailed]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xD;&#xA;&#x9;@StageId INT,&#xD;&#xA;&#x9;@PipelineId INT,&#xD;&#xA;&#x9;@RunId UNIQUEIDENTIFIER = NULL&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetLogPipelineFailed]&#xA;&#x9;(&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xA;&#x9;@StageId INT,&#xA;&#x9;@PipelineId INT,&#xA;&#x9;@RunId UNIQUEIDENTIFIER = NULL&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[SetLogPipelineLastStatusCheck]">
@@ -9760,10 +10048,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="370" />
+				<Property Name="Length" Value="352" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetLogPipelineLastStatusCheck]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xD;&#xA;&#x9;@StageId INT,&#xD;&#xA;&#x9;@PipelineId INT&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetLogPipelineLastStatusCheck]&#xA;&#x9;(&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xA;&#x9;@StageId INT,&#xA;&#x9;@PipelineId INT&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[SetLogPipelineRunId]">
@@ -9883,10 +10171,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="385" />
+				<Property Name="Length" Value="366" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetLogPipelineRunId]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xD;&#xA;&#x9;@StageId INT,&#xD;&#xA;&#x9;@PipelineId INT,&#xD;&#xA;&#x9;@RunId UNIQUEIDENTIFIER = NULL&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetLogPipelineRunId]&#xA;&#x9;(&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xA;&#x9;@StageId INT,&#xA;&#x9;@PipelineId INT,&#xA;&#x9;@RunId UNIQUEIDENTIFIER = NULL&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[SetLogPipelineRunning]">
@@ -9990,10 +10278,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="473" />
+				<Property Name="Length" Value="453" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE metadata.SetLogPipelineRunning&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xD;&#xA;&#x9;@StageId INT,&#xD;&#xA;&#x9;@PipelineId INT&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE metadata.SetLogPipelineRunning&#xA;&#x9;(&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xA;&#x9;@StageId INT,&#xA;&#x9;@PipelineId INT&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[SetLogPipelineSuccess]">
@@ -10097,10 +10385,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="467" />
+				<Property Name="Length" Value="447" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE metadata.SetLogPipelineSuccess&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xD;&#xA;&#x9;@StageId INT,&#xD;&#xA;&#x9;@PipelineId INT&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE metadata.SetLogPipelineSuccess&#xA;&#x9;(&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xA;&#x9;@StageId INT,&#xA;&#x9;@PipelineId INT&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[SetLogPipelineUnknown]">
@@ -10408,10 +10696,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="2745" />
+				<Property Name="Length" Value="2634" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetLogPipelineUnknown]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xD;&#xA;&#x9;@StageId INT,&#xD;&#xA;&#x9;@PipelineId INT,&#xD;&#xA;&#x9;@CleanUpRun BIT = 0&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetLogPipelineUnknown]&#xA;&#x9;(&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xA;&#x9;@StageId INT,&#xA;&#x9;@PipelineId INT,&#xA;&#x9;@CleanUpRun BIT = 0&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[SetLogPipelineValidating]">
@@ -10510,10 +10798,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="356" />
+				<Property Name="Length" Value="338" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetLogPipelineValidating]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xD;&#xA;&#x9;@StageId INT,&#xD;&#xA;&#x9;@PipelineId INT&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetLogPipelineValidating]&#xA;&#x9;(&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xA;&#x9;@StageId INT,&#xA;&#x9;@PipelineId INT&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[SetLogStagePreparing]">
@@ -10598,10 +10886,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="355" />
+				<Property Name="Length" Value="337" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetLogStagePreparing]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xD;&#xA;&#x9;@StageId INT&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[SetLogStagePreparing]&#xA;&#x9;(&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER,&#xA;&#x9;@StageId INT&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[Stages]">
@@ -10671,7 +10959,7 @@ END;]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="27" />
+						<AttachedAnnotation Disambiguator="31" />
 					</Element>
 				</Entry>
 			</Relationship>
@@ -10680,7 +10968,7 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="55" />
+			<AttachedAnnotation Disambiguator="59" />
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[Subscriptions]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -10756,8 +11044,8 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="56" />
-			<AttachedAnnotation Disambiguator="43" />
+			<AttachedAnnotation Disambiguator="60" />
+			<AttachedAnnotation Disambiguator="47" />
 		</Element>
 		<Element Type="SqlTable" Name="[metadata].[Tenants]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -10817,7 +11105,7 @@ END;]]></Value>
 					<References Name="[metadata]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="57" />
+			<AttachedAnnotation Disambiguator="61" />
 		</Element>
 		<Element Type="SqlUniqueConstraint" Name="[metadata].[UK_EmailAddressMessagePreference]">
 			<Relationship Name="ColumnSpecifications">
@@ -10845,7 +11133,7 @@ END;]]></Value>
 					<References Name="[metadata].[Recipients]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="58" />
+			<AttachedAnnotation Disambiguator="62" />
 		</Element>
 		<Element Type="SqlUniqueConstraint" Name="[metadata].[UK_PipelineOutcomeStatus]">
 			<Relationship Name="ColumnSpecifications">
@@ -10864,7 +11152,7 @@ END;]]></Value>
 					<References Name="[metadata].[AlertOutcomes]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="18" />
+			<AttachedAnnotation Disambiguator="21" />
 		</Element>
 		<Element Type="SqlUniqueConstraint" Name="[metadata].[UK_PipelinesToDependantPipelines]">
 			<Relationship Name="ColumnSpecifications">
@@ -10892,7 +11180,7 @@ END;]]></Value>
 					<References Name="[metadata].[PipelineDependencies]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="50" />
+			<AttachedAnnotation Disambiguator="54" />
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadata].[UpdateExecutionLog]">
 			<Property Name="BodyScript">
@@ -11200,10 +11488,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="3790" />
+				<Property Name="Length" Value="3641" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[UpdateExecutionLog]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@PerformErrorCheck BIT = 1,&#xD;&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER = NULL&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadata].[UpdateExecutionLog]&#xA;&#x9;(&#xA;&#x9;@PerformErrorCheck BIT = 1,&#xA;&#x9;@ExecutionId UNIQUEIDENTIFIER = NULL&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlSynonym" Name="[metadata].[WorkerParallelismOverTime]">
@@ -11216,7 +11504,7 @@ END;]]></Value>
 					<Annotation Type="PersistedResolvableAnnotation" Name="[metadataReporting].[WorkerParallelismOverTime]">
 						<Property Name="TargetTypeStorage" Value="ISqlSynonymTarget" />
 						<Property Name="Length" Value="47" />
-						<Property Name="Offset" Value="59" />
+						<Property Name="Offset" Value="58" />
 					</Annotation>
 				</Entry>
 			</Relationship>
@@ -11414,10 +11702,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="1789" />
+				<Property Name="Length" Value="1698" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[AddPipelineDependant]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@PipelineName NVARCHAR(200),&#xD;&#xA;&#x9;@DependantPipelineName NVARCHAR(200)&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[AddPipelineDependant]&#xA;&#x9;(&#xA;&#x9;@PipelineName NVARCHAR(200),&#xA;&#x9;@DependantPipelineName NVARCHAR(200)&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[AddPipelineViaPowerShell]">
@@ -11750,10 +12038,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="2537" />
+				<Property Name="Length" Value="2426" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[AddPipelineViaPowerShell]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@ResourceGroup NVARCHAR(200),&#xD;&#xA;&#x9;@OrchestratorName NVARCHAR(200),&#xD;&#xA;&#x9;@OrchestratorType CHAR(3) = 'ADF',&#xD;&#xA;&#x9;@PipelineName NVARCHAR(200)&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[AddPipelineViaPowerShell]&#xA;&#x9;(&#xA;&#x9;@ResourceGroup NVARCHAR(200),&#xA;&#x9;@OrchestratorName NVARCHAR(200),&#xA;&#x9;@OrchestratorType CHAR(3) = 'ADF',&#xA;&#x9;@PipelineName NVARCHAR(200)&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[AddProperty]">
@@ -12025,10 +12313,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="2263" />
+				<Property Name="Length" Value="2161" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[AddProperty]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@PropertyName VARCHAR(128),&#xD;&#xA;&#x9;@PropertyValue NVARCHAR(MAX),&#xD;&#xA;&#x9;@Description NVARCHAR(MAX) = NULL&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[AddProperty]&#xA;&#x9;(&#xA;&#x9;@PropertyName VARCHAR(128),&#xA;&#x9;@PropertyValue NVARCHAR(MAX),&#xA;&#x9;@Description NVARCHAR(MAX) = NULL&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[AddRecipientPipelineAlerts]">
@@ -12273,10 +12561,10 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="2180" />
+				<Property Name="Length" Value="2094" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[AddRecipientPipelineAlerts]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@RecipientName VARCHAR(255),&#xD;&#xA;&#x9;@PipelineName NVARCHAR(200) = NULL,&#xD;&#xA;&#x9;@AlertForStatus NVARCHAR(500) = 'All'&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[AddRecipientPipelineAlerts]&#xA;&#x9;(&#xA;&#x9;@RecipientName VARCHAR(255),&#xA;&#x9;@PipelineName NVARCHAR(200) = NULL,&#xA;&#x9;@AlertForStatus NVARCHAR(500) = 'All'&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[AddServicePrincipal]">
@@ -12674,10 +12962,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="4611" />
+				<Property Name="Length" Value="4453" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[AddServicePrincipal]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@OrchestratorName NVARCHAR(200),&#xD;&#xA;&#x9;@OrchestratorType CHAR(3),&#xD;&#xA;&#x9;@PrincipalId NVARCHAR(256),&#xD;&#xA;&#x9;@PrincipalSecret NVARCHAR(MAX),&#xD;&#xA;&#x9;@SpecificPipelineName NVARCHAR(200) = NULL,&#xD;&#xA;&#x9;@PrincipalName NVARCHAR(256) = NULL&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[AddServicePrincipal]&#xA;&#x9;(&#xA;&#x9;@OrchestratorName NVARCHAR(200),&#xA;&#x9;@OrchestratorType CHAR(3),&#xA;&#x9;@PrincipalId NVARCHAR(256),&#xA;&#x9;@PrincipalSecret NVARCHAR(MAX),&#xA;&#x9;@SpecificPipelineName NVARCHAR(200) = NULL,&#xA;&#x9;@PrincipalName NVARCHAR(256) = NULL&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[AddServicePrincipalUrls]">
@@ -13073,10 +13361,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="4829" />
+				<Property Name="Length" Value="4670" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[AddServicePrincipalUrls]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@OrchestratorName NVARCHAR(200),&#xD;&#xA;&#x9;@OrchestratorType CHAR(3),&#xD;&#xA;&#x9;@PrincipalIdUrl NVARCHAR(MAX),&#xD;&#xA;&#x9;@PrincipalSecretUrl NVARCHAR(MAX),&#xD;&#xA;&#x9;@SpecificPipelineName NVARCHAR(200) = NULL,&#xD;&#xA;&#x9;@PrincipalName NVARCHAR(256) = NULL&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[AddServicePrincipalUrls]&#xA;&#x9;(&#xA;&#x9;@OrchestratorName NVARCHAR(200),&#xA;&#x9;@OrchestratorType CHAR(3),&#xA;&#x9;@PrincipalIdUrl NVARCHAR(MAX),&#xA;&#x9;@PrincipalSecretUrl NVARCHAR(MAX),&#xA;&#x9;@SpecificPipelineName NVARCHAR(200) = NULL,&#xA;&#x9;@PrincipalName NVARCHAR(256) = NULL&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[AddServicePrincipalWrapper]">
@@ -13287,10 +13575,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="1234" />
+				<Property Name="Length" Value="1197" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[AddServicePrincipalWrapper]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@OrchestratorName NVARCHAR(200),&#xD;&#xA;&#x9;@OrchestratorType CHAR(3),&#xD;&#xA;&#x9;@PrincipalIdValue NVARCHAR(MAX),&#xD;&#xA;&#x9;@PrincipalSecretValue NVARCHAR(MAX),&#xD;&#xA;&#x9;@SpecificPipelineName NVARCHAR(200) = NULL,&#xD;&#xA;&#x9;@PrincipalName NVARCHAR(256) = NULL&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[AddServicePrincipalWrapper]&#xA;&#x9;(&#xA;&#x9;@OrchestratorName NVARCHAR(200),&#xA;&#x9;@OrchestratorType CHAR(3),&#xA;&#x9;@PrincipalIdValue NVARCHAR(MAX),&#xA;&#x9;@PrincipalSecretValue NVARCHAR(MAX),&#xA;&#x9;@SpecificPipelineName NVARCHAR(200) = NULL,&#xA;&#x9;@PrincipalName NVARCHAR(256) = NULL&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlScalarFunction" Name="[metadataHelpers].[CheckForValidURL]">
@@ -13362,10 +13650,10 @@ BEGIN
 END;]]></Value>
 						</Property>
 						<Annotation Type="SysCommentsObjectAnnotation">
-							<Property Name="Length" Value="1185" />
+							<Property Name="Length" Value="1134" />
 							<Property Name="StartLine" Value="1" />
 							<Property Name="StartColumn" Value="1" />
-							<Property Name="HeaderContents" Value="CREATE FUNCTION [metadataHelpers].[CheckForValidURL] (@Url NVARCHAR(MAX))&#xD;&#xA;RETURNS INT&#xD;&#xA;AS" />
+							<Property Name="HeaderContents" Value="CREATE FUNCTION [metadataHelpers].[CheckForValidURL] (@Url NVARCHAR(MAX))&#xA;RETURNS INT&#xA;AS" />
 						</Annotation>
 					</Element>
 				</Entry>
@@ -13781,10 +14069,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="2602" />
+				<Property Name="Length" Value="2524" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[CheckStageAndPiplineIntegrity]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[CheckStageAndPiplineIntegrity]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[DeleteMetadataWithIntegrity]">
@@ -13986,10 +14274,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="3402" />
+				<Property Name="Length" Value="3272" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[DeleteMetadataWithIntegrity]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[DeleteMetadataWithIntegrity]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[DeleteMetadataWithoutIntegrity]">
@@ -14076,10 +14364,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="803" />
+				<Property Name="Length" Value="766" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[DeleteMetadataWithoutIntegrity]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[DeleteMetadataWithoutIntegrity]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[DeleteRecipientAlerts]">
@@ -14223,10 +14511,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="1250" />
+				<Property Name="Length" Value="1189" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[DeleteRecipientAlerts]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@EmailAddress NVARCHAR(500),&#xD;&#xA;&#x9;@SoftDeleteOnly BIT = 1&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[DeleteRecipientAlerts]&#xA;&#x9;(&#xA;&#x9;@EmailAddress NVARCHAR(500),&#xA;&#x9;@SoftDeleteOnly BIT = 1&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[DeleteServicePrincipal]">
@@ -14545,10 +14833,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="3780" />
+				<Property Name="Length" Value="3650" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[DeleteServicePrincipal]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@OrchestratorName NVARCHAR(200),&#xD;&#xA;&#x9;@OrchestratorType CHAR(3),&#xD;&#xA;&#x9;@PrincipalIdValue NVARCHAR(256),&#xD;&#xA;&#x9;@SpecificPipelineName NVARCHAR(200) = NULL&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[DeleteServicePrincipal]&#xA;&#x9;(&#xA;&#x9;@OrchestratorName NVARCHAR(200),&#xA;&#x9;@OrchestratorType CHAR(3),&#xA;&#x9;@PrincipalIdValue NVARCHAR(256),&#xA;&#x9;@SpecificPipelineName NVARCHAR(200) = NULL&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[GetExecutionDetails]">
@@ -14786,10 +15074,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="1985" />
+				<Property Name="Length" Value="1910" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[GetExecutionDetails]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@LocalExecutionId UNIQUEIDENTIFIER = NULL&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[GetExecutionDetails]&#xA;&#x9;(&#xA;&#x9;@LocalExecutionId UNIQUEIDENTIFIER = NULL&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[GetServicePrincipal]">
@@ -15120,10 +15408,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="3427" />
+				<Property Name="Length" Value="3314" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[GetServicePrincipal]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@OrchestratorName NVARCHAR(200),&#xD;&#xA;&#x9;@OrchestratorType CHAR(3),&#xD;&#xA;&#x9;@PipelineName NVARCHAR(200) = NULL&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[GetServicePrincipal]&#xA;&#x9;(&#xA;&#x9;@OrchestratorName NVARCHAR(200),&#xA;&#x9;@OrchestratorType CHAR(3),&#xA;&#x9;@PipelineName NVARCHAR(200) = NULL&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlView" Name="[metadataHelpers].[PipelineDependencyChains]">
@@ -15238,10 +15526,10 @@ FROM
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="714" />
+				<Property Name="Length" Value="697" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE VIEW [metadataHelpers].[PipelineDependencyChains]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE VIEW [metadataHelpers].[PipelineDependencyChains]&#xA;AS" />
 				<Property Name="FooterContents" Value=";" />
 			</Annotation>
 		</Element>
@@ -15278,10 +15566,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="289" />
+				<Property Name="Length" Value="274" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultAlertOutcomes]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultAlertOutcomes]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[SetDefaultBatches]">
@@ -15292,6 +15580,10 @@ BEGIN
 		(
 		[BatchName] [VARCHAR](225) NOT NULL,
 		[BatchDescription] [VARCHAR](4000) NULL,
+		[SourceSystemName] [VARCHAR](255)  NULL,
+	[TargetSystemName] [VARCHAR](255)  NULL,
+	[InterfaceType] [VARCHAR](255)  NULL,
+	[ConnectionType] [VARCHAR](255)  NULL,
 		[Enabled] [BIT] NOT NULL
 		)
 	
@@ -15299,11 +15591,18 @@ BEGIN
 		(
 		[BatchName], 
 		[BatchDescription], 
+		[SourceSystemName],
+		[TargetSystemName],
+		[InterfaceType],
+		[ConnectionType],
 		[Enabled]
 		) 
 	VALUES 
-		('Daily', N'Daily Worker Pipelines.', 1),
-		('Hourly', N'Hourly Worker Pipelines.', 1);	
+		('Daily', N'Daily Worker Pipelines.', null,null,null,null,0),
+		('Hourly', N'Hourly Worker Pipelines.',null,null,null,null, 0),
+		('cpa', N'Process data comes from cpa', 'cpa',null,'inbound','file',1),
+		('veeva', N'Process data comes from veeva','veeva',null,'inbound','file', 1),
+		('edw', N'Process data to edw layer', null,null,'internal',null,1);	
 
 	MERGE INTO [metadata].[Batches] AS tgt
 	USING 
@@ -15313,18 +15612,30 @@ BEGIN
 		UPDATE
 		SET
 			tgt.[BatchDescription] = src.[BatchDescription],
+			tgt.[SourceSystemName] = src.[SourceSystemName],
+			tgt.[TargetSystemName] = src.[TargetSystemName],
+			tgt.[InterfaceType] = src.[InterfaceType],
+			tgt.[ConnectionType] = src.[ConnectionType],
 			tgt.[Enabled] = src.[Enabled]
 	WHEN NOT MATCHED BY TARGET THEN
 		INSERT
 			(
 			[BatchName],
 			[BatchDescription],
+			[SourceSystemName],
+			[TargetSystemName],
+			[InterfaceType],
+			[ConnectionType],
 			[Enabled]
 			)
 		VALUES
 			(
 			src.[BatchName],
 			src.[BatchDescription],
+			src.[SourceSystemName],
+			src.[TargetSystemName],
+			src.[InterfaceType],
+			src.[ConnectionType],
 			src.[Enabled]
 			)
 	WHEN NOT MATCHED BY SOURCE THEN
@@ -15338,6 +15649,18 @@ END;]]></Value>
 				</Entry>
 				<Entry>
 					<References Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[BatchDescription]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[SourceSystemName]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[TargetSystemName]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[InterfaceType]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[ConnectionType]" />
 				</Entry>
 				<Entry>
 					<References Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[Enabled]" />
@@ -15358,6 +15681,30 @@ END;]]></Value>
 					<References Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[BatchDescription]" />
 				</Entry>
 				<Entry>
+					<References Name="[metadata].[Batches].[SourceSystemName]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[SourceSystemName]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadata].[Batches].[TargetSystemName]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[TargetSystemName]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadata].[Batches].[InterfaceType]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[InterfaceType]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadata].[Batches].[ConnectionType]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[ConnectionType]" />
+				</Entry>
+				<Entry>
 					<References Name="[metadata].[Batches].[Enabled]" />
 				</Entry>
 				<Entry>
@@ -15370,6 +15717,18 @@ END;]]></Value>
 					<References Name="[metadata].[Batches].[BatchDescription]" />
 				</Entry>
 				<Entry>
+					<References Name="[metadata].[Batches].[SourceSystemName]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadata].[Batches].[TargetSystemName]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadata].[Batches].[InterfaceType]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadata].[Batches].[ConnectionType]" />
+				</Entry>
+				<Entry>
 					<References Name="[metadata].[Batches].[Enabled]" />
 				</Entry>
 				<Entry>
@@ -15377,6 +15736,18 @@ END;]]></Value>
 				</Entry>
 				<Entry>
 					<References Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[BatchDescription]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[SourceSystemName]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[TargetSystemName]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[InterfaceType]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[ConnectionType]" />
 				</Entry>
 				<Entry>
 					<References Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[Enabled]" />
@@ -15420,6 +15791,70 @@ END;]]></Value>
 								</Element>
 							</Entry>
 							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[SourceSystemName]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="255" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[varchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[TargetSystemName]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="255" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[varchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[InterfaceType]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="255" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[varchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[ConnectionType]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="255" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[varchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
 								<Element Type="SqlSimpleColumn" Name="[metadataHelpers].[SetDefaultBatches].[@Batches].[Enabled]">
 									<Property Name="IsNullable" Value="False" />
 									<Relationship Name="TypeSpecifier">
@@ -15445,10 +15880,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="889" />
+				<Property Name="Length" Value="1744" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultBatches]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultBatches]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[SetDefaultBatchStageLink]">
@@ -15456,7 +15891,7 @@ END;]]></Value>
 				<Value><![CDATA[
 BEGIN
 	TRUNCATE TABLE [metadata].[BatchStageLink]
-
+/*
 	INSERT INTO [metadata].[BatchStageLink]
 		(
 		[BatchId],
@@ -15483,6 +15918,45 @@ BEGIN
 			ON s.[StageName] = 'Speed'
 	WHERE
 		b.[BatchName] = 'Hourly'
+*/
+	INSERT INTO [metadata].[BatchStageLink]
+		(
+		[BatchId],
+		[StageId]
+		)
+	SELECT
+		b.[BatchId],
+		s.[StageId]
+	FROM
+		[metadata].[Batches] b
+		INNER JOIN [metadata].[Stages] s
+			ON s.[StageName]  in ('Landing','Malformed','Interim') 
+	WHERE
+		b.[BatchName] = 'cpa'
+
+	UNION ALL
+
+	SELECT
+		b.[BatchId],
+		s.[StageId]
+	FROM
+		[metadata].[Batches] b
+		INNER JOIN [metadata].[Stages] s
+			ON s.[StageName] in ('Landing','Malformed','Interim') 
+	WHERE
+		b.[BatchName] = 'veeva'
+
+	UNION ALL
+
+	SELECT
+		b.[BatchId],
+		s.[StageId]
+	FROM
+		[metadata].[Batches] b
+		INNER JOIN [metadata].[Stages] s
+			ON s.[StageName] = 'edw'
+	WHERE
+		b.[BatchName] = 'edw'
 END;]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -15521,10 +15995,141 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="572" />
+				<Property Name="Length" Value="1195" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultBatchStageLink]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultBatchStageLink]&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[metadataHelpers].[SetDefaultDataProcessType]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	DECLARE @DataProcessType TABLE
+		(
+  [DataProcessType] VARCHAR (100) NOT NULL DEFAULT ('dataflow'),
+  [Enabled] [BIT]	DEFAULT(1) NOT NULL
+		)
+	
+	INSERT @DataProcessType
+		(
+  [DataProcessType] ,
+  [Enabled] 
+		) 
+	VALUES 
+		('dataflow', 1),
+		('storeprocedure', 1);
+		
+	MERGE INTO [metadata].[DataProcessType] AS tgt
+	USING 
+		@DataProcessType AS src
+			ON tgt.[DataProcessType] = src.[DataProcessType]
+	WHEN MATCHED THEN
+		UPDATE
+		SET
+			tgt.[Enabled] = src.[Enabled]
+	WHEN NOT MATCHED BY TARGET THEN
+		INSERT
+			(
+			[DataProcessType],
+			[Enabled]
+			)
+		VALUES
+			(
+			src.[DataProcessType],
+			src.[Enabled]
+			)
+	WHEN NOT MATCHED BY SOURCE THEN
+		DELETE;	
+END;]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[metadataHelpers].[SetDefaultDataProcessType].[@DataProcessType].[DataProcessType]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadataHelpers].[SetDefaultDataProcessType].[@DataProcessType].[Enabled]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadata].[DataProcessType]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadata].[DataProcessType].[DataProcessType]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadataHelpers].[SetDefaultDataProcessType].[@DataProcessType].[DataProcessType]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadata].[DataProcessType].[Enabled]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadataHelpers].[SetDefaultDataProcessType].[@DataProcessType].[Enabled]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadata].[DataProcessType].[DataProcessType]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadata].[DataProcessType].[Enabled]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadataHelpers].[SetDefaultDataProcessType].[@DataProcessType].[DataProcessType]" />
+				</Entry>
+				<Entry>
+					<References Name="[metadataHelpers].[SetDefaultDataProcessType].[@DataProcessType].[Enabled]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DynamicObjects">
+				<Entry>
+					<Element Type="SqlDynamicColumnSource" Name="[metadataHelpers].[SetDefaultDataProcessType].[@DataProcessType]">
+						<Relationship Name="Columns">
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[metadataHelpers].[SetDefaultDataProcessType].[@DataProcessType].[DataProcessType]">
+									<Property Name="IsNullable" Value="False" />
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="100" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[varchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[metadataHelpers].[SetDefaultDataProcessType].[@DataProcessType].[Enabled]">
+									<Property Name="IsNullable" Value="False" />
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bit]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References Name="[metadataHelpers]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="740" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultDataProcessType]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[SetDefaultOrchestrators]">
@@ -15802,10 +16407,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="2175" />
+				<Property Name="Length" Value="2112" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultOrchestrators]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultOrchestrators]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[SetDefaultPipelineDependants]">
@@ -15851,10 +16456,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="808" />
+				<Property Name="Length" Value="786" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultPipelineDependants]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultPipelineDependants]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[SetDefaultPipelineParameters]">
@@ -16022,10 +16627,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="1041" />
+				<Property Name="Length" Value="993" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultPipelineParameters]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultPipelineParameters]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[SetDefaultPipelines]">
@@ -16268,10 +16873,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="1569" />
+				<Property Name="Length" Value="1507" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultPipelines]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultPipelines]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[SetDefaultProperties]">
@@ -16370,10 +16975,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="3933" />
+				<Property Name="Length" Value="3861" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultProperties]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultProperties]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[SetDefaultRecipientPipelineAlerts]">
@@ -16413,10 +17018,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="564" />
+				<Property Name="Length" Value="548" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultRecipientPipelineAlerts]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultRecipientPipelineAlerts]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[SetDefaultRecipients]">
@@ -16616,10 +17221,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="997" />
+				<Property Name="Length" Value="949" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultRecipients]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultRecipients]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[SetDefaultStages]">
@@ -16787,10 +17392,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="2448" />
+				<Property Name="Length" Value="2400" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultStages]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultStages]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[SetDefaultSubscription]">
@@ -16989,10 +17594,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="1086" />
+				<Property Name="Length" Value="1038" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultSubscription]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultSubscription]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataHelpers].[SetDefaultTenant]">
@@ -17155,10 +17760,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="852" />
+				<Property Name="Length" Value="809" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultTenant]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataHelpers].[SetDefaultTenant]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlSchema" Name="[metadataReporting]">
@@ -17303,10 +17908,10 @@ GROUP BY
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="636" />
+				<Property Name="Length" Value="607" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE VIEW [metadataReporting].[AverageStageDuration]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE VIEW [metadataReporting].[AverageStageDuration]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlView" Name="[metadataReporting].[CompleteExecutionErrorLog]">
@@ -17556,10 +18161,10 @@ FROM
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="858" />
+				<Property Name="Length" Value="832" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE VIEW [metadataReporting].[CompleteExecutionErrorLog]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE VIEW [metadataReporting].[CompleteExecutionErrorLog]&#xA;AS" />
 				<Property Name="FooterContents" Value=";" />
 			</Annotation>
 		</Element>
@@ -17745,10 +18350,10 @@ FROM
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="407" />
+				<Property Name="Length" Value="389" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE VIEW [metadataReporting].[CompleteExecutionLog]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE VIEW [metadataReporting].[CompleteExecutionLog]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlView" Name="[metadataReporting].[CurrentExecutionSummary]">
@@ -17786,10 +18391,10 @@ GROUP BY
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="231" />
+				<Property Name="Length" Value="222" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE VIEW [metadataReporting].[CurrentExecutionSummary]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE VIEW [metadataReporting].[CurrentExecutionSummary]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlView" Name="[metadataReporting].[LastExecution]">
@@ -17970,10 +18575,10 @@ WHERE
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="718" />
+				<Property Name="Length" Value="685" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE VIEW [metadataReporting].[LastExecution]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE VIEW [metadataReporting].[LastExecution]&#xA;AS" />
 				<Property Name="FooterContents" Value=";" />
 			</Annotation>
 		</Element>
@@ -18080,10 +18685,10 @@ GROUP BY
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="613" />
+				<Property Name="Length" Value="586" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE VIEW [metadataReporting].[LastExecutionSummary]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE VIEW [metadataReporting].[LastExecutionSummary]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlView" Name="[metadataReporting].[WorkerParallelismOverTime]">
@@ -18342,10 +18947,10 @@ GROUP BY
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="1556" />
+				<Property Name="Length" Value="1499" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE VIEW [metadataReporting].[WorkerParallelismOverTime]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE VIEW [metadataReporting].[WorkerParallelismOverTime]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlSchema" Name="[metadataTesting]">
@@ -18708,10 +19313,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="4631" />
+				<Property Name="Length" Value="4436" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataTesting].[Add20BatchesFor1000Workers]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataTesting].[Add20BatchesFor1000Workers]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataTesting].[Add300WorkerPipelineBatches]">
@@ -18844,10 +19449,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="1148" />
+				<Property Name="Length" Value="1089" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataTesting].[Add300WorkerPipelineBatches]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataTesting].[Add300WorkerPipelineBatches]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataTesting].[Add300WorkerPipelines]">
@@ -19044,10 +19649,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="2067" />
+				<Property Name="Length" Value="1983" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataTesting].[Add300WorkerPipelines]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataTesting].[Add300WorkerPipelines]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataTesting].[CleanUpMetadata]">
@@ -19073,10 +19678,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="184" />
+				<Property Name="Length" Value="179" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataTesting].[CleanUpMetadata]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataTesting].[CleanUpMetadata]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataTesting].[GetRunIdWhenAvailable]">
@@ -19199,10 +19804,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="1242" />
+				<Property Name="Length" Value="1176" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataTesting].[GetRunIdWhenAvailable]&#xD;&#xA;&#x9;(&#xD;&#xA;&#x9;@PipelineName NVARCHAR(200) = NULL&#xD;&#xA;&#x9;)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataTesting].[GetRunIdWhenAvailable]&#xA;&#x9;(&#xA;&#x9;@PipelineName NVARCHAR(200) = NULL&#xA;&#x9;)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[metadataTesting].[ResetMetadata]">
@@ -19272,10 +19877,10 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="734" />
+				<Property Name="Length" Value="718" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataTesting].[ResetMetadata]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [metadataTesting].[ResetMetadata]&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlRole" Name="[metadatauser]">

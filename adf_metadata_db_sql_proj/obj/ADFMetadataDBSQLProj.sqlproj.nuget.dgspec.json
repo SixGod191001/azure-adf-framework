@@ -1,34 +1,37 @@
 {
   "format": 1,
   "restore": {
-    "d:\\project\\azure-adf-framework\\adf_metadata_db_sql_proj\\ADFMetadataDBSQLProj.sqlproj": {}
+    "d:\\azure-adf-framework\\adf_metadata_db_sql_proj\\ADFMetadataDBSQLProj.sqlproj": {}
   },
   "projects": {
-    "d:\\project\\azure-adf-framework\\adf_metadata_db_sql_proj\\ADFMetadataDBSQLProj.sqlproj": {
+    "d:\\azure-adf-framework\\adf_metadata_db_sql_proj\\ADFMetadataDBSQLProj.sqlproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\project\\azure-adf-framework\\adf_metadata_db_sql_proj\\ADFMetadataDBSQLProj.sqlproj",
+        "projectUniqueName": "d:\\azure-adf-framework\\adf_metadata_db_sql_proj\\ADFMetadataDBSQLProj.sqlproj",
         "projectName": "ADFMetadataDBSQLProj",
-        "projectPath": "d:\\project\\azure-adf-framework\\adf_metadata_db_sql_proj\\ADFMetadataDBSQLProj.sqlproj",
-        "packagesPath": "C:\\Users\\SixGo\\.nuget\\packages\\",
-        "outputPath": "d:\\project\\azure-adf-framework\\adf_metadata_db_sql_proj\\obj\\",
+        "projectPath": "d:\\azure-adf-framework\\adf_metadata_db_sql_proj\\ADFMetadataDBSQLProj.sqlproj",
+        "packagesPath": "C:\\Users\\luyan\\.nuget\\packages\\",
+        "outputPath": "d:\\azure-adf-framework\\adf_metadata_db_sql_proj\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "configFilePaths": [
-          "C:\\Users\\SixGo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\luyan\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net472"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net472": {
             "projectReferences": {}
           }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {

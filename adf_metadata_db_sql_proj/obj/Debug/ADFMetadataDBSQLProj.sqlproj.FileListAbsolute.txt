@@ -22,3 +22,15 @@ d:\project\azure-adf-framework\adf_metadata_db_sql_proj\obj\Debug\predeploy.sql
 d:\project\azure-adf-framework\adf_metadata_db_sql_proj\obj\Debug\ADFMetadataDBSQLProj.sqlproj.CopyComplete
 d:\project\azure-adf-framework\adf_metadata_db_sql_proj\obj\Debug\ADFMetadataDBSQLProj.dll
 d:\project\azure-adf-framework\adf_metadata_db_sql_proj\obj\Debug\ADFMetadataDBSQLProj.pdb
+d:\azure-adf-framework\adf_metadata_db_sql_proj\bin\Debug\ADFMetadataDBSQLProj.dacpac
+d:\azure-adf-framework\adf_metadata_db_sql_proj\bin\Debug\ADFMetadataDBSQLProj.dll
+d:\azure-adf-framework\adf_metadata_db_sql_proj\bin\Debug\ADFMetadataDBSQLProj.pdb
+d:\azure-adf-framework\adf_metadata_db_sql_proj\bin\Debug\master.dacpac
+d:\azure-adf-framework\adf_metadata_db_sql_proj\obj\Debug\ADFMetadataDBSQLProj.sqlproj.AssemblyReference.cache
+d:\azure-adf-framework\adf_metadata_db_sql_proj\obj\Debug\Model.xml
+d:\azure-adf-framework\adf_metadata_db_sql_proj\obj\Debug\refactor.xml
+d:\azure-adf-framework\adf_metadata_db_sql_proj\obj\Debug\postdeploy.sql
+d:\azure-adf-framework\adf_metadata_db_sql_proj\obj\Debug\predeploy.sql
+d:\azure-adf-framework\adf_metadata_db_sql_proj\obj\Debug\ADFMetad.506B7A66.Up2Date
+d:\azure-adf-framework\adf_metadata_db_sql_proj\obj\Debug\ADFMetadataDBSQLProj.dll
+d:\azure-adf-framework\adf_metadata_db_sql_proj\obj\Debug\ADFMetadataDBSQLProj.pdb
