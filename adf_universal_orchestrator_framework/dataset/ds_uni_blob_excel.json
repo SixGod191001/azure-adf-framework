@@ -2,7 +2,7 @@
 	"name": "ds_uni_blob_excel",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "lk_blob_cedc",
+			"referenceName": "AzureBlobStorage",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
@@ -43,5 +43,6 @@
 			"firstRowAsHeader": true
 		},
 		"schema": []
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

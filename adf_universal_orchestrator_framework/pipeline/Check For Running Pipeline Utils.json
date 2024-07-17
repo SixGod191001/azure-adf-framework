@@ -380,6 +380,8 @@
 									"name": "Check for Valid ADF Pipeline Name",
 									"description": "Use the Azure Management API to return and establish if the framework pipeline exists in the target Data Factory instance, including being deployed.",
 									"type": "WebActivity",
+									"state": "Inactive",
+									"onInactiveMarkAs": "Succeeded",
 									"dependsOn": [],
 									"policy": {
 										"timeout": "7.00:00:00",
@@ -396,12 +398,8 @@
 											"type": "Expression"
 										},
 										"connectVia": {
-											"referenceName": "SelfHostedIR-Windows-LiuYang",
+											"referenceName": "SelfHostedIR-Windows",
 											"type": "IntegrationRuntimeReference"
-										},
-										"authentication": {
-											"type": "MSI",
-											"resource": "https://management.core.windows.net/"
 										}
 									}
 								},
@@ -430,10 +428,6 @@
 										"url": {
 											"value": "https://management.azure.com/subscriptions/@{variables('SubscriptionId')}/resourceGroups/@{variables('ResourceGroupName')}/providers/Microsoft.DataFactory/factories/@{pipeline().DataFactory}/queryPipelineRuns?api-version=2018-06-01",
 											"type": "Expression"
-										},
-										"connectVia": {
-											"referenceName": "SelfHostedIR-Windows-LiuYang",
-											"type": "IntegrationRuntimeReference"
 										},
 										"body": {
 											"value": "{\n  \"lastUpdatedAfter\": \"@{adddays(utcnow(),int(variables('QueryRunDays')))}\",\n  \"lastUpdatedBefore\": \"@{utcnow()}\",\n  \"filters\": [\n    {\n      \"operand\": \"PipelineName\",\n      \"operator\": \"Equals\",\n      \"values\": [\n        \"@{pipeline().parameters.PipelineName}\"\n      ]\n    }\n  ]\n}",
@@ -562,7 +556,7 @@
 			"metadata",
 			"Utils"
 		],
-		"lastPublishTime": "2024-02-20T03:29:16Z"
+		"lastPublishTime": "2024-07-15T03:35:38Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

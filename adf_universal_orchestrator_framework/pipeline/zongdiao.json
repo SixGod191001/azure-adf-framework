@@ -1,0 +1,38 @@
+{
+	"name": "zongdiao",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CSV_COPY_BLOB_GEN2_m8j_TopLevel",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"MaxNumberOfObjectsReturnedFromLookupActivity": 5000,
+						"MaxNumberOfConcurrentTasks": 20,
+						"MainControlTableName": "metadata.metadata_cedc",
+						"TaskId": {
+							"value": "1",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "CSV_COPY_BLOB_GEN2"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-07-15T10:28:36Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

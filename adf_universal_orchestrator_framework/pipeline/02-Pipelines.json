@@ -120,7 +120,7 @@
 		"annotations": [
 			"02-Pipelines"
 		],
-		"lastPublishTime": "2024-02-20T03:29:16Z"
+		"lastPublishTime": "2024-07-16T07:59:28Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
