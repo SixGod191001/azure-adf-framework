@@ -1048,7 +1048,7 @@
 						"type": "Expression"
 					},
 					"body": {
-						"value": "@activity('Get Pipeline Params').output.firstRow",
+						"value": "{ \"parameters\": {\"source_container\": \"cpa\",\"source_filename\": \"CPA_Franchise_Province_Region_Mapping.xlsx\",\"source_sheet\": \"Sheet1\",\"target_container\": \"landing\",\"target_path\": \"cpa\",\"target_filename\": \"CPA_Franchise_Province_Region_Mapping.csv\"} }",
 						"type": "Expression"
 					},
 					"authentication": {
