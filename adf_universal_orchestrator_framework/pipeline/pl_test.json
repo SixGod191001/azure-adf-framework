@@ -1,0 +1,45 @@
+{
+	"name": "pl_test",
+	"properties": {
+		"activities": [
+			{
+				"name": "run pipeline",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://management.azure.com/subscriptions/930D2A20-DC22-431D-BDDE-4A2916D0096B/resourceGroups/adf.framework/providers/Microsoft.DataFactory/factories/@{pipeline().DataFactory}/pipelines/@{pipeline().parameters.PipelineName}/createRun?api-version=2018-06-01",
+					"connectVia": {
+						"referenceName": "LUYAN",
+						"type": "IntegrationRuntimeReference"
+					},
+					"body": {
+						"WaitTime": 3
+					},
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://management.core.windows.net/"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"PipelineName": {
+				"type": "string",
+				"defaultValue": "task_proj1_api_landing"
+			}
+		},
+		"folder": {
+			"name": "Universal"
+		},
+		"annotations": []
+	}
+}
