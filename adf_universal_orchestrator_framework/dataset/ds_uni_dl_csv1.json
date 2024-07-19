@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText4",
+	"name": "ds_uni_dl_csv1",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "lk_dl_cedc_2",
