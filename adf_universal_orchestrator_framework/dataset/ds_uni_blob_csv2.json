@@ -1,5 +1,5 @@
 {
-	"name": "ds_uni_blob_csv",
+	"name": "ds_uni_blob_csv2",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage",
@@ -12,12 +12,15 @@
 			},
 			"p_filename": {
 				"type": "string",
-				"defaultValue": "testing.csv"
+				"defaultValue": "cases_deaths.csv"
 			},
 			"p_sheet": {
 				"type": "string",
 				"defaultValue": "Sheet1"
 			}
+		},
+		"folder": {
+			"name": "Universal"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
@@ -38,43 +41,6 @@
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": [
-			{
-				"name": "country",
-				"type": "String"
-			},
-			{
-				"name": "country_code",
-				"type": "String"
-			},
-			{
-				"name": "continent",
-				"type": "String"
-			},
-			{
-				"name": "population",
-				"type": "String"
-			},
-			{
-				"name": "indicator",
-				"type": "String"
-			},
-			{
-				"name": "daily_count",
-				"type": "String"
-			},
-			{
-				"name": "date",
-				"type": "String"
-			},
-			{
-				"name": "rate_14_day",
-				"type": "String"
-			},
-			{
-				"name": "source",
-				"type": "String"
-			}
-		]
+		"schema": []
 	}
 }
