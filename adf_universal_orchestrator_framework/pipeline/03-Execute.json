@@ -1048,7 +1048,7 @@
 						"type": "Expression"
 					},
 					"body": {
-						"value": "{ \"parameters\": {\"source_container\": \"cpa\",\"source_filename\": \"CPA_Franchise_Province_Region_Mapping.xlsx\",\"source_sheet\": \"Sheet1\",\"target_container\": \"landing\",\"target_path\": \"cpa\",\"target_filename\": \"CPA_Franchise_Province_Region_Mapping.csv\"} }",
+						"value": "{\n    \"source_container\": \"cpa\",\n    \"source_filename\": \"CPA_Franchise_Province_Region_Mapping.xlsx\",\n    \"source_sheet\": \"Sheet1\",\n    \"target_container\": \"landing\",\n    \"target_path\": \"cpa\",\n    \"target_filename\": \"CPA_Franchise_Province_Region_Mapping.csv\"\n} ",
 						"type": "Expression"
 					},
 					"authentication": {
