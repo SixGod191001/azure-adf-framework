@@ -49,17 +49,24 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DelimitedText3",
+						"referenceName": "ds_uni_blob_csv",
 						"type": "DatasetReference",
 						"parameters": {
-							"p_filename": "testing.csv"
+							"p_container": "ecdc",
+							"p_filename": "testing.csv",
+							"p_sheet": "Sheet1"
 						}
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DelimitedText4",
-						"type": "DatasetReference"
+						"referenceName": "ds_uni_dl_csv1",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_container": "landing",
+							"p_filename": "testing.csv",
+							"p_sheet": "Sheet1"
+						}
 					}
 				]
 			}
