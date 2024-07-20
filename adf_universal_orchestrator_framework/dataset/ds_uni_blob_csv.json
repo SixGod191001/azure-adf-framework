@@ -2,7 +2,7 @@
 	"name": "ds_uni_blob_csv",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "lk_blob_cedc",
+			"referenceName": "lk_blob_cedc_new",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
