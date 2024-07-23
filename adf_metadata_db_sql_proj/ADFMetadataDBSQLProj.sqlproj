@@ -84,7 +84,9 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="metadataHelpers\Stored Procedures\SetDefaultDataProcessType.sql" />
+    <Build Include="metadataHelpers\Stored Procedures\SetDefaultMainControlTable.sql" />
     <Build Include="metadata\Tables\DataProcessType.sql" />
+    <Build Include="metadata\Tables\metadata_cedc.sql" />
     <Build Include="metadata\Tables\Pipelines.sql" />
     <Build Include="metadata\Tables\PipelineParameters.sql" />
     <Build Include="metadata\Tables\CurrentExecution.sql" />

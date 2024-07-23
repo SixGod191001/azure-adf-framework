@@ -5,7 +5,7 @@
 	[RecipientId] INT NOT NULL,
 	[OutcomesBitValue] INT NOT NULL,
 	[Enabled] BIT NOT NULL DEFAULT 1,
-	CONSTRAINT [PK_PipelineAlertLink] PRIMARY KEY CLUSTERED ([AlertId] ASC),
-	CONSTRAINT [FK_PipelineAlertLink_Pipelines] FOREIGN KEY([PipelineId]) REFERENCES [metadata].[Pipelines] ([PipelineId]),
-	CONSTRAINT [FK_PipelineAlertLink_Recipients] FOREIGN KEY([RecipientId]) REFERENCES [metadata].[Recipients] ([RecipientId])
+	CONSTRAINT [PK_PipelineAlertLink] PRIMARY KEY CLUSTERED ([AlertId] ASC)
+	--CONSTRAINT [FK_PipelineAlertLink_Pipelines] FOREIGN KEY([PipelineId]) REFERENCES [metadata].[Pipelines] ([PipelineId]),
+	--CONSTRAINT [FK_PipelineAlertLink_Recipients] FOREIGN KEY([RecipientId]) REFERENCES [metadata].[Recipients] ([RecipientId])
 	);

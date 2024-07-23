@@ -8,6 +8,7 @@ BEGIN
 		[ParameterValue] [NVARCHAR](MAX) NULL
 		)
 
+
 	INSERT @PipelineParameters
 		(
 		[PipelineId], 
@@ -15,12 +16,19 @@ BEGIN
 		[ParameterValue]
 		) 
 	VALUES 
-		(1, 'WaitTime', '3'),
-		(2, 'WaitTime', '6'),
-		(3, 'WaitTime', '9'),
-		(4, 'WaitTime', '5'),
-		(5, 'WaitTime', '2'),
-		(6, 'WaitTime', '2');
+		(137, 'source_container', 'cpa'),
+		(137, 'source_filename', 'CPA_Franchise_Marketing_Mapping.xlsx'),
+		(137, 'source_sheet', 'Sheet1'),
+		(137, 'target_container', 'landing'),
+		(137, 'target_path', 'cpa'),
+		(137, 'target_filename', 'CPA_Franchise_Marketing_Mapping.csv'),
+		(138, 'source_container', 'cpa'),
+		(138, 'source_filename', 'CPA_Franchise_Province_Region_Mapping.xlsx'),
+		(138, 'source_sheet', 'Sheet1'),
+		(138, 'target_container', 'landing'),
+		(138, 'target_path', 'cpa'),
+		(138, 'target_filename', 'CPA_Franchise_Province_Region_Mapping.csv');
+
 
 	MERGE INTO [metadata].[PipelineParameters]  AS tgt
 	USING 
@@ -46,4 +54,5 @@ BEGIN
 			) 
 	WHEN NOT MATCHED BY SOURCE THEN
 		DELETE;	
+		
 END;

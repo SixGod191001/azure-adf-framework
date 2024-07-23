@@ -12,5 +12,6 @@
     CONSTRAINT [PK_Pipelines] PRIMARY KEY CLUSTERED ([PipelineId] ASC),
     CONSTRAINT [FK_Pipelines_Stages] FOREIGN KEY ([StageId]) REFERENCES [metadata].[Stages] ([StageId]),
     CONSTRAINT [FK_Pipelines_Orchestrators] FOREIGN KEY([OrchestratorId]) REFERENCES [metadata].[Orchestrators] ([OrchestratorId]),
-    CONSTRAINT [FK_Pipelines_Pipelines] FOREIGN KEY([LogicalPredecessorId]) REFERENCES [metadata].[Pipelines] ([PipelineId])
+    CONSTRAINT [FK_Pipelines_Pipelines] FOREIGN KEY([LogicalPredecessorId]) REFERENCES [metadata].[Pipelines] ([PipelineId]),
+    CONSTRAINT [UK_PipelinesToTaskName] UNIQUE ([PipelineName],[TaskName])
 );
