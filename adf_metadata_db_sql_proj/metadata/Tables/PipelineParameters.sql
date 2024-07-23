@@ -4,7 +4,7 @@
     [ParameterName]  VARCHAR (128) NOT NULL,
     [ParameterValue] NVARCHAR(MAX) NULL,
     [ParameterValueLastUsed] NVARCHAR(MAX) NULL,
-    CONSTRAINT [PK_PipelineParameters] PRIMARY KEY CLUSTERED ([ParameterId] ASC),
-    CONSTRAINT [FK_PipelineParameters_Pipelines] FOREIGN KEY ([PipelineId]) REFERENCES [metadata].[Pipelines] ([PipelineId])
+    CONSTRAINT [PK_PipelineParameters] PRIMARY KEY CLUSTERED ([ParameterId] ASC)
+   -- CONSTRAINT [FK_PipelineParameters_Pipelines] FOREIGN KEY ([PipelineId]) REFERENCES [metadata].[Pipelines] ([PipelineId])
 );
 
