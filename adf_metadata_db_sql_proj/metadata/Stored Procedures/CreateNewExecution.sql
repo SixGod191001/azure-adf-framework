@@ -44,7 +44,8 @@ BEGIN
 				[ResourceGroupName],
 				[OrchestratorType],
 				[OrchestratorName],
-				[PipelineName]
+				[PipelineName],
+				[TaskName]
 				)
 			SELECT
 				@LocalExecutionId,
@@ -54,7 +55,8 @@ BEGIN
 				d.[ResourceGroupName],
 				d.[OrchestratorType],
 				d.[OrchestratorName],
-				p.[PipelineName]
+				p.[PipelineName],
+				p.[TaskName]
 			FROM
 				[metadata].[Pipelines] p
 				INNER JOIN [metadata].[Stages] s
@@ -114,7 +116,8 @@ BEGIN
 				[ResourceGroupName],
 				[OrchestratorType],
 				[OrchestratorName],
-				[PipelineName]
+				[PipelineName],
+				[TaskName]
 				)
 			SELECT
 				@LocalExecutionId,
@@ -124,7 +127,8 @@ BEGIN
 				d.[ResourceGroupName],
 				d.[OrchestratorType],
 				d.[OrchestratorName],
-				p.[PipelineName]
+				p.[PipelineName],
+				p.[TaskName]
 			FROM
 				[metadata].[Pipelines] p
 				INNER JOIN [metadata].[Stages] s
