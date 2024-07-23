@@ -2,7 +2,7 @@
 	"name": "ds_uni_blob_csv",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureBlobStorage",
+			"referenceName": "lk_blob_cedc",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
