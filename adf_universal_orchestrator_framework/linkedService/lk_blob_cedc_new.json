@@ -1,0 +1,12 @@
+{
+	"name": "lk_blob_cedc_new",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://cedcblob.blob.core.windows.net/",
+			"accountKind": "StorageV2"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
+}

@@ -1,5 +1,5 @@
 {
-	"name": "MetadataDrivenCopyTask_5hq_SourceDS",
+	"name": "CSV_COPY_BLOB_GEN2_m8j_DestinationDS",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "lk_dl_cedc_2",
@@ -19,17 +19,17 @@
 				"type": "Bool"
 			},
 			"cw_fileName": {
-				"type": "Object"
+				"type": "String"
 			},
 			"cw_folderPath": {
-				"type": "Object"
+				"type": "String"
 			},
 			"cw_fileSystem": {
 				"type": "String"
 			}
 		},
 		"folder": {
-			"name": "MetadataDrivenCopyTask_5hq_20240705"
+			"name": "CSV_COPY_BLOB_GEN2_m8j_20240715"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
@@ -67,5 +67,6 @@
 			}
 		},
 		"schema": []
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

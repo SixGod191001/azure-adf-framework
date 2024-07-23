@@ -1,5 +1,5 @@
 {
-	"name": "MetadataDrivenCopyTask_5hq_SourceDS",
+	"name": "MetadataDrivenCopyTask_axv_SourceDS",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "lk_dl_cedc_2",
@@ -9,11 +9,14 @@
 			"cw_columnDelimiter": {
 				"type": "String"
 			},
+			"cw_rowDelimiter": {
+				"type": "String"
+			},
 			"cw_escapeChar": {
 				"type": "String"
 			},
 			"cw_quoteChar": {
-				"type": "String"
+				"type": "Object"
 			},
 			"cw_firstRowAsHeader": {
 				"type": "Bool"
@@ -22,14 +25,14 @@
 				"type": "Object"
 			},
 			"cw_folderPath": {
-				"type": "Object"
+				"type": "String"
 			},
 			"cw_fileSystem": {
 				"type": "String"
 			}
 		},
 		"folder": {
-			"name": "MetadataDrivenCopyTask_5hq_20240705"
+			"name": "MetadataDrivenCopyTask_axv_20240717"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
@@ -53,6 +56,10 @@
 				"value": "@dataset().cw_columnDelimiter",
 				"type": "Expression"
 			},
+			"rowDelimiter": {
+				"value": "@dataset().cw_rowDelimiter",
+				"type": "Expression"
+			},
 			"escapeChar": {
 				"value": "@dataset().cw_escapeChar",
 				"type": "Expression"
@@ -67,5 +74,6 @@
 			}
 		},
 		"schema": []
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

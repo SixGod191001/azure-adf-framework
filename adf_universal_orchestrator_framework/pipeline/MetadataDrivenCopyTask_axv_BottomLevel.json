@@ -1,5 +1,5 @@
 {
-	"name": "MetadataDrivenCopyTask_c2p_BottomLevel",
+	"name": "MetadataDrivenCopyTask_axv_BottomLevel",
 	"properties": {
 		"description": "This pipeline will copy objects from one group. The objects belonging to this group will be copied parallelly.",
 		"activities": [
@@ -99,11 +99,15 @@
 												},
 												"inputs": [
 													{
-														"referenceName": "MetadataDrivenCopyTask_c2p_SourceDS",
+														"referenceName": "MetadataDrivenCopyTask_axv_SourceDS",
 														"type": "DatasetReference",
 														"parameters": {
 															"cw_columnDelimiter": {
 																"value": "@json(item().SourceObjectSettings).columnDelimiter",
+																"type": "Expression"
+															},
+															"cw_rowDelimiter": {
+																"value": "@json(item().SourceObjectSettings).rowDelimiter",
 																"type": "Expression"
 															},
 															"cw_escapeChar": {
@@ -135,7 +139,7 @@
 												],
 												"outputs": [
 													{
-														"referenceName": "MetadataDrivenCopyTask_c2p_DestinationDS",
+														"referenceName": "MetadataDrivenCopyTask_axv_DestinationDS",
 														"type": "DatasetReference",
 														"parameters": {
 															"cw_fileName": {
@@ -227,11 +231,15 @@
 										},
 										"inputs": [
 											{
-												"referenceName": "MetadataDrivenCopyTask_c2p_SourceDS",
+												"referenceName": "MetadataDrivenCopyTask_axv_SourceDS",
 												"type": "DatasetReference",
 												"parameters": {
 													"cw_columnDelimiter": {
 														"value": "@json(item().SourceObjectSettings).columnDelimiter",
+														"type": "Expression"
+													},
+													"cw_rowDelimiter": {
+														"value": "@json(item().SourceObjectSettings).rowDelimiter",
 														"type": "Expression"
 													},
 													"cw_escapeChar": {
@@ -263,7 +271,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "MetadataDrivenCopyTask_c2p_DestinationDS",
+												"referenceName": "MetadataDrivenCopyTask_axv_DestinationDS",
 												"type": "DatasetReference",
 												"parameters": {
 													"cw_fileName": {
@@ -295,8 +303,10 @@
 			}
 		},
 		"folder": {
-			"name": "Universal/MetadataDrivenCopyTask_c2p_2024071_cjf"
+			"name": "MetadataDrivenCopyTask_axv_20240717"
 		},
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2024-07-17T03:07:46Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }

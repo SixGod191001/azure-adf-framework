@@ -1,5 +1,5 @@
 {
-	"name": "MetadataDrivenCopyTask_c2p_TopLevel",
+	"name": "CSV_COPY_BLOB_GEN2_m8j_TopLevel",
 	"properties": {
 		"description": "This pipeline will count the total number of objects (tables etc.) required to be copied in this run, come up with the number of sequential batches based on the max allowed concurrent copy task, and then execute another pipeline to copy different batches sequentially.",
 		"activities": [
@@ -20,13 +20,13 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "SELECT count(*) as count FROM @{pipeline().parameters.MainControlTableName} where TopLevelPipelineName='@{pipeline().Pipeline}' and TriggerName like '%@{pipeline().TriggerName}%' and CopyEnabled = 1",
+							"value": "SELECT count(*) as count FROM @{pipeline().parameters.MainControlTableName} where TopLevelPipelineName='@{pipeline().Pipeline}' and CopyEnabled = 1 and TaskId = @{pipeline().parameters.TaskId}",
 							"type": "Expression"
 						},
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "MetadataDrivenCopyTask_c2p_ControlDS",
+						"referenceName": "CSV_COPY_BLOB_GEN2_m8j_ControlDS",
 						"type": "DatasetReference"
 					}
 				}
@@ -62,7 +62,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "MetadataDrivenCopyTask_c2p_MiddleLevel",
+									"referenceName": "CSV_COPY_BLOB_GEN2_m8j_MiddleLevel",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": true,
@@ -113,14 +113,19 @@
 			},
 			"MainControlTableName": {
 				"type": "String",
-				"defaultValue": "metadata.MainControlTable_c2p"
+				"defaultValue": "metadata.metadata_cedc"
+			},
+			"TaskId": {
+				"type": "string"
 			}
 		},
 		"folder": {
-			"name": "Universal/MetadataDrivenCopyTask_c2p_2024071_cjf"
+			"name": "CSV_COPY_BLOB_GEN2"
 		},
 		"annotations": [
 			"MetadataDrivenSolution"
-		]
-	}
+		],
+		"lastPublishTime": "2024-07-15T08:29:12Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }

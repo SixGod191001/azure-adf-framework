@@ -1,8 +1,8 @@
 {
-	"name": "ds_uni_dl_excel",
+	"name": "ds_uni_dl_parquet",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "lk_dl_cedc",
+			"referenceName": "lk_dl_cedc_2",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
@@ -12,27 +12,19 @@
 			},
 			"p_path": {
 				"type": "string",
-				"defaultValue": "cpa"
+				"defaultValue": "ecdc"
 			},
 			"p_filename": {
 				"type": "string",
-				"defaultValue": "CPA_Franchise_Marketing_Mapping.xlsx"
-			},
-			"p_sheet": {
-				"type": "string",
-				"defaultValue": "Sheet1"
+				"defaultValue": "cases_deaths.csv"
 			}
 		},
 		"folder": {
 			"name": "Universal"
 		},
 		"annotations": [],
-		"type": "Excel",
+		"type": "Parquet",
 		"typeProperties": {
-			"sheetName": {
-				"value": "@dataset().p_sheet",
-				"type": "Expression"
-			},
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
@@ -48,7 +40,7 @@
 					"type": "Expression"
 				}
 			},
-			"firstRowAsHeader": true
+			"compressionCodec": "snappy"
 		},
 		"schema": []
 	}

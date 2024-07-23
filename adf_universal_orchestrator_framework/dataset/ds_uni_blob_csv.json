@@ -1,0 +1,80 @@
+{
+	"name": "ds_uni_blob_csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lk_blob_cedc_new",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_container": {
+				"type": "string",
+				"defaultValue": "ecdc"
+			},
+			"p_filename": {
+				"type": "string",
+				"defaultValue": "testing.csv"
+			},
+			"p_sheet": {
+				"type": "string",
+				"defaultValue": "Sheet1"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().p_filename",
+					"type": "Expression"
+				},
+				"container": {
+					"value": "@dataset().p_container",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "country",
+				"type": "String"
+			},
+			{
+				"name": "country_code",
+				"type": "String"
+			},
+			{
+				"name": "continent",
+				"type": "String"
+			},
+			{
+				"name": "population",
+				"type": "String"
+			},
+			{
+				"name": "indicator",
+				"type": "String"
+			},
+			{
+				"name": "daily_count",
+				"type": "String"
+			},
+			{
+				"name": "date",
+				"type": "String"
+			},
+			{
+				"name": "rate_14_day",
+				"type": "String"
+			},
+			{
+				"name": "source",
+				"type": "String"
+			}
+		]
+	}
+}

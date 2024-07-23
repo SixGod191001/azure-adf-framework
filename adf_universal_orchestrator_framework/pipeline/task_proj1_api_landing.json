@@ -20,7 +20,7 @@
 		"parameters": {
 			"WaitTime": {
 				"type": "int",
-				"defaultValue": 5
+				"defaultValue": 2
 			}
 		},
 		"folder": {
@@ -29,7 +29,7 @@
 		"annotations": [
 			"_metadataWorker"
 		],
-		"lastPublishTime": "2024-02-20T03:29:14Z"
+		"lastPublishTime": "2024-07-13T02:37:12Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

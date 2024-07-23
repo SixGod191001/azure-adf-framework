@@ -1,18 +1,18 @@
 {
-	"name": "ds_uni_blob_excel",
+	"name": "ds_uni_blob_csv2",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "lk_blob_cedc_new",
+			"referenceName": "AzureBlobStorage",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
 			"p_container": {
 				"type": "string",
-				"defaultValue": "cpa"
+				"defaultValue": "ecdc"
 			},
 			"p_filename": {
 				"type": "string",
-				"defaultValue": "CPA_Franchise_Marketing_Mapping.xlsx"
+				"defaultValue": "cases_deaths.csv"
 			},
 			"p_sheet": {
 				"type": "string",
@@ -23,12 +23,8 @@
 			"name": "Universal"
 		},
 		"annotations": [],
-		"type": "Excel",
+		"type": "DelimitedText",
 		"typeProperties": {
-			"sheetName": {
-				"value": "@dataset().p_sheet",
-				"type": "Expression"
-			},
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": {
@@ -40,9 +36,11 @@
 					"type": "Expression"
 				}
 			},
-			"firstRowAsHeader": true
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
 		},
 		"schema": []
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+	}
 }

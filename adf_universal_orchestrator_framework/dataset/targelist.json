@@ -2,7 +2,7 @@
 	"name": "targelist",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureBlobStorage",
+			"referenceName": "lk_blob_cedc_new",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -14,5 +14,6 @@
 			}
 		},
 		"schema": {}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

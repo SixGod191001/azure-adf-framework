@@ -1,5 +1,5 @@
 {
-	"name": "MetadataDrivenCopyTask_c2p_DestinationDS",
+	"name": "MetadataDrivenCopyTask_axv_DestinationDS",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "lk_dl_cedc_2",
@@ -17,7 +17,7 @@
 			}
 		},
 		"folder": {
-			"name": "MetadataDrivenCopyTask_c2p_20240712"
+			"name": "MetadataDrivenCopyTask_axv_20240717"
 		},
 		"annotations": [],
 		"type": "Parquet",
@@ -40,5 +40,6 @@
 			"compressionCodec": "snappy"
 		},
 		"schema": []
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

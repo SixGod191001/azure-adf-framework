@@ -1,5 +1,5 @@
 {
-	"name": "MetadataDrivenCopyTask_c2p_MiddleLevel",
+	"name": "MetadataDrivenCopyTask_axv_MiddleLevel",
 	"properties": {
 		"description": "This pipeline will copy one batch of objects. The objects belonging to this batch will be copied parallelly.",
 		"activities": [
@@ -40,7 +40,7 @@
 									"partitionOption": "None"
 								},
 								"dataset": {
-									"referenceName": "MetadataDrivenCopyTask_c2p_ControlDS",
+									"referenceName": "MetadataDrivenCopyTask_axv_ControlDS",
 									"type": "DatasetReference"
 								},
 								"firstRowOnly": false
@@ -64,7 +64,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "MetadataDrivenCopyTask_c2p_BottomLevel",
+									"referenceName": "MetadataDrivenCopyTask_axv_BottomLevel",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": true,
@@ -104,8 +104,10 @@
 			}
 		},
 		"folder": {
-			"name": "Universal/MetadataDrivenCopyTask_c2p_2024071_cjf"
+			"name": "MetadataDrivenCopyTask_axv_20240717"
 		},
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2024-07-17T03:07:47Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }
