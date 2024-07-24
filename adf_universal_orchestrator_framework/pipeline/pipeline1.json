@@ -76,7 +76,7 @@
 				"typeProperties": {
 					"variableName": "jsonVariable",
 					"value": {
-						"value": "@{concat('{ \"RunId\": \"', json(string(variables('ErrorJson'))).activityRunId, '\" },Errors\": [{\"ActivityRunId\": \"789c1234-d567-8901-e234-567890123456\",\"ActivityName\": \"Data Processing\",\"ActivityType\": \"Batch\",\"ErrorCode\": \"1001\",\"ErrorType\": \"Timeout\",\"ErrorMessage\": \"The operation timed out after 30 seconds.\"}]')}\n",
+						"value": "@{\n  concat(\n    '{ \"RunId\": \"', json(string(variables('ErrorJson'))).activityRunId, '\" }',\n    ',Errors\": [{\"ActivityRunId\":\"', json(string(variables('ErrorJson'))).activityRunId, '\" }',\n    ',{\"ActivityName\":\"', json(string(variables('ErrorJson'))).ActivityName, '\" }',\n    ',{\"ActivityType\":\"', json(string(variables('ErrorJson'))).ActivityType, '\" }',\n    ',{\"ErrorCode\":\"', json(string(variables('ErrorJson'))).error.errorCode, '\" }',\n    ',{\"ErrorType\":\"', json(string(variables('ErrorJson'))).input.source.type, '\" }',\n    ',{\"ErrorMessage\":\"', json(variables('ErrorJson')).error.message, '\" }',\n    ']'\n  )\n}",
 						"type": "Expression"
 					}
 				}
