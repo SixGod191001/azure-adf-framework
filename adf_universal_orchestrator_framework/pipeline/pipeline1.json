@@ -76,9 +76,53 @@
 				"typeProperties": {
 					"variableName": "jsonVariable",
 					"value": {
-						"value": "@{\n  concat(\n    '{ \"RunId\": \"', json(string(variables('ErrorJson'))).activityRunId, '\" }',\n    ',Errors\": [{\"ActivityRunId\":\"', json(string(variables('ErrorJson'))).activityRunId, '\" }',\n    ',{\"ActivityName\":\"', json(string(variables('ErrorJson'))).ActivityName, '\" }',\n    ',{\"ActivityType\":\"', json(string(variables('ErrorJson'))).ActivityType, '\" }',\n    ',{\"ErrorCode\":\"', json(string(variables('ErrorJson'))).error.errorCode, '\" }',\n    ',{\"ErrorType\":\"', json(string(variables('ErrorJson'))).input.source.type, '\" }',\n    ',{\"ErrorMessage\":\"', json(variables('ErrorJson')).error.message, '\" }',\n    ']'\n  )\n}",
+						"value": "@{\nconcat(\n    '{ \"RunId\": \"', json(string(variables('ErrorJson'))).activityRunId, '\"',\n    ',\"Errors\": [{\"ActivityRunId\":\"', json(string(variables('ErrorJson'))).activityRunId, '\"',\n    ',\"ActivityName\":\"', json(string(variables('ErrorJson'))).ActivityName, '\" ',\n    ',\"ActivityType\":\"', json(string(variables('ErrorJson'))).ActivityType, '\" ',\n    ',\"ErrorCode\":\"', json(string(variables('ErrorJson'))).error.errorCode, '\" ',\n    ',\"ErrorType\":\"', json(string(variables('ErrorJson'))).input.source.type, '\" ',\n    ',\"ErrorMessage\":\"', json(variables('ErrorJson')).error.Message, '\"}]}',\n    ''\n  )\n}",
 						"type": "Expression"
 					}
+				}
+			},
+			{
+				"name": "Log Error Details",
+				"description": "Parses pipeline error details and persists them to the metadata database error log table.",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Set Error Detail Values",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.00:10:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[metadata].[SetErrorLogDetails]",
+					"storedProcedureParameters": {
+						"JsonErrorDetails": {
+							"value": {
+								"value": "@variables('jsonVariable')",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"LocalExecutionId": {
+							"value": {
+								"value": "15b765f8-d9de-43d7-b3db-6fcedebdf433",
+								"type": "Expression"
+							},
+							"type": "Guid"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "SupportDatabase",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
