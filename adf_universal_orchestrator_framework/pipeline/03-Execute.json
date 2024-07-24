@@ -655,7 +655,7 @@
 									"type": "SqlServerStoredProcedure",
 									"dependsOn": [
 										{
-											"activity": "Set Error Detail Values",
+											"activity": "Set Error Detail Variable",
 											"dependencyConditions": [
 												"Succeeded"
 											]
@@ -842,30 +842,6 @@
 										"variableName": "ErrorJson",
 										"value": {
 											"value": "@string(json(string(activity('Get Worker Pipeline Error Details').output)).value[0])",
-											"type": "Expression"
-										}
-									}
-								},
-								{
-									"name": "Set Error Detail Values",
-									"type": "SetVariable",
-									"dependsOn": [
-										{
-											"activity": "Set Error Detail Variable",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"policy": {
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"variableName": "JSONVARIABLE1",
-										"value": {
-											"value": "@{concat('{ \"RunId\": \"', json(string(variables('ErrorJson'))).activityRunId, '\" },Errors\": [{\"ActivityRunId\": \"789c1234-d567-8901-e234-567890123456\",\"ActivityName\": \"Data Processing\",\"ActivityType\": \"Batch\",\"ErrorCode\": \"1001\",\"ErrorType\": \"Timeout\",\"ErrorMessage\": \"The operation timed out after 30 seconds.\"}]')}",
 											"type": "Expression"
 										}
 									}
