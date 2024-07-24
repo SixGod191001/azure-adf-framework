@@ -1,0 +1,60 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "one",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "jsonVariable",
+					"value": "{ \"key1\": \"value1\", \"key2\": \"value2\" }"
+				}
+			},
+			{
+				"name": "two",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "one",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Variable values",
+					"value": {
+						"value": "@variables('jsonVariable')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"variableToReceiveValue": {
+				"type": "String"
+			},
+			"Variable values": {
+				"type": "String"
+			},
+			"jsonVariable": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "ADFUniversalOrchestratorFramework"
+		},
+		"annotations": []
+	}
+}
