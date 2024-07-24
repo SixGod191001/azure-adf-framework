@@ -655,7 +655,7 @@
 									"type": "SqlServerStoredProcedure",
 									"dependsOn": [
 										{
-											"activity": "Set Error Detail Variable",
+											"activity": "Set Error Detail Variable_copy1",
 											"dependencyConditions": [
 												"Succeeded"
 											]
@@ -842,6 +842,30 @@
 										"variableName": "ErrorJson",
 										"value": {
 											"value": "@string(json(string(activity('Get Worker Pipeline Error Details').output)).value[0])",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "Set Error Detail Variable_copy1",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "Set Error Detail Variable",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "jsonVariable",
+										"value": {
+											"value": "@{\nconcat(\n    '{ \"RunId\": \"', json(string(variables('ErrorJson'))).activityRunId, '\"',\n    ',\"Errors\": [{\"ActivityRunId\":\"', json(string(variables('ErrorJson'))).activityRunId, '\"',\n    ',\"ActivityName\":\"', json(string(variables('ErrorJson'))).ActivityName, '\" ',\n    ',\"ActivityType\":\"', json(string(variables('ErrorJson'))).ActivityType, '\" ',\n    ',\"ErrorCode\":\"', json(string(variables('ErrorJson'))).error.errorCode, '\" ',\n    ',\"ErrorType\":\"', json(string(variables('ErrorJson'))).input.source.type, '\" ',\n    ',\"ErrorMessage\":\"', json(variables('ErrorJson')).error.Message, '\"}]}',\n    ''\n  )\n}",
 											"type": "Expression"
 										}
 									}
