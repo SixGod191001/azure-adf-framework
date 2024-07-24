@@ -76,7 +76,7 @@
 				"typeProperties": {
 					"variableName": "jsonVariable",
 					"value": {
-						"value": "@{\n  concat(\n    '{ \"RunId\": \"', json(string(variables('ErrorJson'))).activityRunId, '\" }',\n    ', ',\n    '{ \"Errors\": [{\"ActivityRunId\":\": \"', json(string(variables('ErrorJson'))).activityRunId, '\" }',\n    ', '\n  )\n}",
+						"value": "@{concat('{ \"RunId\": \"', json(string(variables('ErrorJson'))).activityRunId, '\" },Errors\": [{\"ActivityRunId\": \"789c1234-d567-8901-e234-567890123456\",\"ActivityName\": \"Data Processing\",\"ActivityType\": \"Batch\",\"ErrorCode\": \"1001\",\"ErrorType\": \"Timeout\",\"ErrorMessage\": \"The operation timed out after 30 seconds.\"}]')}\n",
 						"type": "Expression"
 					}
 				}
@@ -93,6 +93,9 @@
 				"type": "String"
 			},
 			"ErrorJson": {
+				"type": "String"
+			},
+			"JSONVARIABLE1": {
 				"type": "String"
 			}
 		},
