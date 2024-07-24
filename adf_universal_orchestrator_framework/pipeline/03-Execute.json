@@ -674,7 +674,7 @@
 										"storedProcedureParameters": {
 											"JsonErrorDetails": {
 												"value": {
-													"value": "@variables('ErrorJson')",
+													"value": "@variables('jsonVariable')",
 													"type": "Expression"
 												},
 												"type": "String"
@@ -1237,6 +1237,12 @@
 				"type": "String"
 			},
 			"ErrorJson": {
+				"type": "String"
+			},
+			"jsonVariable": {
+				"type": "String"
+			},
+			"JSONVARIABLE1": {
 				"type": "String"
 			}
 		},
