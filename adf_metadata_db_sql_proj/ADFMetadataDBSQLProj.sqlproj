@@ -59,6 +59,8 @@
   <Import Condition="'$(NetCoreBuild)' != 'true' AND '$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <Import Condition="'$(NetCoreBuild)' != 'true' AND '$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
+    <Folder Include="edw" />
+    <Folder Include="edw\Tables" />
     <Folder Include="Properties" />
     <Folder Include="metadata\" />
     <Folder Include="metadata\Tables\" />
@@ -83,6 +85,22 @@
     <Folder Include="metadataTesting\Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
+    <Build Include="edw\Tables\t_cpa_interim_frch_mkt_map.sql" />
+    <Build Include="edw\Tables\t_cpa_interim_frch_prvn_rgn_map.sql" />
+    <Build Include="edw\Tables\t_cpa_interim_hospital.sql" />
+    <Build Include="edw\Tables\t_cpa_interim_medicine_sales.sql" />
+    <Build Include="edw\Tables\t_cpa_interim_mkt_prod.sql" />
+    <Build Include="edw\Tables\t_cpa_interim_patient_usage.sql" />
+    <Build Include="edw\Tables\t_cpa_interim_sku_pack_map.sql" />
+    <Build Include="edw\Tables\t_cpa_landing_frch_mkt_map.sql" />
+    <Build Include="edw\Tables\t_cpa_landing_frch_prvn_rgn_map.sql" />
+    <Build Include="edw\Tables\t_cpa_landing_hospital.sql" />
+    <Build Include="edw\Tables\t_cpa_landing_medicine_sales.sql" />
+    <Build Include="edw\Tables\t_cpa_landing_mkt_prod.sql" />
+    <Build Include="edw\Tables\t_cpa_landing_patient_usage.sql" />
+    <Build Include="edw\Tables\t_cpa_landing_sku_pack_map.sql" />
+    <Build Include="edw\Tables\t_veeva_interim_brd_indc_map.sql" />
+    <Build Include="edw\Tables\t_veeva_landing_brd_indc_map.sql" />
     <Build Include="metadataHelpers\Stored Procedures\SetDefaultDataProcessType.sql" />
     <Build Include="metadataHelpers\Stored Procedures\SetDefaultMainControlTable.sql" />
     <Build Include="metadata\Tables\DataProcessType.sql" />
@@ -101,6 +119,7 @@
     <Build Include="metadata\Stored Procedures\SetLogPipelineSuccess.sql" />
     <Build Include="metadata\Stored Procedures\SetLogPipelineFailed.sql" />
     <Build Include="metadata\Stored Procedures\UpdateExecutionLog.sql" />
+    <Build Include="Security\edw.sql" />
     <None Include="Scripts\Metadata\DropAll.sql" />
     <Build Include="Security\metadata.sql" />
     <Build Include="metadata\Views\CurrentProperties.sql" />
