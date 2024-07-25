@@ -19,6 +19,9 @@
 				"defaultValue": "Sheet1"
 			}
 		},
+		"folder": {
+			"name": "Universal"
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
