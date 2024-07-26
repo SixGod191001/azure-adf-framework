@@ -1,0 +1,27 @@
+{
+	"name": "ds_uni_dl_AzureSqlTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SupportDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"v_table_name": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "Universal"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "",
+			"table": {
+				"value": "@dataset().v_table_name",
+				"type": "Expression"
+			}
+		}
+	}
+}

@@ -1,0 +1,61 @@
+{
+	"name": "pl_uni_blob_db_cutfile",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"value": "{\"type\": \"TabularTranslator\",\"mappings\": [\n{\"source\": {\"name\": \"mkt_code\"},\n\"sink\": {\"name\": \"mkt_code\"}},\n{\"source\": {\"name\": \"frch_name\"},\n\"sink\": {\"name\": \"frch_name\"}}\n]}",
+						"type": "Expression"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_uni_blob_excel",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_container": "cpa",
+							"p_filename": "CPA_Hospital.xlsx",
+							"p_sheet": "Sheet1"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_uni_dl_AzureSqlTable",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Universal"
+		},
+		"annotations": []
+	}
+}
