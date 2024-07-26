@@ -1,10 +1,10 @@
 {
-	"name": "pl_uni_blob_db_cutfile",
+	"name": "pl_uni_blob_db_cut_excelfile",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
-				"type": "Copy",
+				"name": "Get Metadata1",
+				"type": "GetMetadata",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -15,42 +15,96 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "ExcelSource",
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						}
-					},
-					"sink": {
-						"type": "AzureSqlSink",
-						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false
-					},
-					"enableStaging": false,
-					"translator": {
-						"value": "{\"type\": \"TabularTranslator\",\"mappings\": [\n{\"source\": {\"name\": \"mkt_code\"},\n\"sink\": {\"name\": \"mkt_code\"}},\n{\"source\": {\"name\": \"frch_name\"},\n\"sink\": {\"name\": \"frch_name\"}}\n]}",
-						"type": "Expression"
-					}
-				},
-				"inputs": [
-					{
+					"dataset": {
 						"referenceName": "ds_uni_blob_excel",
 						"type": "DatasetReference",
 						"parameters": {
-							"p_container": "cpa",
-							"p_filename": "CPA_Hospital.xlsx",
-							"p_sheet": "Sheet1"
+							"p_container": "@pipeline().parameters.source_container",
+							"p_filename": "@pipeline().parameters.source_filename",
+							"p_sheet": "@pipeline().parameters.source_sheet"
 						}
+					},
+					"fieldList": [],
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"enablePartitionDiscovery": false
+					}
+				}
+			},
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Get Metadata1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
-				"outputs": [
-					{
-						"referenceName": "ds_uni_dl_AzureSqlTable",
-						"type": "DatasetReference"
-					}
-				]
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(formatDateTime(activity('Get Metadata1').output.lastModified,'yyyy-MM-dd'),formatDateTime(addHours(utcnow(),8),'yyyy-MM-dd'))",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "Copy data2",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "ExcelSource",
+									"storeSettings": {
+										"type": "AzureBlobStorageReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_uni_blob_excel",
+									"type": "DatasetReference",
+									"parameters": {
+										"p_container": "@pipeline().parameters.source_container",
+										"p_filename": "@pipeline().parameters.source_filename",
+										"p_sheet": "@pipeline().parameters.source_sheet"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_uni_dl_AzureSqlTable",
+									"type": "DatasetReference"
+								}
+							]
+						}
+					]
+				}
 			}
 		],
 		"folder": {
