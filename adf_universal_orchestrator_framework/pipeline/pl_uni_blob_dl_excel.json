@@ -88,22 +88,28 @@
 		],
 		"parameters": {
 			"source_container": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "cpa"
 			},
 			"source_filename": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "CPA_Franchise_Marketing_Mapping.xlsx"
 			},
 			"source_sheet": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "Sheet1"
 			},
 			"target_container": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "landing"
 			},
 			"target_filename": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "cpa"
 			},
 			"target_path": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "CPA_Franchise_Marketing_Mapping.csv"
 			}
 		},
 		"folder": {
