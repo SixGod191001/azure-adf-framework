@@ -1,0 +1,109 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "ADFUniversalOrchestratorFramework"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/zongdiao')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Execute Pipeline1",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"policy": {
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "CSV_COPY_BLOB_GEN2_m8j_TopLevel",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"MaxNumberOfObjectsReturnedFromLookupActivity": 5000,
+								"MaxNumberOfConcurrentTasks": 20,
+								"MainControlTableName": "metadata.metadata_cedc",
+								"TaskId": {
+									"value": "1",
+									"type": "Expression"
+								}
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "CSV_COPY_BLOB_GEN2"
+				},
+				"annotations": [],
+				"lastPublishTime": "2024-07-15T10:28:36Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/00-Batch')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Batch pipeline used optionally to bootstrap any wider processes in your Data Factory that then calls the processing framework.",
+				"activities": [
+					{
+						"name": "Call Stage",
+						"description": "Call Stage",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"policy": {
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "01-Stage",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"BatchName": {
+									"value": "@pipeline().parameters.BatchName",
+									"type": "Expression"
+								}
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"BatchName": {
+						"type": "string",
+						"defaultValue": "cpa"
+					}
+				},
+				"folder": {
+					"name": "ADFUniversalOrchestratorFramework"
+				},
+				"annotations": [
+					"Batch"
+				],
+				"lastPublishTime": "2024-07-16T07:07:43Z"
+			},
+			"dependsOn": []
+		}
+	]
+}

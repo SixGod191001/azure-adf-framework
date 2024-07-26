@@ -4,8 +4,12 @@
 	"parameters": {
 		"factoryName": {
 			"type": "string",
-			"metadata": "数据工厂名称",
+			"metadata": "Data Factory name",
 			"defaultValue": "ADFUniversalOrchestratorFramework"
+		},
+		"SupportDatabase_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "adf-framework-metadata-db-connection-string"
 		}
 	},
 	"variables": {
@@ -13,41 +17,1125 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/Throw Exception Utils')]",
+			"name": "[concat(parameters('factoryName'), '/MetadataDrivenCopyTask_axv_SourceDS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "lk_dl_cedc_2",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"cw_columnDelimiter": {
+						"type": "String"
+					},
+					"cw_rowDelimiter": {
+						"type": "String"
+					},
+					"cw_escapeChar": {
+						"type": "String"
+					},
+					"cw_quoteChar": {
+						"type": "Object"
+					},
+					"cw_firstRowAsHeader": {
+						"type": "Bool"
+					},
+					"cw_fileName": {
+						"type": "Object"
+					},
+					"cw_folderPath": {
+						"type": "String"
+					},
+					"cw_fileSystem": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "MetadataDrivenCopyTask_axv_20240717"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().cw_fileName",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().cw_folderPath",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().cw_fileSystem",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": {
+						"value": "@dataset().cw_columnDelimiter",
+						"type": "Expression"
+					},
+					"rowDelimiter": {
+						"value": "@dataset().cw_rowDelimiter",
+						"type": "Expression"
+					},
+					"escapeChar": {
+						"value": "@dataset().cw_escapeChar",
+						"type": "Expression"
+					},
+					"firstRowAsHeader": {
+						"value": "@dataset().cw_firstRowAsHeader",
+						"type": "Expression"
+					},
+					"quoteChar": {
+						"value": "@dataset().cw_quoteChar",
+						"type": "Expression"
+					}
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/MetadataDrivenCopyTask_c2p_DestinationDS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "lk_dl_cedc_2",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"cw_fileName": {
+						"type": "Object"
+					},
+					"cw_folderPath": {
+						"type": "Object"
+					},
+					"cw_fileSystem": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "MetadataDrivenCopyTask_c2p_20240712"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().cw_fileName",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().cw_folderPath",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().cw_fileSystem",
+							"type": "Expression"
+						}
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/MetadataDrivenCopyTask_c2p_SourceDS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "lk_dl_cedc_2",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"cw_columnDelimiter": {
+						"type": "String"
+					},
+					"cw_escapeChar": {
+						"type": "String"
+					},
+					"cw_quoteChar": {
+						"type": "String"
+					},
+					"cw_firstRowAsHeader": {
+						"type": "Bool"
+					},
+					"cw_fileName": {
+						"type": "Object"
+					},
+					"cw_folderPath": {
+						"type": "Object"
+					},
+					"cw_fileSystem": {
+						"type": "Object"
+					}
+				},
+				"folder": {
+					"name": "MetadataDrivenCopyTask_c2p_20240712"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().cw_fileName",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().cw_folderPath",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().cw_fileSystem",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": {
+						"value": "@dataset().cw_columnDelimiter",
+						"type": "Expression"
+					},
+					"escapeChar": {
+						"value": "@dataset().cw_escapeChar",
+						"type": "Expression"
+					},
+					"firstRowAsHeader": {
+						"value": "@dataset().cw_firstRowAsHeader",
+						"type": "Expression"
+					},
+					"quoteChar": {
+						"value": "@dataset().cw_quoteChar",
+						"type": "Expression"
+					}
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/MetadataDrivenCopyTask_rnu_DestinationDS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "lk_dl_cedc_2",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"cw_columnDelimiter": {
+						"type": "String"
+					},
+					"cw_escapeChar": {
+						"type": "String"
+					},
+					"cw_quoteChar": {
+						"type": "String"
+					},
+					"cw_firstRowAsHeader": {
+						"type": "Bool"
+					},
+					"cw_fileName": {
+						"type": "Object"
+					},
+					"cw_folderPath": {
+						"type": "Object"
+					},
+					"cw_fileSystem": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "MetadataDrivenCopyTask_rnu_20240712"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().cw_fileName",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().cw_folderPath",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().cw_fileSystem",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": {
+						"value": "@dataset().cw_columnDelimiter",
+						"type": "Expression"
+					},
+					"escapeChar": {
+						"value": "@dataset().cw_escapeChar",
+						"type": "Expression"
+					},
+					"firstRowAsHeader": {
+						"value": "@dataset().cw_firstRowAsHeader",
+						"type": "Expression"
+					},
+					"quoteChar": {
+						"value": "@dataset().cw_quoteChar",
+						"type": "Expression"
+					}
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/MetadataDrivenCopyTask_rnu_SourceDS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "lk_dl_cedc_2",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"cw_columnDelimiter": {
+						"type": "String"
+					},
+					"cw_escapeChar": {
+						"type": "String"
+					},
+					"cw_quoteChar": {
+						"type": "String"
+					},
+					"cw_firstRowAsHeader": {
+						"type": "Bool"
+					},
+					"cw_fileName": {
+						"type": "Object"
+					},
+					"cw_folderPath": {
+						"type": "String"
+					},
+					"cw_fileSystem": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "MetadataDrivenCopyTask_rnu_20240712"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().cw_fileName",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().cw_folderPath",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().cw_fileSystem",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": {
+						"value": "@dataset().cw_columnDelimiter",
+						"type": "Expression"
+					},
+					"escapeChar": {
+						"value": "@dataset().cw_escapeChar",
+						"type": "Expression"
+					},
+					"firstRowAsHeader": {
+						"value": "@dataset().cw_firstRowAsHeader",
+						"type": "Expression"
+					},
+					"quoteChar": {
+						"value": "@dataset().cw_quoteChar",
+						"type": "Expression"
+					}
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_uni_blob_csv')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "lk_blob_cedc_new",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"p_container": {
+						"type": "string",
+						"defaultValue": "ecdc"
+					},
+					"p_filename": {
+						"type": "string",
+						"defaultValue": "testing.csv"
+					},
+					"p_sheet": {
+						"type": "string",
+						"defaultValue": "Sheet1"
+					}
+				},
+				"folder": {
+					"name": "Universal"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().p_filename",
+							"type": "Expression"
+						},
+						"container": {
+							"value": "@dataset().p_container",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "country",
+						"type": "String"
+					},
+					{
+						"name": "country_code",
+						"type": "String"
+					},
+					{
+						"name": "continent",
+						"type": "String"
+					},
+					{
+						"name": "population",
+						"type": "String"
+					},
+					{
+						"name": "indicator",
+						"type": "String"
+					},
+					{
+						"name": "daily_count",
+						"type": "String"
+					},
+					{
+						"name": "date",
+						"type": "String"
+					},
+					{
+						"name": "rate_14_day",
+						"type": "String"
+					},
+					{
+						"name": "source",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_uni_blob_csv2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "lk_blob_cedc_new",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"p_container": {
+						"type": "string",
+						"defaultValue": "ecdc"
+					},
+					"p_filename": {
+						"type": "string",
+						"defaultValue": "cases_deaths.csv"
+					},
+					"p_sheet": {
+						"type": "string",
+						"defaultValue": "Sheet1"
+					}
+				},
+				"folder": {
+					"name": "Universal"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().p_filename",
+							"type": "Expression"
+						},
+						"container": {
+							"value": "@dataset().p_container",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_uni_blob_excel')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "lk_blob_cedc_new",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"p_container": {
+						"type": "string",
+						"defaultValue": "cpa"
+					},
+					"p_filename": {
+						"type": "string",
+						"defaultValue": "CPA_Franchise_Marketing_Mapping.xlsx"
+					},
+					"p_sheet": {
+						"type": "string",
+						"defaultValue": "Sheet1"
+					}
+				},
+				"folder": {
+					"name": "Universal"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": {
+						"value": "@dataset().p_sheet",
+						"type": "Expression"
+					},
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().p_filename",
+							"type": "Expression"
+						},
+						"container": {
+							"value": "@dataset().p_container",
+							"type": "Expression"
+						}
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_uni_dl_csv')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "lk_dl_cedc",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"p_container": {
+						"type": "string",
+						"defaultValue": "landing"
+					},
+					"p_path": {
+						"type": "string",
+						"defaultValue": "cpa"
+					},
+					"p_filename": {
+						"type": "string",
+						"defaultValue": "CPA_Franchise_Marketing_Mapping.csv"
+					}
+				},
+				"folder": {
+					"name": "Universal"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().p_filename",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().p_path",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().p_container",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_uni_dl_csv1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "lk_dl_cedc",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"p_container": {
+						"type": "string",
+						"defaultValue": "landing"
+					},
+					"p_filename": {
+						"type": "string",
+						"defaultValue": "testing.csv"
+					},
+					"p_sheet": {
+						"type": "string",
+						"defaultValue": "Sheet1"
+					}
+				},
+				"folder": {
+					"name": "Universal"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().p_filename",
+							"type": "Expression"
+						},
+						"folderPath": "ecdc",
+						"fileSystem": {
+							"value": "@dataset().p_container",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "country",
+						"type": "String"
+					},
+					{
+						"name": "country_code",
+						"type": "String"
+					},
+					{
+						"name": "year_week",
+						"type": "String"
+					},
+					{
+						"name": "new_cases",
+						"type": "String"
+					},
+					{
+						"name": "tests_done",
+						"type": "String"
+					},
+					{
+						"name": "population",
+						"type": "String"
+					},
+					{
+						"name": "testing_rate",
+						"type": "String"
+					},
+					{
+						"name": "positivity_rate",
+						"type": "String"
+					},
+					{
+						"name": "testing_data_source",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_uni_dl_parquet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "lk_dl_cedc_2",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"p_container": {
+						"type": "string",
+						"defaultValue": "landing"
+					},
+					"p_path": {
+						"type": "string",
+						"defaultValue": "ecdc"
+					},
+					"p_filename": {
+						"type": "string",
+						"defaultValue": "cases_deaths.csv"
+					}
+				},
+				"folder": {
+					"name": "Universal"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().p_filename",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().p_path",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().p_container",
+							"type": "Expression"
+						}
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sourcelist')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "lk_blob_cedc_new",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "CPA_Package_SKU_Mapping.xlsx",
+						"folderPath": "cpa",
+						"container": "prelanding"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/targelist')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "lk_blob_cedc_new",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "landing"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SupportDatabase')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Connection between ADF and processing framework metadata SQLDB.",
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "AKVLinkedService_UniversalOrchestratorFramework",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "[parameters('SupportDatabase_properties_typeProperties_connectionString_secretName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CSV_COPY_BLOB_GEN2_m8j_BottomLevel')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"description": "Provide a simple way of throwing an exception within Data Factory using TSQL error handling.",
+				"description": "This pipeline will copy objects from one group. The objects belonging to this group will be copied parallelly.",
 				"activities": [
 					{
-						"name": "Raise Error",
-						"description": "Using a SQL database to raise an error/exception but wrapped up as a data factory pipeline. Error message information exposed as a pipeline parameter.",
-						"type": "Lookup",
+						"name": "ListObjectsFromOneGroup",
+						"description": "List objects from one group and iterate each of them to downstream activities",
+						"type": "ForEach",
 						"dependsOn": [],
-						"policy": {
-							"timeout": "0.00:10:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
 						"userProperties": [],
 						"typeProperties": {
-							"source": {
-								"type": "AzureSqlSource",
-								"sqlReaderQuery": {
-									"value": "RAISERROR('@{pipeline().parameters.Message}',16,1);",
-									"type": "Expression"
-								},
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
+							"items": {
+								"value": "@pipeline().parameters.ObjectsPerGroupToCopy",
+								"type": "Expression"
 							},
-							"dataset": {
-								"referenceName": "GetSetMetadata",
-								"type": "DatasetReference",
-								"parameters": {}
-							},
-							"firstRowOnly": false
+							"activities": [
+								{
+									"name": "RouteJobsBasedOnLoadingBehavior",
+									"description": "Check the loading behavior for each object if it requires full load or incremental load. If it is Default or FullLoad case, do full load. If it is DeltaLoad case, do incremental load.",
+									"type": "Switch",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"on": {
+											"value": "@json(item().DataLoadingBehaviorSettings).dataLoadingBehavior",
+											"type": "Expression"
+										},
+										"cases": [
+											{
+												"value": "FullLoad",
+												"activities": [
+													{
+														"name": "FullLoadOneObject",
+														"description": "Take a full snapshot on this object and copy it to the destination",
+														"type": "Copy",
+														"dependsOn": [],
+														"policy": {
+															"timeout": "0.12:00:00",
+															"retry": 0,
+															"retryIntervalInSeconds": 30,
+															"secureOutput": false,
+															"secureInput": false
+														},
+														"userProperties": [
+															{
+																"name": "Source",
+																"value": "@{json(item().SourceObjectSettings).container}/@{json(item().SourceObjectSettings).folderPath}/@{json(item().SourceObjectSettings).fileName}"
+															},
+															{
+																"name": "Destination",
+																"value": "@{json(item().SinkObjectSettings).fileSystem}/@{json(item().SinkObjectSettings).folderPath}/@{json(item().SinkObjectSettings).fileName}"
+															}
+														],
+														"typeProperties": {
+															"source": {
+																"type": "DelimitedTextSource",
+																"storeSettings": {
+																	"type": "AzureBlobStorageReadSettings",
+																	"recursive": {
+																		"value": "@json(item().CopySourceSettings).recursive",
+																		"type": "Expression"
+																	},
+																	"enablePartitionDiscovery": {
+																		"value": "@json(item().CopySourceSettings).enablePartitionDiscovery",
+																		"type": "Expression"
+																	}
+																},
+																"formatSettings": {
+																	"type": "DelimitedTextReadSettings",
+																	"skipLineCount": {
+																		"value": "@json(item().CopySourceSettings).skipLineCount",
+																		"type": "Expression"
+																	}
+																}
+															},
+															"sink": {
+																"type": "DelimitedTextSink",
+																"storeSettings": {
+																	"type": "AzureBlobFSWriteSettings",
+																	"copyBehavior": {
+																		"value": "@json(item().CopySinkSettings).copyBehavior",
+																		"type": "Expression"
+																	}
+																},
+																"formatSettings": {
+																	"type": "DelimitedTextWriteSettings",
+																	"quoteAllText": {
+																		"value": "@json(item().CopySinkSettings).quoteAllText",
+																		"type": "Expression"
+																	},
+																	"fileExtension": {
+																		"value": "@json(item().CopySinkSettings).fileExtension",
+																		"type": "Expression"
+																	}
+																}
+															},
+															"enableStaging": false,
+															"translator": {
+																"value": "@json(item().CopyActivitySettings).translator",
+																"type": "Expression"
+															}
+														},
+														"inputs": [
+															{
+																"referenceName": "CSV_COPY_BLOB_GEN2_m8j_SourceDS",
+																"type": "DatasetReference",
+																"parameters": {
+																	"cw_columnDelimiter": {
+																		"value": "@json(item().SourceObjectSettings).columnDelimiter",
+																		"type": "Expression"
+																	},
+																	"cw_escapeChar": {
+																		"value": "@json(item().SourceObjectSettings).escapeChar",
+																		"type": "Expression"
+																	},
+																	"cw_quoteChar": {
+																		"value": "@json(item().SourceObjectSettings).quoteChar",
+																		"type": "Expression"
+																	},
+																	"cw_firstRowAsHeader": {
+																		"value": "@json(item().SourceObjectSettings).firstRowAsHeader",
+																		"type": "Expression"
+																	},
+																	"cw_fileName": {
+																		"value": "@json(item().SourceObjectSettings).fileName",
+																		"type": "Expression"
+																	},
+																	"cw_folderPath": {
+																		"value": "@json(item().SourceObjectSettings).folderPath",
+																		"type": "Expression"
+																	},
+																	"cw_container": {
+																		"value": "@json(item().SourceObjectSettings).container",
+																		"type": "Expression"
+																	}
+																}
+															}
+														],
+														"outputs": [
+															{
+																"referenceName": "CSV_COPY_BLOB_GEN2_m8j_DestinationDS",
+																"type": "DatasetReference",
+																"parameters": {
+																	"cw_columnDelimiter": {
+																		"value": "@json(item().SinkObjectSettings).columnDelimiter",
+																		"type": "Expression"
+																	},
+																	"cw_escapeChar": {
+																		"value": "@json(item().SinkObjectSettings).escapeChar",
+																		"type": "Expression"
+																	},
+																	"cw_quoteChar": {
+																		"value": "@json(item().SinkObjectSettings).quoteChar",
+																		"type": "Expression"
+																	},
+																	"cw_firstRowAsHeader": {
+																		"value": "@json(item().SinkObjectSettings).firstRowAsHeader",
+																		"type": "Expression"
+																	},
+																	"cw_fileName": {
+																		"value": "@json(item().SinkObjectSettings).fileName",
+																		"type": "Expression"
+																	},
+																	"cw_folderPath": {
+																		"value": "@json(item().SinkObjectSettings).folderPath",
+																		"type": "Expression"
+																	},
+																	"cw_fileSystem": {
+																		"value": "@json(item().SinkObjectSettings).fileSystem",
+																		"type": "Expression"
+																	}
+																}
+															}
+														]
+													}
+												]
+											}
+										],
+										"defaultActivities": [
+											{
+												"name": "DefaultFullLoadOneObject",
+												"description": "Take a full snapshot on this object and copy it to the destination",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "0.12:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [
+													{
+														"name": "Source",
+														"value": "@{json(item().SourceObjectSettings).container}/@{json(item().SourceObjectSettings).folderPath}/@{json(item().SourceObjectSettings).fileName}"
+													},
+													{
+														"name": "Destination",
+														"value": "@{json(item().SinkObjectSettings).fileSystem}/@{json(item().SinkObjectSettings).folderPath}/@{json(item().SinkObjectSettings).fileName}"
+													}
+												],
+												"typeProperties": {
+													"source": {
+														"type": "DelimitedTextSource",
+														"storeSettings": {
+															"type": "AzureBlobStorageReadSettings",
+															"recursive": {
+																"value": "@json(item().CopySourceSettings).recursive",
+																"type": "Expression"
+															},
+															"enablePartitionDiscovery": {
+																"value": "@json(item().CopySourceSettings).enablePartitionDiscovery",
+																"type": "Expression"
+															}
+														},
+														"formatSettings": {
+															"type": "DelimitedTextReadSettings",
+															"skipLineCount": {
+																"value": "@json(item().CopySourceSettings).skipLineCount",
+																"type": "Expression"
+															}
+														}
+													},
+													"sink": {
+														"type": "DelimitedTextSink",
+														"storeSettings": {
+															"type": "AzureBlobFSWriteSettings",
+															"copyBehavior": {
+																"value": "@json(item().CopySinkSettings).copyBehavior",
+																"type": "Expression"
+															}
+														},
+														"formatSettings": {
+															"type": "DelimitedTextWriteSettings",
+															"quoteAllText": {
+																"value": "@json(item().CopySinkSettings).quoteAllText",
+																"type": "Expression"
+															},
+															"fileExtension": {
+																"value": "@json(item().CopySinkSettings).fileExtension",
+																"type": "Expression"
+															}
+														}
+													},
+													"enableStaging": false,
+													"translator": {
+														"value": "@json(item().CopyActivitySettings).translator",
+														"type": "Expression"
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "CSV_COPY_BLOB_GEN2_m8j_SourceDS",
+														"type": "DatasetReference",
+														"parameters": {
+															"cw_columnDelimiter": {
+																"value": "@json(item().SourceObjectSettings).columnDelimiter",
+																"type": "Expression"
+															},
+															"cw_escapeChar": {
+																"value": "@json(item().SourceObjectSettings).escapeChar",
+																"type": "Expression"
+															},
+															"cw_quoteChar": {
+																"value": "@json(item().SourceObjectSettings).quoteChar",
+																"type": "Expression"
+															},
+															"cw_firstRowAsHeader": {
+																"value": "@json(item().SourceObjectSettings).firstRowAsHeader",
+																"type": "Expression"
+															},
+															"cw_fileName": {
+																"value": "@json(item().SourceObjectSettings).fileName",
+																"type": "Expression"
+															},
+															"cw_folderPath": {
+																"value": "@json(item().SourceObjectSettings).folderPath",
+																"type": "Expression"
+															},
+															"cw_container": {
+																"value": "@json(item().SourceObjectSettings).container",
+																"type": "Expression"
+															}
+														}
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "CSV_COPY_BLOB_GEN2_m8j_DestinationDS",
+														"type": "DatasetReference",
+														"parameters": {
+															"cw_columnDelimiter": {
+																"value": "@json(item().SinkObjectSettings).columnDelimiter",
+																"type": "Expression"
+															},
+															"cw_escapeChar": {
+																"value": "@json(item().SinkObjectSettings).escapeChar",
+																"type": "Expression"
+															},
+															"cw_quoteChar": {
+																"value": "@json(item().SinkObjectSettings).quoteChar",
+																"type": "Expression"
+															},
+															"cw_firstRowAsHeader": {
+																"value": "@json(item().SinkObjectSettings).firstRowAsHeader",
+																"type": "Expression"
+															},
+															"cw_fileName": {
+																"value": "@json(item().SinkObjectSettings).fileName",
+																"type": "Expression"
+															},
+															"cw_folderPath": {
+																"value": "@json(item().SinkObjectSettings).folderPath",
+																"type": "Expression"
+															},
+															"cw_fileSystem": {
+																"value": "@json(item().SinkObjectSettings).fileSystem",
+																"type": "Expression"
+															}
+														}
+													}
+												]
+											}
+										]
+									}
+								}
+							]
 						}
 					}
 				],
@@ -55,20 +1143,786 @@
 					"elapsedTimeMetric": {}
 				},
 				"parameters": {
-					"Message": {
-						"type": "string"
+					"ObjectsPerGroupToCopy": {
+						"type": "Array"
 					}
 				},
 				"folder": {
-					"name": "ADFUniversalOrchestratorFramework/Utils"
+					"name": "CSV_COPY_BLOB_GEN2"
 				},
-				"annotations": [
-					"metadata",
-					"Utils"
-				],
-				"lastPublishTime": "2024-02-20T03:29:15Z"
+				"annotations": [],
+				"lastPublishTime": "2024-07-15T08:13:40Z"
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Intentional Error')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Used just so the metadata has something to call during development.",
+				"activities": [
+					{
+						"name": "Wait1",
+						"description": "Framework development worker simulator.",
+						"type": "Wait",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": {
+								"value": "@pipeline().parameters.WaitTime",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Raise Errors or Not",
+						"description": "Framework development worker simulator.",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "Wait1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@equals(pipeline().parameters.RaiseErrors,'true')",
+								"type": "Expression"
+							},
+							"ifTrueActivities": [
+								{
+									"name": "Call Fail Procedure",
+									"type": "SqlServerStoredProcedure",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.00:10:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"storedProcedureName": "[[dbo].[FailProcedure]",
+										"storedProcedureParameters": {
+											"RaiseError": {
+												"value": {
+													"value": "@pipeline().parameters.RaiseErrors",
+													"type": "Expression"
+												},
+												"type": "String"
+											}
+										}
+									},
+									"linkedServiceName": {
+										"referenceName": "SupportDatabase",
+										"type": "LinkedServiceReference"
+									}
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"RaiseErrors": {
+						"type": "string",
+						"defaultValue": "false"
+					},
+					"WaitTime": {
+						"type": "int",
+						"defaultValue": 5
+					}
+				},
+				"folder": {
+					"name": "ADFUniversalOrchestratorFramework/99_Workers"
+				},
+				"annotations": [
+					"_metadataWorker"
+				],
+				"lastPublishTime": "2024-07-13T02:37:14Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SupportDatabase')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/MetadataDrivenCopyTask_axv_BottomLevel')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "This pipeline will copy objects from one group. The objects belonging to this group will be copied parallelly.",
+				"activities": [
+					{
+						"name": "ListObjectsFromOneGroup",
+						"description": "List objects from one group and iterate each of them to downstream activities",
+						"type": "ForEach",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@pipeline().parameters.ObjectsPerGroupToCopy",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "RouteJobsBasedOnLoadingBehavior",
+									"description": "Check the loading behavior for each object if it requires full load or incremental load. If it is Default or FullLoad case, do full load. If it is DeltaLoad case, do incremental load.",
+									"type": "Switch",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"on": {
+											"value": "@json(item().DataLoadingBehaviorSettings).dataLoadingBehavior",
+											"type": "Expression"
+										},
+										"cases": [
+											{
+												"value": "FullLoad",
+												"activities": [
+													{
+														"name": "FullLoadOneObject",
+														"description": "Take a full snapshot on this object and copy it to the destination",
+														"type": "Copy",
+														"dependsOn": [],
+														"policy": {
+															"timeout": "0.12:00:00",
+															"retry": 0,
+															"retryIntervalInSeconds": 30,
+															"secureOutput": false,
+															"secureInput": false
+														},
+														"userProperties": [
+															{
+																"name": "Source",
+																"value": "@{json(item().SourceObjectSettings).fileSystem}/@{json(item().SourceObjectSettings).folderPath}/@{json(item().SourceObjectSettings).fileName}"
+															},
+															{
+																"name": "Destination",
+																"value": "@{json(item().SinkObjectSettings).fileSystem}/@{json(item().SinkObjectSettings).folderPath}/@{json(item().SinkObjectSettings).fileName}"
+															}
+														],
+														"typeProperties": {
+															"source": {
+																"type": "DelimitedTextSource",
+																"storeSettings": {
+																	"type": "AzureBlobFSReadSettings",
+																	"recursive": {
+																		"value": "@json(item().CopySourceSettings).recursive",
+																		"type": "Expression"
+																	},
+																	"wildcardFileName": {
+																		"value": "@json(item().CopySourceSettings).wildcardFileName",
+																		"type": "Expression"
+																	},
+																	"enablePartitionDiscovery": {
+																		"value": "@json(item().CopySourceSettings).enablePartitionDiscovery",
+																		"type": "Expression"
+																	}
+																},
+																"formatSettings": {
+																	"type": "DelimitedTextReadSettings",
+																	"skipLineCount": {
+																		"value": "@json(item().CopySourceSettings).skipLineCount",
+																		"type": "Expression"
+																	}
+																}
+															},
+															"sink": {
+																"type": "ParquetSink",
+																"storeSettings": {
+																	"type": "AzureBlobFSWriteSettings",
+																	"copyBehavior": {
+																		"value": "@json(item().CopySinkSettings).copyBehavior",
+																		"type": "Expression"
+																	}
+																},
+																"formatSettings": {
+																	"type": "ParquetWriteSettings"
+																}
+															},
+															"enableStaging": false,
+															"translator": {
+																"value": "@json(item().CopyActivitySettings).translator",
+																"type": "Expression"
+															}
+														},
+														"inputs": [
+															{
+																"referenceName": "MetadataDrivenCopyTask_axv_SourceDS",
+																"type": "DatasetReference",
+																"parameters": {
+																	"cw_columnDelimiter": {
+																		"value": "@json(item().SourceObjectSettings).columnDelimiter",
+																		"type": "Expression"
+																	},
+																	"cw_rowDelimiter": {
+																		"value": "@json(item().SourceObjectSettings).rowDelimiter",
+																		"type": "Expression"
+																	},
+																	"cw_escapeChar": {
+																		"value": "@json(item().SourceObjectSettings).escapeChar",
+																		"type": "Expression"
+																	},
+																	"cw_quoteChar": {
+																		"value": "@json(item().SourceObjectSettings).quoteChar",
+																		"type": "Expression"
+																	},
+																	"cw_firstRowAsHeader": {
+																		"value": "@json(item().SourceObjectSettings).firstRowAsHeader",
+																		"type": "Expression"
+																	},
+																	"cw_fileName": {
+																		"value": "@json(item().SourceObjectSettings).fileName",
+																		"type": "Expression"
+																	},
+																	"cw_folderPath": {
+																		"value": "@json(item().SourceObjectSettings).folderPath",
+																		"type": "Expression"
+																	},
+																	"cw_fileSystem": {
+																		"value": "@json(item().SourceObjectSettings).fileSystem",
+																		"type": "Expression"
+																	}
+																}
+															}
+														],
+														"outputs": [
+															{
+																"referenceName": "MetadataDrivenCopyTask_axv_DestinationDS",
+																"type": "DatasetReference",
+																"parameters": {
+																	"cw_fileName": {
+																		"value": "@json(item().SinkObjectSettings).fileName",
+																		"type": "Expression"
+																	},
+																	"cw_folderPath": {
+																		"value": "@json(item().SinkObjectSettings).folderPath",
+																		"type": "Expression"
+																	},
+																	"cw_fileSystem": {
+																		"value": "@json(item().SinkObjectSettings).fileSystem",
+																		"type": "Expression"
+																	}
+																}
+															}
+														]
+													}
+												]
+											}
+										],
+										"defaultActivities": [
+											{
+												"name": "DefaultFullLoadOneObject",
+												"description": "Take a full snapshot on this object and copy it to the destination",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "0.12:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [
+													{
+														"name": "Source",
+														"value": "@{json(item().SourceObjectSettings).fileSystem}/@{json(item().SourceObjectSettings).folderPath}/@{json(item().SourceObjectSettings).fileName}"
+													},
+													{
+														"name": "Destination",
+														"value": "@{json(item().SinkObjectSettings).fileSystem}/@{json(item().SinkObjectSettings).folderPath}/@{json(item().SinkObjectSettings).fileName}"
+													}
+												],
+												"typeProperties": {
+													"source": {
+														"type": "DelimitedTextSource",
+														"storeSettings": {
+															"type": "AzureBlobFSReadSettings",
+															"recursive": {
+																"value": "@json(item().CopySourceSettings).recursive",
+																"type": "Expression"
+															},
+															"wildcardFileName": {
+																"value": "@json(item().CopySourceSettings).wildcardFileName",
+																"type": "Expression"
+															},
+															"enablePartitionDiscovery": {
+																"value": "@json(item().CopySourceSettings).enablePartitionDiscovery",
+																"type": "Expression"
+															}
+														},
+														"formatSettings": {
+															"type": "DelimitedTextReadSettings",
+															"skipLineCount": {
+																"value": "@json(item().CopySourceSettings).skipLineCount",
+																"type": "Expression"
+															}
+														}
+													},
+													"sink": {
+														"type": "ParquetSink",
+														"storeSettings": {
+															"type": "AzureBlobFSWriteSettings",
+															"copyBehavior": {
+																"value": "@json(item().CopySinkSettings).copyBehavior",
+																"type": "Expression"
+															}
+														},
+														"formatSettings": {
+															"type": "ParquetWriteSettings"
+														}
+													},
+													"enableStaging": false,
+													"translator": {
+														"value": "@json(item().CopyActivitySettings).translator",
+														"type": "Expression"
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "MetadataDrivenCopyTask_axv_SourceDS",
+														"type": "DatasetReference",
+														"parameters": {
+															"cw_columnDelimiter": {
+																"value": "@json(item().SourceObjectSettings).columnDelimiter",
+																"type": "Expression"
+															},
+															"cw_rowDelimiter": {
+																"value": "@json(item().SourceObjectSettings).rowDelimiter",
+																"type": "Expression"
+															},
+															"cw_escapeChar": {
+																"value": "@json(item().SourceObjectSettings).escapeChar",
+																"type": "Expression"
+															},
+															"cw_quoteChar": {
+																"value": "@json(item().SourceObjectSettings).quoteChar",
+																"type": "Expression"
+															},
+															"cw_firstRowAsHeader": {
+																"value": "@json(item().SourceObjectSettings).firstRowAsHeader",
+																"type": "Expression"
+															},
+															"cw_fileName": {
+																"value": "@json(item().SourceObjectSettings).fileName",
+																"type": "Expression"
+															},
+															"cw_folderPath": {
+																"value": "@json(item().SourceObjectSettings).folderPath",
+																"type": "Expression"
+															},
+															"cw_fileSystem": {
+																"value": "@json(item().SourceObjectSettings).fileSystem",
+																"type": "Expression"
+															}
+														}
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "MetadataDrivenCopyTask_axv_DestinationDS",
+														"type": "DatasetReference",
+														"parameters": {
+															"cw_fileName": {
+																"value": "@json(item().SinkObjectSettings).fileName",
+																"type": "Expression"
+															},
+															"cw_folderPath": {
+																"value": "@json(item().SinkObjectSettings).folderPath",
+																"type": "Expression"
+															},
+															"cw_fileSystem": {
+																"value": "@json(item().SinkObjectSettings).fileSystem",
+																"type": "Expression"
+															}
+														}
+													}
+												]
+											}
+										]
+									}
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"ObjectsPerGroupToCopy": {
+						"type": "Array"
+					}
+				},
+				"folder": {
+					"name": "MetadataDrivenCopyTask_axv_20240717"
+				},
+				"annotations": [],
+				"lastPublishTime": "2024-07-17T03:07:46Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/MetadataDrivenCopyTask_axv_SourceDS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/MetadataDrivenCopyTask_rnu_BottomLevel')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "This pipeline will copy objects from one group. The objects belonging to this group will be copied parallelly.",
+				"activities": [
+					{
+						"name": "ListObjectsFromOneGroup",
+						"description": "List objects from one group and iterate each of them to downstream activities",
+						"type": "ForEach",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@pipeline().parameters.ObjectsPerGroupToCopy",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "RouteJobsBasedOnLoadingBehavior",
+									"description": "Check the loading behavior for each object if it requires full load or incremental load. If it is Default or FullLoad case, do full load. If it is DeltaLoad case, do incremental load.",
+									"type": "Switch",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"on": {
+											"value": "@json(item().DataLoadingBehaviorSettings).dataLoadingBehavior",
+											"type": "Expression"
+										},
+										"cases": [
+											{
+												"value": "FullLoad",
+												"activities": [
+													{
+														"name": "FullLoadOneObject",
+														"description": "Take a full snapshot on this object and copy it to the destination",
+														"type": "Copy",
+														"dependsOn": [],
+														"policy": {
+															"timeout": "0.12:00:00",
+															"retry": 0,
+															"retryIntervalInSeconds": 30,
+															"secureOutput": false,
+															"secureInput": false
+														},
+														"userProperties": [
+															{
+																"name": "Source",
+																"value": "@{json(item().SourceObjectSettings).fileSystem}/@{json(item().SourceObjectSettings).folderPath}/@{json(item().SourceObjectSettings).fileName}"
+															},
+															{
+																"name": "Destination",
+																"value": "@{json(item().SinkObjectSettings).fileSystem}/@{json(item().SinkObjectSettings).folderPath}/@{json(item().SinkObjectSettings).fileName}"
+															}
+														],
+														"typeProperties": {
+															"source": {
+																"type": "DelimitedTextSource",
+																"storeSettings": {
+																	"type": "AzureBlobFSReadSettings",
+																	"recursive": {
+																		"value": "@json(item().CopySourceSettings).recursive",
+																		"type": "Expression"
+																	},
+																	"wildcardFileName": {
+																		"value": "@json(item().CopySourceSettings).wildcardFileName",
+																		"type": "Expression"
+																	},
+																	"enablePartitionDiscovery": {
+																		"value": "@json(item().CopySourceSettings).enablePartitionDiscovery",
+																		"type": "Expression"
+																	}
+																},
+																"formatSettings": {
+																	"type": "DelimitedTextReadSettings",
+																	"skipLineCount": {
+																		"value": "@json(item().CopySourceSettings).skipLineCount",
+																		"type": "Expression"
+																	}
+																}
+															},
+															"sink": {
+																"type": "DelimitedTextSink",
+																"storeSettings": {
+																	"type": "AzureBlobFSWriteSettings"
+																},
+																"formatSettings": {
+																	"type": "DelimitedTextWriteSettings",
+																	"quoteAllText": {
+																		"value": "@json(item().CopySinkSettings).quoteAllText",
+																		"type": "Expression"
+																	},
+																	"fileExtension": {
+																		"value": "@json(item().CopySinkSettings).fileExtension",
+																		"type": "Expression"
+																	}
+																}
+															},
+															"enableStaging": false,
+															"validateDataConsistency": false,
+															"translator": {
+																"value": "@json(item().CopyActivitySettings).translator",
+																"type": "Expression"
+															}
+														},
+														"inputs": [
+															{
+																"referenceName": "MetadataDrivenCopyTask_rnu_SourceDS",
+																"type": "DatasetReference",
+																"parameters": {
+																	"cw_columnDelimiter": {
+																		"value": "@json(item().SourceObjectSettings).columnDelimiter",
+																		"type": "Expression"
+																	},
+																	"cw_escapeChar": {
+																		"value": "@json(item().SourceObjectSettings).escapeChar",
+																		"type": "Expression"
+																	},
+																	"cw_quoteChar": {
+																		"value": "@json(item().SourceObjectSettings).quoteChar",
+																		"type": "Expression"
+																	},
+																	"cw_firstRowAsHeader": {
+																		"value": "@json(item().SourceObjectSettings).firstRowAsHeader",
+																		"type": "Expression"
+																	},
+																	"cw_fileName": {
+																		"value": "@json(item().SourceObjectSettings).fileName",
+																		"type": "Expression"
+																	},
+																	"cw_folderPath": {
+																		"value": "@json(item().SourceObjectSettings).folderPath",
+																		"type": "Expression"
+																	},
+																	"cw_fileSystem": {
+																		"value": "@json(item().SourceObjectSettings).fileSystem",
+																		"type": "Expression"
+																	}
+																}
+															}
+														],
+														"outputs": [
+															{
+																"referenceName": "MetadataDrivenCopyTask_rnu_DestinationDS",
+																"type": "DatasetReference",
+																"parameters": {
+																	"cw_columnDelimiter": {
+																		"value": "@json(item().SinkObjectSettings).columnDelimiter",
+																		"type": "Expression"
+																	},
+																	"cw_escapeChar": {
+																		"value": "@json(item().SinkObjectSettings).escapeChar",
+																		"type": "Expression"
+																	},
+																	"cw_quoteChar": {
+																		"value": "@json(item().SinkObjectSettings).quoteChar",
+																		"type": "Expression"
+																	},
+																	"cw_firstRowAsHeader": {
+																		"value": "@json(item().SinkObjectSettings).firstRowAsHeader",
+																		"type": "Expression"
+																	},
+																	"cw_fileName": {
+																		"value": "@json(item().SinkObjectSettings).fileName",
+																		"type": "Expression"
+																	},
+																	"cw_folderPath": {
+																		"value": "@json(item().SinkObjectSettings).folderPath",
+																		"type": "Expression"
+																	},
+																	"cw_fileSystem": {
+																		"value": "@json(item().SinkObjectSettings).fileSystem",
+																		"type": "Expression"
+																	}
+																}
+															}
+														]
+													}
+												]
+											}
+										],
+										"defaultActivities": [
+											{
+												"name": "DefaultFullLoadOneObject",
+												"description": "Take a full snapshot on this object and copy it to the destination",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "0.12:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [
+													{
+														"name": "Source",
+														"value": "@{json(item().SourceObjectSettings).fileSystem}/@{json(item().SourceObjectSettings).folderPath}/@{json(item().SourceObjectSettings).fileName}"
+													},
+													{
+														"name": "Destination",
+														"value": "@{json(item().SinkObjectSettings).fileSystem}/@{json(item().SinkObjectSettings).folderPath}/@{json(item().SinkObjectSettings).fileName}"
+													}
+												],
+												"typeProperties": {
+													"source": {
+														"type": "DelimitedTextSource",
+														"storeSettings": {
+															"type": "AzureBlobFSReadSettings",
+															"recursive": {
+																"value": "@json(item().CopySourceSettings).recursive",
+																"type": "Expression"
+															},
+															"wildcardFileName": {
+																"value": "@json(item().CopySourceSettings).wildcardFileName",
+																"type": "Expression"
+															},
+															"enablePartitionDiscovery": {
+																"value": "@json(item().CopySourceSettings).enablePartitionDiscovery",
+																"type": "Expression"
+															}
+														},
+														"formatSettings": {
+															"type": "DelimitedTextReadSettings",
+															"skipLineCount": {
+																"value": "@json(item().CopySourceSettings).skipLineCount",
+																"type": "Expression"
+															}
+														}
+													},
+													"sink": {
+														"type": "DelimitedTextSink",
+														"storeSettings": {
+															"type": "AzureBlobFSWriteSettings"
+														},
+														"formatSettings": {
+															"type": "DelimitedTextWriteSettings",
+															"quoteAllText": {
+																"value": "@json(item().CopySinkSettings).quoteAllText",
+																"type": "Expression"
+															},
+															"fileExtension": {
+																"value": "@json(item().CopySinkSettings).fileExtension",
+																"type": "Expression"
+															}
+														}
+													},
+													"enableStaging": false,
+													"validateDataConsistency": false,
+													"translator": {
+														"value": "@json(item().CopyActivitySettings).translator",
+														"type": "Expression"
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "MetadataDrivenCopyTask_rnu_SourceDS",
+														"type": "DatasetReference",
+														"parameters": {
+															"cw_columnDelimiter": {
+																"value": "@json(item().SourceObjectSettings).columnDelimiter",
+																"type": "Expression"
+															},
+															"cw_escapeChar": {
+																"value": "@json(item().SourceObjectSettings).escapeChar",
+																"type": "Expression"
+															},
+															"cw_quoteChar": {
+																"value": "@json(item().SourceObjectSettings).quoteChar",
+																"type": "Expression"
+															},
+															"cw_firstRowAsHeader": {
+																"value": "@json(item().SourceObjectSettings).firstRowAsHeader",
+																"type": "Expression"
+															},
+															"cw_fileName": {
+																"value": "@json(item().SourceObjectSettings).fileName",
+																"type": "Expression"
+															},
+															"cw_folderPath": {
+																"value": "@json(item().SourceObjectSettings).folderPath",
+																"type": "Expression"
+															},
+															"cw_fileSystem": {
+																"value": "@json(item().SourceObjectSettings).fileSystem",
+																"type": "Expression"
+															}
+														}
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "MetadataDrivenCopyTask_rnu_DestinationDS",
+														"type": "DatasetReference",
+														"parameters": {
+															"cw_columnDelimiter": {
+																"value": "@json(item().SinkObjectSettings).columnDelimiter",
+																"type": "Expression"
+															},
+															"cw_escapeChar": {
+																"value": "@json(item().SinkObjectSettings).escapeChar",
+																"type": "Expression"
+															},
+															"cw_quoteChar": {
+																"value": "@json(item().SinkObjectSettings).quoteChar",
+																"type": "Expression"
+															},
+															"cw_firstRowAsHeader": {
+																"value": "@json(item().SinkObjectSettings).firstRowAsHeader",
+																"type": "Expression"
+															},
+															"cw_fileName": {
+																"value": "@json(item().SinkObjectSettings).fileName",
+																"type": "Expression"
+															},
+															"cw_folderPath": {
+																"value": "@json(item().SinkObjectSettings).folderPath",
+																"type": "Expression"
+															},
+															"cw_fileSystem": {
+																"value": "@json(item().SinkObjectSettings).fileSystem",
+																"type": "Expression"
+															}
+														}
+													}
+												]
+											}
+										]
+									}
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"ObjectsPerGroupToCopy": {
+						"type": "Array"
+					}
+				},
+				"folder": {
+					"name": "MetadataDrivenCopyTask_rnu_20240712"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/MetadataDrivenCopyTask_rnu_SourceDS')]",
+				"[concat(variables('factoryId'), '/datasets/MetadataDrivenCopyTask_rnu_DestinationDS')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/pipeline1-copy-blob')]",
@@ -133,9 +1987,13 @@
 				"folder": {
 					"name": "ADFUniversalOrchestratorFramework/99_Workers"
 				},
-				"annotations": []
+				"annotations": [],
+				"lastPublishTime": "2024-07-13T02:37:14Z"
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/sourcelist')]",
+				"[concat(variables('factoryId'), '/datasets/targelist')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/pipeline1-copy-blob_copy1')]",
@@ -197,1820 +2055,12 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
-				"annotations": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/02-Pipelines')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "02-Pipeline used to execute Worker pipelines within a given execution stage. This pipeline will be called once for each stage, then execute all Workers in parallel.",
-				"activities": [
-					{
-						"name": "Get Pipelines",
-						"description": "Returns all pipelines from the metadata to be executed within a given processing stage.",
-						"type": "Lookup",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.00:10:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[metadata].[GetPipelinesInStage]",
-								"storedProcedureParameters": {
-									"ExecutionId": {
-										"type": "Guid",
-										"value": {
-											"value": "@pipeline().parameters.ExecutionId",
-											"type": "Expression"
-										}
-									},
-									"StageId": {
-										"type": "Int32",
-										"value": {
-											"value": "@pipeline().parameters.StageId",
-											"type": "Expression"
-										}
-									}
-								},
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"dataset": {
-								"referenceName": "GetSetMetadata",
-								"type": "DatasetReference",
-								"parameters": {}
-							},
-							"firstRowOnly": false
-						}
-					},
-					{
-						"name": "Execute Pipelines",
-						"description": "ForEach to run in parallel all pipelines within the stage. Items for iteration passed from the Get Pipelines lookup activity.",
-						"type": "ForEach",
-						"dependsOn": [
-							{
-								"activity": "Get Pipelines",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@activity('Get Pipelines').output.value",
-								"type": "Expression"
-							},
-							"isSequential": false,
-							"batchCount": 50,
-							"activities": [
-								{
-									"name": "Worker Pipeline Executor",
-									"description": "Run the required worker pipeline and wait for its completion. Update metadata once done.",
-									"type": "ExecutePipeline",
-									"dependsOn": [],
-									"policy": {
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"pipeline": {
-											"referenceName": "03-Execute",
-											"type": "PipelineReference"
-										},
-										"waitOnCompletion": true,
-										"parameters": {
-											"executionId": {
-												"value": "@pipeline().parameters.ExecutionId",
-												"type": "Expression"
-											},
-											"stageId": {
-												"value": "@pipeline().parameters.StageId",
-												"type": "Expression"
-											},
-											"pipelineId": {
-												"value": "@item().PipelineId",
-												"type": "Expression"
-											},
-											"PipelineName": {
-												"value": "@item().PipelineName",
-												"type": "Expression"
-											}
-										}
-									}
-								}
-							]
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"StageId": {
-						"type": "int"
-					},
-					"ExecutionId": {
-						"type": "string"
-					}
-				},
-				"folder": {
-					"name": "ADFUniversalOrchestratorFramework"
-				},
-				"annotations": [
-					"02-Pipelines"
-				],
-				"lastPublishTime": "2024-02-20T03:29:16Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Check For Running Pipeline Utils')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "For a given pipeline and optional batch name establish if a pipeline run is already in progress. Throw an exception if it it.",
-				"activities": [
-					{
-						"name": "Filter Running Pipelines",
-						"description": "Filter the pipeline runs results for pipelines that exclude the current triggered run and that are currently running (in progress or queued).",
-						"type": "Filter",
-						"dependsOn": [
-							{
-								"activity": "Switch For Orchestrator Type",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@variables('PipelineRuns')",
-								"type": "Expression"
-							},
-							"condition": {
-								"value": "@and(not(equals(item().runId,pipeline().parameters.ThisRunId)),or(equals(item().status,'InProgress'),equals(item().status,'Queued')))",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Get Framework Orchestrator Details",
-						"description": "Using the metadata orchestrators return details about the resource running the framework pipelines.",
-						"type": "Lookup",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.00:10:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[metadata].[GetFrameworkOrchestratorDetails]",
-								"storedProcedureParameters": {
-									"CallingOrchestratorName": {
-										"type": "String",
-										"value": {
-											"value": "@pipeline().DataFactory",
-											"type": "Expression"
-										}
-									}
-								},
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"dataset": {
-								"referenceName": "GetSetMetadata",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						}
-					},
-					{
-						"name": "Get Query Run Days Value",
-						"description": "Using the metadata properties table return the run days value to provide the API request with a date range for pipeline executions.",
-						"type": "Lookup",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.00:10:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[metadata].[GetPropertyValue]",
-								"storedProcedureParameters": {
-									"PropertyName": {
-										"type": "String",
-										"value": "PreviousPipelineRunsQueryRange"
-									}
-								},
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"dataset": {
-								"referenceName": "GetSetMetadata",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						}
-					},
-					{
-						"name": "If Pipeline Is Running",
-						"description": "If the running pipeline count is greater than or equal to one.\nTrue = raise an exception.",
-						"type": "IfCondition",
-						"dependsOn": [
-							{
-								"activity": "If Using Batch Executions",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"expression": {
-								"value": "@greaterOrEquals(int(variables('RunCount')),1)",
-								"type": "Expression"
-							},
-							"ifTrueActivities": [
-								{
-									"name": "Throw Exception - Pipeline Running",
-									"description": "Using the utils pipeline raise an exception to stop the new trigger while a run is already in progress.",
-									"type": "ExecutePipeline",
-									"dependsOn": [],
-									"policy": {
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"pipeline": {
-											"referenceName": "Throw Exception Utils",
-											"type": "PipelineReference"
-										},
-										"waitOnCompletion": true,
-										"parameters": {
-											"Message": {
-												"value": "@concat('Provided pipeline name (',pipeline().parameters.PipelineName,') still has a run in progress or queued given the query range parameters set in the properties table.')",
-												"type": "Expression"
-											}
-										}
-									}
-								}
-							]
-						}
-					},
-					{
-						"name": "Get Execution Batch Status",
-						"description": "Using the metadata properties table return the flag to indicate if batch execution setting are enabled or disabled.",
-						"type": "Lookup",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.00:10:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[metadata].[GetPropertyValue]",
-								"storedProcedureParameters": {
-									"PropertyName": {
-										"type": "String",
-										"value": "UseExecutionBatches"
-									}
-								},
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"dataset": {
-								"referenceName": "GetSetMetadata",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						}
-					},
-					{
-						"name": "If Using Batch Executions",
-						"description": "True = batch executions are enabled.\nFalse = batch execution are disabled.",
-						"type": "IfCondition",
-						"dependsOn": [
-							{
-								"activity": "Get Execution Batch Status",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							},
-							{
-								"activity": "Filter Running Pipelines",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"expression": {
-								"value": "@equals(activity('Get Execution Batch Status').output.firstRow.PropertyValue,string(1))",
-								"type": "Expression"
-							},
-							"ifFalseActivities": [
-								{
-									"name": "Set Run Count Without Batch",
-									"description": "Set the pipelines running count variable to be tested later.",
-									"type": "SetVariable",
-									"dependsOn": [],
-									"policy": {
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"variableName": "RunCount",
-										"value": {
-											"value": "@string(activity('Filter Running Pipelines').output.FilteredItemsCount)",
-											"type": "Expression"
-										}
-									}
-								}
-							],
-							"ifTrueActivities": [
-								{
-									"name": "Filter for Batch Name",
-									"description": "Further filter the return pipeline runs for any running pipelines with the same batch name value.",
-									"type": "Filter",
-									"dependsOn": [],
-									"userProperties": [],
-									"typeProperties": {
-										"items": {
-											"value": "@activity('Filter Running Pipelines').output.value",
-											"type": "Expression"
-										},
-										"condition": {
-											"value": "@equals(item().parameters.BatchName,pipeline().parameters.BatchName)",
-											"type": "Expression"
-										}
-									}
-								},
-								{
-									"name": "Set Run Count for Batch",
-									"description": "Set the resulting pipeline running count variable to be tested later.",
-									"type": "SetVariable",
-									"dependsOn": [
-										{
-											"activity": "Filter for Batch Name",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"policy": {
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"variableName": "RunCount",
-										"value": {
-											"value": "@string(activity('Filter for Batch Name').output.FilteredItemsCount)",
-											"type": "Expression"
-										}
-									}
-								}
-							]
-						}
-					},
-					{
-						"name": "Set Subscription Id",
-						"description": "Set the subscription Id value to a local variable for use in various downstream activities.",
-						"type": "SetVariable",
-						"dependsOn": [
-							{
-								"activity": "Get Framework Orchestrator Details",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "SubscriptionId",
-							"value": {
-								"value": "@activity('Get Framework Orchestrator Details').output.firstRow.SubscriptionId",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Set Resource Group Name",
-						"description": "Set the resource group name value to a local variable for use in various downstream activities.",
-						"type": "SetVariable",
-						"dependsOn": [
-							{
-								"activity": "Get Framework Orchestrator Details",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "ResourceGroupName",
-							"value": {
-								"value": "@activity('Get Framework Orchestrator Details').output.firstRow.ResourceGroupName",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Set Orchestrator Type",
-						"description": "Set the orchestrator type value to a local variable for use in various downstream activities.",
-						"type": "SetVariable",
-						"dependsOn": [
-							{
-								"activity": "Get Framework Orchestrator Details",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "OrchestratorType",
-							"value": {
-								"value": "@toUpper(activity('Get Framework Orchestrator Details').output.firstRow.OrchestratorType)",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Switch For Orchestrator Type",
-						"description": "Switch and handle requests for both Azure Data Factory (ADF) and Azure Synapse Analytics (SYN).",
-						"type": "Switch",
-						"dependsOn": [
-							{
-								"activity": "Set Orchestrator Type",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							},
-							{
-								"activity": "Set Query Run Days",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							},
-							{
-								"activity": "Set Resource Group Name",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							},
-							{
-								"activity": "Set Subscription Id",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"on": {
-								"value": "@variables('OrchestratorType')",
-								"type": "Expression"
-							},
-							"cases": [
-								{
-									"value": "ADF",
-									"activities": [
-										{
-											"name": "Check for Valid ADF Pipeline Name",
-											"description": "Use the Azure Management API to return and establish if the framework pipeline exists in the target Data Factory instance, including being deployed.",
-											"type": "WebActivity",
-											"dependsOn": [],
-											"policy": {
-												"timeout": "7.00:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"method": "GET",
-												"headers": {},
-												"url": {
-													"value": "https://management.azure.com/subscriptions/@{variables('SubscriptionId')}/resourceGroups/@{variables('ResourceGroupName')}/providers/Microsoft.DataFactory/factories/@{pipeline().DataFactory}/pipelines/@{pipeline().parameters.PipelineName}?api-version=2018-06-01",
-													"type": "Expression"
-												},
-												"connectVia": {
-													"referenceName": "SelfHostedIR-Windows-LiuYang",
-													"type": "IntegrationRuntimeReference"
-												},
-												"authentication": {
-													"type": "MSI",
-													"resource": "https://management.core.windows.net/"
-												}
-											}
-										},
-										{
-											"name": "Get ADF Pipeline Runs",
-											"description": "Use the Azure Management API to return a list of data factory pipeline runs within the given time window.",
-											"type": "WebActivity",
-											"dependsOn": [
-												{
-													"activity": "Check for Valid ADF Pipeline Name",
-													"dependencyConditions": [
-														"Succeeded"
-													]
-												}
-											],
-											"policy": {
-												"timeout": "7.00:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"method": "POST",
-												"headers": {},
-												"url": {
-													"value": "https://management.azure.com/subscriptions/@{variables('SubscriptionId')}/resourceGroups/@{variables('ResourceGroupName')}/providers/Microsoft.DataFactory/factories/@{pipeline().DataFactory}/queryPipelineRuns?api-version=2018-06-01",
-													"type": "Expression"
-												},
-												"connectVia": {
-													"referenceName": "SelfHostedIR-Windows-LiuYang",
-													"type": "IntegrationRuntimeReference"
-												},
-												"body": {
-													"value": "{\n  \"lastUpdatedAfter\": \"@{adddays(utcnow(),int(variables('QueryRunDays')))}\",\n  \"lastUpdatedBefore\": \"@{utcnow()}\",\n  \"filters\": [\n    {\n      \"operand\": \"PipelineName\",\n      \"operator\": \"Equals\",\n      \"values\": [\n        \"@{pipeline().parameters.PipelineName}\"\n      ]\n    }\n  ]\n}",
-													"type": "Expression"
-												},
-												"authentication": {
-													"type": "MSI",
-													"resource": "https://management.core.windows.net/"
-												}
-											}
-										},
-										{
-											"name": "Set ADF Runs Output",
-											"description": "Set output to local array for use in downstream filtering and pipeline checks. Use the same array output for both switch cases.",
-											"type": "SetVariable",
-											"dependsOn": [
-												{
-													"activity": "Get ADF Pipeline Runs",
-													"dependencyConditions": [
-														"Succeeded"
-													]
-												}
-											],
-											"policy": {
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"variableName": "PipelineRuns",
-												"value": {
-													"value": "@activity('Get ADF Pipeline Runs').output.value",
-													"type": "Expression"
-												}
-											}
-										}
-									]
-								}
-							],
-							"defaultActivities": [
-								{
-									"name": "Throw Exception Invalid Orchestrator Type",
-									"description": "Throw exception if switch cases are not met.",
-									"type": "ExecutePipeline",
-									"dependsOn": [],
-									"policy": {
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"pipeline": {
-											"referenceName": "Throw Exception Utils",
-											"type": "PipelineReference"
-										},
-										"waitOnCompletion": true,
-										"parameters": {
-											"Message": "Invalid orchestrator type provided. Unable to check pipeline running state."
-										}
-									}
-								}
-							]
-						}
-					},
-					{
-						"name": "Set Query Run Days",
-						"description": "Set the query run days value to a local variable for use in various downstream activities. Default fetch current datetime -1",
-						"type": "SetVariable",
-						"dependsOn": [
-							{
-								"activity": "Get Query Run Days Value",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "QueryRunDays",
-							"value": {
-								"value": "@activity('Get Query Run Days Value').output.firstRow.PropertyValue",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"BatchName": {
-						"type": "string",
-						"defaultValue": "NotUsed"
-					},
-					"PipelineName": {
-						"type": "string"
-					},
-					"ThisRunId": {
-						"type": "string"
-					}
-				},
-				"variables": {
-					"SubscriptionId": {
-						"type": "String"
-					},
-					"RunCount": {
-						"type": "String"
-					},
-					"ResourceGroupName": {
-						"type": "String"
-					},
-					"OrchestratorType": {
-						"type": "String"
-					},
-					"QueryRunDays": {
-						"type": "String"
-					},
-					"PipelineRuns": {
-						"type": "Array"
-					}
-				},
-				"folder": {
-					"name": "ADFUniversalOrchestratorFramework/Utils"
-				},
-				"annotations": [
-					"metadata",
-					"Utils"
-				],
-				"lastPublishTime": "2024-02-20T03:29:16Z"
+				"annotations": [],
+				"lastPublishTime": "2024-07-13T02:37:14Z"
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Throw Exception Utils')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/01-Stage')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Stage pipeline used to bootstrap the orchestration framework in perform the first level ForEach calls in sequence for the metadata stages.",
-				"activities": [
-					{
-						"name": "Get Stages",
-						"description": "Returns a distinct list of execution stages within the framework metadata.",
-						"type": "Lookup",
-						"dependsOn": [
-							{
-								"activity": "Set Execution Id",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.00:10:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[metadata].[GetStages]",
-								"storedProcedureParameters": {
-									"ExecutionId": {
-										"type": "Guid",
-										"value": {
-											"value": "@variables('ExecutionId')",
-											"type": "Expression"
-										}
-									}
-								},
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"dataset": {
-								"referenceName": "GetSetMetadata",
-								"type": "DatasetReference",
-								"parameters": {}
-							},
-							"firstRowOnly": false
-						}
-					},
-					{
-						"name": "Execute Stages",
-						"description": "Top level ForEach to sequentially call all processing stages within the framework metadata. Items for iteration passed from the Get Stages lookup activity.",
-						"type": "ForEach",
-						"dependsOn": [
-							{
-								"activity": "Get Stages",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@activity('Get Stages').output.value",
-								"type": "Expression"
-							},
-							"isSequential": true,
-							"activities": [
-								{
-									"name": "Stage Executor",
-									"description": "Call to the framework pipelines for a given execution stage.",
-									"type": "ExecutePipeline",
-									"dependsOn": [
-										{
-											"activity": "Log Stage Preparing",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"policy": {
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"pipeline": {
-											"referenceName": "02-Pipelines",
-											"type": "PipelineReference"
-										},
-										"waitOnCompletion": true,
-										"parameters": {
-											"StageId": {
-												"value": "@item().StageId",
-												"type": "Expression"
-											},
-											"ExecutionId": {
-												"value": "@variables('ExecutionId')",
-												"type": "Expression"
-											}
-										}
-									}
-								},
-								{
-									"name": "Log Stage Preparing",
-									"description": "Update the current execution table flagging all pipelines within the stage as preparing.",
-									"type": "SqlServerStoredProcedure",
-									"dependsOn": [
-										{
-											"activity": "Check and Update Blockers",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"policy": {
-										"timeout": "0.00:10:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"storedProcedureName": "[[metadata].[SetLogStagePreparing]",
-										"storedProcedureParameters": {
-											"ExecutionId": {
-												"value": {
-													"value": "@variables('ExecutionId')",
-													"type": "Expression"
-												},
-												"type": "Guid"
-											},
-											"StageId": {
-												"value": {
-													"value": "@item().StageId",
-													"type": "Expression"
-												},
-												"type": "Int32"
-											}
-										}
-									},
-									"linkedServiceName": {
-										"referenceName": "SupportDatabase",
-										"type": "LinkedServiceReference"
-									}
-								},
-								{
-									"name": "Check and Update Blockers",
-									"description": "Used to double check and stop the next execution stage if failures and blockers have be incurred. This also depends on the failure handling property value which defines the stored procedure behaviour.",
-									"type": "SqlServerStoredProcedure",
-									"dependsOn": [],
-									"policy": {
-										"timeout": "0.00:10:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"storedProcedureName": "[[metadata].[CheckForBlockedPipelines]",
-										"storedProcedureParameters": {
-											"ExecutionId": {
-												"value": {
-													"value": "@variables('ExecutionId')",
-													"type": "Expression"
-												},
-												"type": "Guid"
-											},
-											"StageId": {
-												"value": {
-													"value": "@item().StageId",
-													"type": "Expression"
-												},
-												"type": "Int32"
-											}
-										}
-									},
-									"linkedServiceName": {
-										"referenceName": "SupportDatabase",
-										"type": "LinkedServiceReference"
-									}
-								}
-							]
-						}
-					},
-					{
-						"name": "Execution Wrapper",
-						"description": "Wrapper to reset and restart processing or create a completely new execution instance of the framework metadata.",
-						"type": "Lookup",
-						"dependsOn": [
-							{
-								"activity": "Clean Up Previous Run",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.00:10:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[metadata].[ExecutionWrapper]",
-								"storedProcedureParameters": {
-									"CallingOrchestratorName": {
-										"type": "String",
-										"value": {
-											"value": "@pipeline().DataFactory",
-											"type": "Expression"
-										}
-									},
-									"BatchName": {
-										"type": "String",
-										"value": {
-											"value": "@pipeline().parameters.BatchName",
-											"type": "Expression"
-										}
-									}
-								},
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"dataset": {
-								"referenceName": "GetSetMetadata",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						}
-					},
-					{
-						"name": "Check Outcome and Update Logs",
-						"description": "After a successful execution run the current execution metadata is moved to the long term logging table by this stored procedure call. Otherwise an error will be raised.",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [
-							{
-								"activity": "Execute Stages",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.00:10:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[metadata].[UpdateExecutionLog]",
-							"storedProcedureParameters": {
-								"PerformErrorCheck": {
-									"value": {
-										"value": "@bool(1)",
-										"type": "Expression"
-									},
-									"type": "Boolean"
-								},
-								"ExecutionId": {
-									"value": {
-										"value": "@variables('ExecutionId')",
-										"type": "Expression"
-									},
-									"type": "Guid"
-								}
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "SupportDatabase",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "Check Previous Execution",
-						"description": "Query the current execution table for worker pipelines that require a clean up(InProgress, Queued) from the previous execution run.",
-						"type": "Lookup",
-						"dependsOn": [
-							{
-								"activity": "Is Stage Already Running",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.00:10:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[metadata].[CheckPreviousExeuction]",
-								"storedProcedureParameters": {
-									"BatchName": {
-										"type": "String",
-										"value": {
-											"value": "@pipeline().parameters.BatchName",
-											"type": "Expression"
-										}
-									}
-								},
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"dataset": {
-								"referenceName": "GetSetMetadata",
-								"type": "DatasetReference",
-								"parameters": {}
-							},
-							"firstRowOnly": false
-						}
-					},
-					{
-						"name": "Clean Up Previous Run",
-						"description": "Handle Worker pipelines that are reported as Running when the stage pipeline is called again. Get what the actual status of those pipelines is.",
-						"type": "ForEach",
-						"dependsOn": [
-							{
-								"activity": "Check Previous Execution",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							},
-							{
-								"activity": "Check Metadata Integrity",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@activity('Check Previous Execution').output.value",
-								"type": "Expression"
-							},
-							"isSequential": false,
-							"batchCount": 50,
-							"activities": [
-								{
-									"name": "Log Pipeline Checking",
-									"type": "SqlServerStoredProcedure",
-									"dependsOn": [],
-									"policy": {
-										"timeout": "0.00:10:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"storedProcedureName": "[[metadata].[SetLogPipelineChecking]",
-										"storedProcedureParameters": {
-											"ExecutionId": {
-												"value": {
-													"value": "@item().LocalExecutionId",
-													"type": "Expression"
-												},
-												"type": "Guid"
-											},
-											"PipelineId": {
-												"value": {
-													"value": "@item().PipelineId",
-													"type": "Expression"
-												},
-												"type": "Int32"
-											},
-											"StageId": {
-												"value": {
-													"value": "@item().StageId",
-													"type": "Expression"
-												},
-												"type": "Int32"
-											}
-										}
-									},
-									"linkedServiceName": {
-										"referenceName": "SupportDatabase",
-										"type": "LinkedServiceReference"
-									}
-								},
-								{
-									"name": "Set Pipeline Status",
-									"description": "Update the metadata depending on the actual pipeline outcome. Using the status as the case.",
-									"type": "Switch",
-									"dependsOn": [
-										{
-											"activity": "Get Pipeline Status",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"userProperties": [],
-									"typeProperties": {
-										"on": {
-											"value": "@activity('Get Pipeline Status').output.status",
-											"type": "Expression"
-										},
-										"cases": [
-											{
-												"value": "Failed",
-												"activities": [
-													{
-														"name": "Pipeline Status Failed",
-														"description": "Updates the current execution table with a pipeline status of failed if the function outcome is failed. Also blocks pipelines in the downstream execution stage.",
-														"type": "SqlServerStoredProcedure",
-														"dependsOn": [],
-														"policy": {
-															"timeout": "0.00:10:00",
-															"retry": 0,
-															"retryIntervalInSeconds": 30,
-															"secureOutput": false,
-															"secureInput": false
-														},
-														"userProperties": [],
-														"typeProperties": {
-															"storedProcedureName": "[[metadata].[SetLogPipelineFailed]",
-															"storedProcedureParameters": {
-																"ExecutionId": {
-																	"value": {
-																		"value": "@item().LocalExecutionId",
-																		"type": "Expression"
-																	},
-																	"type": "Guid"
-																},
-																"PipelineId": {
-																	"value": {
-																		"value": "@item().PipelineId",
-																		"type": "Expression"
-																	},
-																	"type": "Int32"
-																},
-																"RunId": {
-																	"value": null,
-																	"type": "Guid"
-																},
-																"StageId": {
-																	"value": {
-																		"value": "@item().StageId",
-																		"type": "Expression"
-																	},
-																	"type": "Int32"
-																}
-															}
-														},
-														"linkedServiceName": {
-															"referenceName": "SupportDatabase",
-															"type": "LinkedServiceReference"
-														}
-													}
-												]
-											},
-											{
-												"value": "Succeeded",
-												"activities": [
-													{
-														"name": "Pipeline Status Succeeded",
-														"description": "Updates the current execution table with a pipeline status of success if the function outcome is succeeded.",
-														"type": "SqlServerStoredProcedure",
-														"dependsOn": [],
-														"policy": {
-															"timeout": "0.00:10:00",
-															"retry": 0,
-															"retryIntervalInSeconds": 30,
-															"secureOutput": false,
-															"secureInput": false
-														},
-														"userProperties": [],
-														"typeProperties": {
-															"storedProcedureName": "[[metadata].[SetLogPipelineSuccess]",
-															"storedProcedureParameters": {
-																"ExecutionId": {
-																	"value": {
-																		"value": "@item().LocalExecutionId",
-																		"type": "Expression"
-																	},
-																	"type": "Guid"
-																},
-																"PipelineId": {
-																	"value": {
-																		"value": "@item().PipelineId",
-																		"type": "Expression"
-																	},
-																	"type": "Int32"
-																},
-																"StageId": {
-																	"value": {
-																		"value": "@item().StageId",
-																		"type": "Expression"
-																	},
-																	"type": "Int32"
-																}
-															}
-														},
-														"linkedServiceName": {
-															"referenceName": "SupportDatabase",
-															"type": "LinkedServiceReference"
-														}
-													}
-												]
-											},
-											{
-												"value": "Queued",
-												"activities": [
-													{
-														"name": "Pipeline Status Queued - Running",
-														"description": "Updates the current execution table with a pipeline status of running if the function outcome is queued.",
-														"type": "SqlServerStoredProcedure",
-														"dependsOn": [],
-														"policy": {
-															"timeout": "0.00:10:00",
-															"retry": 0,
-															"retryIntervalInSeconds": 30,
-															"secureOutput": false,
-															"secureInput": false
-														},
-														"userProperties": [],
-														"typeProperties": {
-															"storedProcedureName": "[[metadata].[SetLogPipelineRunning]",
-															"storedProcedureParameters": {
-																"ExecutionId": {
-																	"value": {
-																		"value": "@item().LocalExecutionId",
-																		"type": "Expression"
-																	},
-																	"type": "Guid"
-																},
-																"PipelineId": {
-																	"value": {
-																		"value": "@item().PipelineId",
-																		"type": "Expression"
-																	},
-																	"type": "Int32"
-																},
-																"StageId": {
-																	"value": {
-																		"value": "@item().StageId",
-																		"type": "Expression"
-																	},
-																	"type": "Int32"
-																}
-															}
-														},
-														"linkedServiceName": {
-															"referenceName": "SupportDatabase",
-															"type": "LinkedServiceReference"
-														}
-													}
-												]
-											},
-											{
-												"value": "InProgress",
-												"activities": [
-													{
-														"name": "Pipeline Status InProgress - Running",
-														"description": "Updates the current execution table with a pipeline status of running if the function outcome is in progress.",
-														"type": "SqlServerStoredProcedure",
-														"dependsOn": [],
-														"policy": {
-															"timeout": "0.00:10:00",
-															"retry": 0,
-															"retryIntervalInSeconds": 30,
-															"secureOutput": false,
-															"secureInput": false
-														},
-														"userProperties": [],
-														"typeProperties": {
-															"storedProcedureName": "[[metadata].[SetLogPipelineRunning]",
-															"storedProcedureParameters": {
-																"ExecutionId": {
-																	"value": {
-																		"value": "@item().LocalExecutionId",
-																		"type": "Expression"
-																	},
-																	"type": "Guid"
-																},
-																"PipelineId": {
-																	"value": {
-																		"value": "@item().PipelineId",
-																		"type": "Expression"
-																	},
-																	"type": "Int32"
-																},
-																"StageId": {
-																	"value": {
-																		"value": "@item().StageId",
-																		"type": "Expression"
-																	},
-																	"type": "Int32"
-																}
-															}
-														},
-														"linkedServiceName": {
-															"referenceName": "SupportDatabase",
-															"type": "LinkedServiceReference"
-														}
-													}
-												]
-											},
-											{
-												"value": "Cancelled",
-												"activities": [
-													{
-														"name": "Pipeline Status Cancelled",
-														"description": "Updates the current execution table with a pipeline status of cancelled if the function outcome is cancelled.",
-														"type": "SqlServerStoredProcedure",
-														"dependsOn": [],
-														"policy": {
-															"timeout": "0.00:10:00",
-															"retry": 0,
-															"retryIntervalInSeconds": 30,
-															"secureOutput": false,
-															"secureInput": false
-														},
-														"userProperties": [],
-														"typeProperties": {
-															"storedProcedureName": "[[metadata].[SetLogPipelineCancelled]",
-															"storedProcedureParameters": {
-																"ExecutionId": {
-																	"value": {
-																		"value": "@item().LocalExecutionId",
-																		"type": "Expression"
-																	},
-																	"type": "Guid"
-																},
-																"PipelineId": {
-																	"value": {
-																		"value": "@item().PipelineId",
-																		"type": "Expression"
-																	},
-																	"type": "Int32"
-																},
-																"StageId": {
-																	"value": {
-																		"value": "@item().StageId",
-																		"type": "Expression"
-																	},
-																	"type": "Int32"
-																},
-																"CleanUpRun": {
-																	"value": {
-																		"value": "@bool(1)",
-																		"type": "Expression"
-																	},
-																	"type": "Boolean"
-																}
-															}
-														},
-														"linkedServiceName": {
-															"referenceName": "SupportDatabase",
-															"type": "LinkedServiceReference"
-														}
-													}
-												]
-											}
-										],
-										"defaultActivities": [
-											{
-												"name": "Pipeline Status Unknown",
-												"description": "Updates the current execution table with a pipeline status of unknown if the function returns an unexpected outcome.",
-												"type": "SqlServerStoredProcedure",
-												"dependsOn": [],
-												"policy": {
-													"timeout": "0.00:10:00",
-													"retry": 0,
-													"retryIntervalInSeconds": 30,
-													"secureOutput": false,
-													"secureInput": false
-												},
-												"userProperties": [],
-												"typeProperties": {
-													"storedProcedureName": "[[metadata].[SetLogPipelineUnknown]",
-													"storedProcedureParameters": {
-														"ExecutionId": {
-															"value": {
-																"value": "@item().LocalExecutionId",
-																"type": "Expression"
-															},
-															"type": "Guid"
-														},
-														"PipelineId": {
-															"value": {
-																"value": "@item().PipelineId",
-																"type": "Expression"
-															},
-															"type": "Int32"
-														},
-														"StageId": {
-															"value": {
-																"value": "@item().StageId",
-																"type": "Expression"
-															},
-															"type": "Int32"
-														},
-														"CleanUpRun": {
-															"value": {
-																"value": "@bool(1)",
-																"type": "Expression"
-															},
-															"type": "Boolean"
-														}
-													}
-												},
-												"linkedServiceName": {
-													"referenceName": "SupportDatabase",
-													"type": "LinkedServiceReference"
-												}
-											}
-										]
-									}
-								},
-								{
-									"name": "Set Last Check DateTime",
-									"description": "Update the current execution table with a date time from when the function last checked the pipeline status.",
-									"type": "SqlServerStoredProcedure",
-									"dependsOn": [
-										{
-											"activity": "Get Pipeline Status",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"policy": {
-										"timeout": "0.00:10:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"storedProcedureName": "[[metadata].[SetLogPipelineLastStatusCheck]",
-										"storedProcedureParameters": {
-											"ExecutionId": {
-												"value": {
-													"value": "@item().LocalExecutionId",
-													"type": "Expression"
-												},
-												"type": "Guid"
-											},
-											"PipelineId": {
-												"value": {
-													"value": "@item().PipelineId",
-													"type": "Expression"
-												},
-												"type": "Int32"
-											},
-											"StageId": {
-												"value": {
-													"value": "@item().StageId",
-													"type": "Expression"
-												},
-												"type": "Int32"
-											}
-										}
-									},
-									"linkedServiceName": {
-										"referenceName": "SupportDatabase",
-										"type": "LinkedServiceReference"
-									}
-								},
-								{
-									"name": "Get Pipeline Status",
-									"type": "WebActivity",
-									"dependsOn": [
-										{
-											"activity": "Log Pipeline Checking",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										},
-										{
-											"activity": "Set Subscription Id",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										},
-										{
-											"activity": "Set Resource Group Name",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"policy": {
-										"timeout": "0.12:00:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"method": "GET",
-										"headers": {},
-										"url": {
-											"value": "https://management.azure.com/subscriptions/@{variables('SubscriptionId')}/resourceGroups/@{variables('ResourceGroupName')}/providers/Microsoft.DataFactory/factories/@{pipeline().DataFactory}/pipelineruns/@{item().PipelineRunId}?api-version=2018-06-01\n",
-											"type": "Expression"
-										},
-										"authentication": {
-											"type": "MSI",
-											"resource": {
-												"value": "https://management.core.windows.net/",
-												"type": "Expression"
-											}
-										}
-									}
-								},
-								{
-									"name": "Get Framework Orchestrator Details - 01 Stage",
-									"type": "Lookup",
-									"dependsOn": [],
-									"policy": {
-										"timeout": "0.12:00:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"source": {
-											"type": "AzureSqlSource",
-											"sqlReaderStoredProcedureName": "[[metadata].[GetFrameworkOrchestratorDetails]",
-											"storedProcedureParameters": {
-												"CallingOrchestratorName": {
-													"type": "String",
-													"value": {
-														"value": "@pipeline().DataFactory",
-														"type": "Expression"
-													}
-												}
-											},
-											"queryTimeout": "02:00:00",
-											"partitionOption": "None"
-										},
-										"dataset": {
-											"referenceName": "GetSetMetadata",
-											"type": "DatasetReference",
-											"parameters": {}
-										}
-									}
-								},
-								{
-									"name": "Set Subscription Id",
-									"description": "Set the subscription Id value to a local variable for use in various downstream activities.",
-									"type": "SetVariable",
-									"dependsOn": [
-										{
-											"activity": "Get Framework Orchestrator Details - 01 Stage",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"policy": {
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"variableName": "SubscriptionId",
-										"value": {
-											"value": "@activity('Get Framework Orchestrator Details - 01 Stage').output.firstRow.SubscriptionId",
-											"type": "Expression"
-										}
-									}
-								},
-								{
-									"name": "Set Resource Group Name",
-									"description": "Set the resource group name value to a local variable for use in various downstream activities.",
-									"type": "SetVariable",
-									"dependsOn": [
-										{
-											"activity": "Get Framework Orchestrator Details - 01 Stage",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"policy": {
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"variableName": "ResourceGroupName",
-										"value": {
-											"value": "@activity('Get Framework Orchestrator Details - 01 Stage').output.firstRow.ResourceGroupName",
-											"type": "Expression"
-										}
-									}
-								}
-							]
-						}
-					},
-					{
-						"name": "Set Execution Id",
-						"description": "Set the local execution Id to a pipeline variable for each in several downstream activities.",
-						"type": "SetVariable",
-						"dependsOn": [
-							{
-								"activity": "Execution Wrapper",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "ExecutionId",
-							"value": {
-								"value": "@activity('Execution Wrapper').output.firstRow.ExecutionId",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Is Stage Already Running",
-						"description": "Establish before anything else if the stage pipeline is already running. Batch execution aware.",
-						"type": "ExecutePipeline",
-						"dependsOn": [],
-						"policy": {
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "Check For Running Pipeline Utils",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"BatchName": {
-									"value": "@pipeline().parameters.BatchName",
-									"type": "Expression"
-								},
-								"PipelineName": {
-									"value": "@pipeline().Pipeline",
-									"type": "Expression"
-								},
-								"ThisRunId": {
-									"value": "@pipeline().RunId",
-									"type": "Expression"
-								}
-							}
-						}
-					},
-					{
-						"name": "Check Metadata Integrity",
-						"description": "Performs a series of checks on all metadata held in the framework SQLDB. This is intended to raise errors before an execution run even starts.",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [
-							{
-								"activity": "Is Stage Already Running",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.00:10:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[metadata].[CheckMetadataIntegrity]",
-							"storedProcedureParameters": {
-								"BatchName": {
-									"value": {
-										"value": "@pipeline().parameters.BatchName",
-										"type": "Expression"
-									},
-									"type": "String"
-								},
-								"DebugMode": {
-									"value": {
-										"value": "@bool(0)",
-										"type": "Expression"
-									},
-									"type": "Boolean"
-								}
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "SupportDatabase",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"BatchName": {
-						"type": "string",
-						"defaultValue": "NotUsed"
-					}
-				},
-				"variables": {
-					"ExecutionId": {
-						"type": "String"
-					},
-					"SubscriptionId": {
-						"type": "String"
-					},
-					"ResourceGroupName": {
-						"type": "String"
-					}
-				},
-				"folder": {
-					"name": "ADFUniversalOrchestratorFramework"
-				},
-				"annotations": [
-					"Stage"
-				],
-				"lastPublishTime": "2024-02-20T03:29:17Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Check For Running Pipeline Utils')]",
-				"[concat(variables('factoryId'), '/pipelines/02-Pipelines')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/00-Batch')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Batch pipeline used optionally to bootstrap any wider processes in your Data Factory that then calls the processing framework.",
-				"activities": [
-					{
-						"name": "Call Stage",
-						"description": "Call Stage",
-						"type": "ExecutePipeline",
-						"dependsOn": [],
-						"policy": {
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "01-Stage",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"BatchName": {
-									"value": "@pipeline().parameters.BatchName",
-									"type": "Expression"
-								}
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"BatchName": {
-						"type": "string",
-						"defaultValue": "NotUsed"
-					}
-				},
-				"folder": {
-					"name": "ADFUniversalOrchestratorFramework"
-				},
-				"annotations": [
-					"Batch"
-				],
-				"lastPublishTime": "2024-02-20T03:29:17Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/01-Stage')]"
+				"[concat(variables('factoryId'), '/datasets/sourcelist')]",
+				"[concat(variables('factoryId'), '/datasets/targelist')]"
 			]
 		}
 	]
