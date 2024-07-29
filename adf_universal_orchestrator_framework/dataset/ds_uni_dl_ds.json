@@ -1,0 +1,15 @@
+{
+	"name": "ds_uni_dl_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SupportDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Universal"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
