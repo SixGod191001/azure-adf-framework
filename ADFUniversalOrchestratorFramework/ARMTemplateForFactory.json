@@ -7,10 +7,6 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "ADFUniversalOrchestratorFramework"
 		},
-		"lk_blob_cedc_new_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'lk_blob_cedc_new'"
-		},
 		"lk_dl_cedc_2_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'lk_dl_cedc_2'"
@@ -22,6 +18,10 @@
 		"SupportDatabase_properties_typeProperties_connectionString_secretName": {
 			"type": "string",
 			"defaultValue": "adf-framework-metadata-db-connection-string"
+		},
+		"lk_blob_cedc_new_properties_typeProperties_serviceEndpoint": {
+			"type": "string",
+			"defaultValue": "https://cedcblob.blob.core.windows.net/"
 		},
 		"lk_dl_cedc_properties_typeProperties_url": {
 			"type": "string",
@@ -7290,7 +7290,8 @@
 				"annotations": [],
 				"type": "AzureBlobStorage",
 				"typeProperties": {
-					"connectionString": "[parameters('lk_blob_cedc_new_connectionString')]"
+					"serviceEndpoint": "[parameters('lk_blob_cedc_new_properties_typeProperties_serviceEndpoint')]",
+					"accountKind": "StorageV2"
 				}
 			},
 			"dependsOn": []

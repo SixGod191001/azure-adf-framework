@@ -7,10 +7,6 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "ADFUniversalOrchestratorFramework"
 		},
-		"lk_blob_cedc_new_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'lk_blob_cedc_new'"
-		},
 		"lk_dl_cedc_2_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'lk_dl_cedc_2'"
@@ -22,6 +18,10 @@
 		"SupportDatabase_properties_typeProperties_connectionString_secretName": {
 			"type": "string",
 			"defaultValue": "adf-framework-metadata-db-connection-string"
+		},
+		"lk_blob_cedc_new_properties_typeProperties_serviceEndpoint": {
+			"type": "string",
+			"defaultValue": "https://cedcblob.blob.core.windows.net/"
 		},
 		"lk_dl_cedc_properties_typeProperties_url": {
 			"type": "string",
@@ -58,14 +58,14 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"lk_blob_cedc_new_connectionString": {
-						"value": "[parameters('lk_blob_cedc_new_connectionString')]"
-					},
 					"lk_dl_cedc_2_accountKey": {
 						"value": "[parameters('lk_dl_cedc_2_accountKey')]"
 					},
 					"AKVLinkedService_UniversalOrchestratorFramework_properties_typeProperties_baseUrl": {
 						"value": "[parameters('AKVLinkedService_UniversalOrchestratorFramework_properties_typeProperties_baseUrl')]"
+					},
+					"lk_blob_cedc_new_properties_typeProperties_serviceEndpoint": {
+						"value": "[parameters('lk_blob_cedc_new_properties_typeProperties_serviceEndpoint')]"
 					},
 					"lk_dl_cedc_properties_typeProperties_url": {
 						"value": "[parameters('lk_dl_cedc_properties_typeProperties_url')]"
