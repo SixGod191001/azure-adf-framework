@@ -11,10 +11,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'lk_blob_cedc_new'"
 		},
-		"lk_dl_cedc_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'lk_dl_cedc'"
-		},
 		"lk_dl_cedc_2_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'lk_dl_cedc_2'"
@@ -7307,11 +7303,7 @@
 				"annotations": [],
 				"type": "AzureBlobFS",
 				"typeProperties": {
-					"url": "[parameters('lk_dl_cedc_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('lk_dl_cedc_accountKey')]"
-					}
+					"url": "[parameters('lk_dl_cedc_properties_typeProperties_url')]"
 				}
 			},
 			"dependsOn": []

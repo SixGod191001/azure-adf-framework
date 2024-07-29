@@ -11,10 +11,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'lk_blob_cedc_new'"
 		},
-		"lk_dl_cedc_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'lk_dl_cedc'"
-		},
 		"lk_dl_cedc_2_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'lk_dl_cedc_2'"
@@ -64,9 +60,6 @@
 					},
 					"lk_blob_cedc_new_connectionString": {
 						"value": "[parameters('lk_blob_cedc_new_connectionString')]"
-					},
-					"lk_dl_cedc_accountKey": {
-						"value": "[parameters('lk_dl_cedc_accountKey')]"
 					},
 					"lk_dl_cedc_2_accountKey": {
 						"value": "[parameters('lk_dl_cedc_2_accountKey')]"
