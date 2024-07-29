@@ -55,7 +55,13 @@
 				"outputs": [
 					{
 						"referenceName": "ds_uni_dl_ds",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"TableName": {
+								"value": "@pipeline().parameters.target_table",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			},
