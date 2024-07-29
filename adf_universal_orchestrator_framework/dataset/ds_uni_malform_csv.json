@@ -1,0 +1,25 @@
+{
+	"name": "ds_uni_malform_csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lk_blob_cedc_new",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Universal"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "malformed"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
