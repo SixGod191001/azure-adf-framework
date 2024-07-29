@@ -27,6 +27,7 @@
 					"fieldList": [],
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					}
 				}
@@ -48,11 +49,92 @@
 						"value": "@equals(formatDateTime(activity('Get Metadata1').output.lastModified,'yyyy-MM-dd'),formatDateTime(addHours(utcnow(),8),'yyyy-MM-dd'))",
 						"type": "Expression"
 					},
+					"ifFalseActivities": [
+						{
+							"name": "Copy data4",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"enableStaging": false
+							}
+						}
+					],
 					"ifTrueActivities": [
 						{
 							"name": "Copy data2",
 							"type": "Copy",
 							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "ExcelSource",
+									"storeSettings": {
+										"type": "AzureBlobStorageReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"value": "@json(pipeline().parameters.target_mapping)",
+									"type": "Expression"
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_uni_blob_excel",
+									"type": "DatasetReference",
+									"parameters": {
+										"p_container": "@pipeline().parameters.source_container",
+										"p_filename": "@pipeline().parameters.source_filename",
+										"p_sheet": "@pipeline().parameters.source_sheet"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_uni_dl_AzureSqlTable",
+									"type": "DatasetReference",
+									"parameters": {
+										"v_table_name": {
+											"value": "@pipeline().parameters.target_table",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "Copy data3",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Copy data2",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"policy": {
 								"timeout": "0.12:00:00",
 								"retry": 0,
@@ -90,16 +172,19 @@
 									"referenceName": "ds_uni_blob_excel",
 									"type": "DatasetReference",
 									"parameters": {
-										"p_container": "@pipeline().parameters.source_container",
-										"p_filename": "@pipeline().parameters.source_filename",
-										"p_sheet": "@pipeline().parameters.source_sheet"
+										"p_container": "@pipeline().parameters.target_container",
+										"p_filename": "@pipeline().parameters.target_path",
+										"p_sheet": "@pipeline().parameters.target_filename"
 									}
 								}
 							],
 							"outputs": [
 								{
 									"referenceName": "ds_uni_dl_AzureSqlTable",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"v_table_name": "@pipeline().parameters.target_table"
+									}
 								}
 							]
 						}
@@ -107,6 +192,32 @@
 				}
 			}
 		],
+		"parameters": {
+			"source_container": {
+				"type": "string"
+			},
+			"source_filename": {
+				"type": "string"
+			},
+			"source_sheet": {
+				"type": "string"
+			},
+			"target_container": {
+				"type": "string"
+			},
+			"target_filename": {
+				"type": "string"
+			},
+			"target_path": {
+				"type": "string"
+			},
+			"target_table": {
+				"type": "string"
+			},
+			"target_mapping": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "Universal"
 		},

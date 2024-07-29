@@ -1,0 +1,37 @@
+{
+	"name": "ds_uni_dl_malform_csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lk_dl_cedc_2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_container": {
+				"type": "string",
+				"defaultValue": "malformed"
+			},
+			"p_filename": {
+				"type": "string"
+			},
+			"p_path": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "Universal"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "malformed"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
