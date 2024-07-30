@@ -1,0 +1,116 @@
+{
+	"name": "pl_uni_blob_dl_csv_archive",
+	"properties": {
+		"activities": [
+			{
+				"name": "copy data",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_uni_dl_csv",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_container": "landing",
+							"p_path": "cpa",
+							"p_filename": "CPA_Franchise_Marketing_Mapping.csv"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_uni_dl_csv",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_container": {
+								"value": "@pipeline().parameters.target_container",
+								"type": "Expression"
+							},
+							"p_path": {
+								"value": "@pipeline().parameters.target_path",
+								"type": "Expression"
+							},
+							"p_filename": {
+								"value": "@pipeline().parameters.target_filename",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"source_container": {
+				"type": "string",
+				"defaultValue": "landing"
+			},
+			"source_filename": {
+				"type": "string",
+				"defaultValue": "CPA_Franchise_Marketing_Mapping.csv"
+			},
+			"source_path": {
+				"type": "string",
+				"defaultValue": "cpa"
+			},
+			"target_container": {
+				"type": "string",
+				"defaultValue": "archive"
+			},
+			"target_filename": {
+				"type": "string",
+				"defaultValue": "CPA_Franchise_Marketing_Mapping.csv"
+			},
+			"target_path": {
+				"type": "string",
+				"defaultValue": "cpa"
+			}
+		},
+		"folder": {
+			"name": "Universal"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-07-16T08:51:36Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
