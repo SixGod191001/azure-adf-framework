@@ -16,14 +16,11 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "DelimitedTextSource",
+						"type": "ExcelSource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"enablePartitionDiscovery": false
-						},
-						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
 						}
 					},
 					"sink": {
@@ -47,21 +44,12 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ds_uni_blob_csv2",
+						"referenceName": "ds_uni_blob_excel",
 						"type": "DatasetReference",
 						"parameters": {
-							"p_container": {
-								"value": "@pipeline().parameters.source_container",
-								"type": "Expression"
-							},
-							"p_filename": {
-								"value": "@pipeline().parameters.source_filename",
-								"type": "Expression"
-							},
-							"p_sheet": {
-								"value": "@pipeline().parameters.source_sheet",
-								"type": "Expression"
-							}
+							"p_container": "cpa",
+							"p_filename": "CPA_Franchise_Marketing_Mapping.xlsx",
+							"p_sheet": "Sheet1"
 						}
 					}
 				],
@@ -89,22 +77,28 @@
 		],
 		"parameters": {
 			"source_container": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "cpa"
 			},
 			"source_filename": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "CPA_Medicine_Sales.xlsx"
 			},
 			"source_sheet": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "Sheet1"
 			},
 			"target_container": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "landing"
 			},
 			"target_filename": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "CPA_Medicine_Sales.csv"
 			},
 			"target_path": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "cpa"
 			}
 		},
 		"folder": {

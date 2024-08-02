@@ -161,7 +161,7 @@
 			},
 			"target_table": {
 				"type": "string",
-				"defaultValue": "frameworkmetadata.edw.t_cpa_landing_frch_mkt_map"
+				"defaultValue": "t_cpa_landing_frch_mkt_map"
 			},
 			"target_mapping": {
 				"type": "string",
@@ -173,7 +173,7 @@
 								"name": "mkt_code"
 							},
 							"sink": {
-								"name": "mkt_code"
+								"name": "Market_code"
 							}
 						},
 						{
@@ -181,7 +181,7 @@
 								"name": "frch_name"
 							},
 							"sink": {
-								"name": "frch_name"
+								"name": "Franchise_name"
 							}
 						}
 					]
