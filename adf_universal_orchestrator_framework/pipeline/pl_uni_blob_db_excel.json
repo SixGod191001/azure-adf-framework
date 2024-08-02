@@ -1,5 +1,5 @@
 {
-	"name": "pl_uni_blob_ds_excel",
+	"name": "pl_uni_blob_db_excel",
 	"properties": {
 		"activities": [
 			{
@@ -148,48 +148,22 @@
 		],
 		"parameters": {
 			"source_container": {
-				"type": "string",
-				"defaultValue": "cpa"
+				"type": "string"
 			},
 			"source_filename": {
-				"type": "string",
-				"defaultValue": "CPA_Franchise_Marketing_Mapping.xlsx"
+				"type": "string"
 			},
 			"source_sheet": {
-				"type": "string",
-				"defaultValue": "Sheet1"
+				"type": "string"
 			},
 			"target_table": {
-				"type": "string",
-				"defaultValue": "t_cpa_landing_frch_mkt_map"
+				"type": "string"
 			},
 			"target_mapping": {
-				"type": "string",
-				"defaultValue": {
-					"type": "TabularTranslator",
-					"mappings": [
-						{
-							"source": {
-								"name": "mkt_code"
-							},
-							"sink": {
-								"name": "Market_code"
-							}
-						},
-						{
-							"source": {
-								"name": "frch_name"
-							},
-							"sink": {
-								"name": "Franchise_name"
-							}
-						}
-					]
-				}
+				"type": "string"
 			},
 			"target_schema": {
-				"type": "string",
-				"defaultValue": "edw"
+				"type": "string"
 			}
 		},
 		"folder": {
