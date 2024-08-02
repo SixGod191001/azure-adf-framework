@@ -1,0 +1,40 @@
+{
+	"name": "pl_ubi_db_sp",
+	"properties": {
+		"activities": [
+			{
+				"name": "SP",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": {
+						"value": "@pipeline().parameters.sp_name",
+						"type": "Expression"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "SupportDatabase",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"parameters": {
+			"sp_name": {
+				"type": "string",
+				"defaultValue": "sp_cpa_interim_hospital"
+			}
+		},
+		"folder": {
+			"name": "Universal"
+		},
+		"annotations": []
+	}
+}

@@ -60,6 +60,10 @@
 							"TableName": {
 								"value": "@pipeline().parameters.target_table",
 								"type": "Expression"
+							},
+							"schema": {
+								"value": "@pipeline().parameters.target_schema",
+								"type": "Expression"
 							}
 						}
 					}
@@ -144,19 +148,48 @@
 		],
 		"parameters": {
 			"source_container": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "cpa"
 			},
 			"source_filename": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "CPA_Franchise_Marketing_Mapping.xlsx"
 			},
 			"source_sheet": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "Sheet1"
 			},
 			"target_table": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "frameworkmetadata.edw.t_cpa_landing_frch_mkt_map"
 			},
 			"target_mapping": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": {
+					"type": "TabularTranslator",
+					"mappings": [
+						{
+							"source": {
+								"name": "mkt_code"
+							},
+							"sink": {
+								"name": "mkt_code"
+							}
+						},
+						{
+							"source": {
+								"name": "frch_name"
+							},
+							"sink": {
+								"name": "frch_name"
+							}
+						}
+					]
+				}
+			},
+			"target_schema": {
+				"type": "string",
+				"defaultValue": "edw"
 			}
 		},
 		"folder": {
